@@ -19,8 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
+      "@components/*": ["./src/app/components/*"],
       "@fonts/*": ["./public/fonts/*"],
       "@payload-config": ["./payload.config.ts"]
     }
