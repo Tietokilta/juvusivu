@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
+    "build": "next build --experimental-build-mode compile",
     "dev": "docker-compose up -d && next dev",
     "format": "prettier --ignore-unknown --write .",
     "format:check": "prettier --ignore-unknown --check .",
