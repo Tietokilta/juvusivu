@@ -23,6 +23,21 @@ export default buildConfig({
         },
       ],
     },
+    {
+      slug: "sponsors",
+      fields: [
+        {
+          name: "name",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "url",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
   ],
 
   admin: {
@@ -45,4 +60,35 @@ export default buildConfig({
       connectionString: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
     },
   }),
+
+  // Seeding for development
+  onInit: async (payload) => {
+    if (!process.env.NEXT_PUBLIC_PAYLOAD_DEVELOPMENT) {
+      return;
+    }
+    const events = await payload.find({ collection: "events", limit: 1 });
+    if (events.totalDocs === 0) {
+      for (let i = 1; i <= 6; i++) {
+        await payload.create({
+          collection: "events",
+          data: {
+            title: `Event ${i}`,
+            description: "Description for event",
+          },
+        });
+      }
+    }
+    const sponsors = await payload.find({ collection: "sponsors", limit: 1 });
+    if (sponsors.totalDocs === 0) {
+      for (let i = 1; i <= 3; i++) {
+        await payload.create({
+          collection: "sponsors",
+          data: {
+            name: `Sponsor ${i}`,
+            url: "https://tietokilta.fi/",
+          },
+        });
+      }
+    }
+  },
 });
