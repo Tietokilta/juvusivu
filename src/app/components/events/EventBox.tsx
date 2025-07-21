@@ -4,7 +4,7 @@ import { Event } from "../../../../payload-types";
 export const EventBox = async ({ event }: { event: Event }) => {
   const t = await getI18n();
   return (
-    <div className="event-box shadow-gray m-8 max-w-[400px] min-w-[250px] flex-1 shadow-lg">
+    <div className="event-box m-8 max-w-[400px] min-w-[250px] flex-1 shadow-lg shadow-gray-500">
       <div className="bg-accent-dark p-1">
         <h2 className="mx-2 font-mono font-extrabold text-white">
           {event.title}

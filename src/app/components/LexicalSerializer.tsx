@@ -10,7 +10,6 @@ import { Block } from "payload";
 import Events from "./events/Events";
 import React, { JSX } from "react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
-import {} from "@payloadcms/richtext-lexical/lexical/rich-text";
 import { getCurrentLocale } from "@locales/server";
 
 export const EventGridBlock: Block = {
