@@ -6,8 +6,10 @@ export default async function Footer() {
   const payload = await getPayload({ config: configPromise });
   const sponsors = await payload.find({ collection: "sponsors" });
   return (
-    <footer className="relative flex h-[300px] flex-col items-center justify-center bg-indigo-300 py-24 text-black">
-      <p className="text-center text-lg font-bold">Mukana sponsoroimassa</p>
+    <footer className="bg-accent-light relative flex h-[300px] flex-col items-center justify-center py-24 text-black">
+      <p className="text-center font-mono text-lg font-bold">
+        Mukana sponsoroimassa
+      </p>
       <div className="mt-6 flex gap-8">
         {sponsors.docs.map((sponsor) => (
           <Link key={sponsor.id} href={sponsor.url}>

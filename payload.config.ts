@@ -1,12 +1,22 @@
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
+import { MainPage } from "./src/lib/api/mainPage";
+import { EventGridBlock } from "@components/LexicalSerializer";
+import { seed } from "./src/lib/api/seed";
 
 const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
-  editor: lexicalEditor(),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      BlocksFeature({
+        blocks: [EventGridBlock],
+      }),
+    ],
+  }),
 
   // Define and configure your collections in this array
   collections: [
@@ -40,6 +50,8 @@ export default buildConfig({
     },
   ],
 
+  globals: [MainPage],
+
   admin: {
     autoLogin:
       process.env.NEXT_PUBLIC_PAYLOAD_DEVELOPMENT === "true" &&
@@ -66,29 +78,6 @@ export default buildConfig({
     if (!process.env.NEXT_PUBLIC_PAYLOAD_DEVELOPMENT) {
       return;
     }
-    const events = await payload.find({ collection: "events", limit: 1 });
-    if (events.totalDocs === 0) {
-      for (let i = 1; i <= 6; i++) {
-        await payload.create({
-          collection: "events",
-          data: {
-            title: `Event ${i}`,
-            description: "Description for event",
-          },
-        });
-      }
-    }
-    const sponsors = await payload.find({ collection: "sponsors", limit: 1 });
-    if (sponsors.totalDocs === 0) {
-      for (let i = 1; i <= 3; i++) {
-        await payload.create({
-          collection: "sponsors",
-          data: {
-            name: `Sponsor ${i}`,
-            url: "https://tietokilta.fi/",
-          },
-        });
-      }
-    }
+    seed(payload);
   },
 });
