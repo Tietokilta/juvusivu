@@ -8,6 +8,12 @@ Install dependencies:
 pnpm install
 ```
 
+(Optional) Seed the database to get example content:
+
+```bash
+pnpm db:seed
+```
+
 Run the application:
 
 ```bash
