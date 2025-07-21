@@ -1,14 +1,16 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import Link from "next/link";
+import { getI18n } from "@locales/server";
 
 export default async function Footer() {
   const payload = await getPayload({ config: configPromise });
   const sponsors = await payload.find({ collection: "sponsors" });
+  const t = await getI18n();
   return (
     <footer className="bg-accent-light relative flex h-[300px] flex-col items-center justify-center py-24 text-black">
       <p className="text-center font-mono text-lg font-bold">
-        Mukana sponsoroimassa
+        {t("sponsors-title")}
       </p>
       <div className="mt-6 flex gap-8">
         {sponsors.docs.map((sponsor) => (

@@ -7,6 +7,7 @@ export const MainPage: GlobalConfig = {
       name: "title",
       type: "text",
       required: true,
+      localized: true,
     },
     {
       name: "body",

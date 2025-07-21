@@ -1,6 +1,8 @@
+import { getI18n } from "@locales/server";
 import { Event } from "../../../../payload-types";
 
-export const EventBox = ({ event }: { event: Event }) => {
+export const EventBox = async ({ event }: { event: Event }) => {
+  const t = await getI18n();
   return (
     <div className="event-box shadow-gray m-8 max-w-[400px] min-w-[250px] flex-1 shadow-lg">
       <div className="bg-accent-dark p-1">
@@ -12,7 +14,7 @@ export const EventBox = ({ event }: { event: Event }) => {
         <p>{event.description}</p>
         <p>XX.XX.XXXX at XX:XX</p>
         <button className="rounded border-2 border-gray-700 bg-gray-300 p-1">
-          Open
+          {t("open-button")}
         </button>
       </div>
     </div>

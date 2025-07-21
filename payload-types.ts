@@ -92,7 +92,7 @@ export interface Config {
   globalsSelect: {
     mainPage: MainPageSelect<false> | MainPageSelect<true>;
   };
-  locale: null;
+  locale: 'en' | 'fi';
   user: User & {
     collection: 'users';
   };

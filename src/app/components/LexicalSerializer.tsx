@@ -11,6 +11,7 @@ import Events from "./events/Events";
 import React, { JSX } from "react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import {} from "@payloadcms/richtext-lexical/lexical/rich-text";
+import { getCurrentLocale } from "@locales/server";
 
 export const EventGridBlock: Block = {
   slug: "eventGrid",
@@ -28,26 +29,27 @@ const headingClasses: Record<string, string> = {
   h6: "text-base font-medium",
 };
 
-const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
-  defaultConverters,
-}) => ({
-  ...defaultConverters,
-  heading: ({ node, nodesToJSX }) => {
-    const level = node.tag || "h2";
-    const HeadingTag = level as keyof JSX.IntrinsicElements;
-    const children = nodesToJSX({ nodes: node.children });
-    const className = headingClasses[level] || "";
-
-    return <HeadingTag className={className}>{children}</HeadingTag>;
-  },
-
-  blocks: {
-    eventGrid: () => <Events />,
-  },
-});
-
 export const LexicalSerializer: React.FC<{
   data: SerializedEditorState;
-}> = ({ data }) => {
+}> = async ({ data }) => {
+  const locale = await getCurrentLocale();
+  const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
+    defaultConverters,
+  }) => ({
+    ...defaultConverters,
+    heading: ({ node, nodesToJSX }) => {
+      const level = node.tag || "h2";
+      const HeadingTag = level as keyof JSX.IntrinsicElements;
+      const children = nodesToJSX({ nodes: node.children });
+      const className = headingClasses[level] || "";
+
+      return <HeadingTag className={className}>{children}</HeadingTag>;
+    },
+
+    blocks: {
+      eventGrid: () => <Events locale={locale} />,
+    },
+  });
+
   return <RichText converters={jsxConverters} data={data} />;
 };

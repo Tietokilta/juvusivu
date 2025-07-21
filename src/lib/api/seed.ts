@@ -4,12 +4,22 @@ export const seed = async (payload: Payload, override: boolean = false) => {
   const events = await payload.find({ collection: "events", limit: 1 });
   if (events.totalDocs === 0) {
     for (let i = 1; i <= 6; i++) {
-      await payload.create({
+      const doc = await payload.create({
         collection: "events",
         data: {
-          title: `Event ${i}`,
-          description: "Description for event",
+          title: `Tapahtuma ${i}`,
+          description: "Tapahtuman kuvaus",
         },
+        locale: "fi",
+      });
+      await payload.update({
+        collection: "events",
+        id: doc.id,
+        data: {
+          title: `Event ${i}`,
+          description: "Event description",
+        },
+        locale: "en",
       });
     }
   }

@@ -3,7 +3,6 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
 import { MainPage } from "./src/lib/api/mainPage";
 import { EventGridBlock } from "@components/LexicalSerializer";
-import { seed } from "./src/lib/api/seed";
 
 const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
 
@@ -18,6 +17,11 @@ export default buildConfig({
     ],
   }),
 
+  localization: {
+    locales: ["en", "fi"],
+    defaultLocale: "fi",
+  },
+
   // Define and configure your collections in this array
   collections: [
     {
@@ -26,10 +30,12 @@ export default buildConfig({
         {
           name: "title",
           type: "text",
+          localized: true,
         },
         {
           name: "description",
           type: "textarea",
+          localized: true,
         },
       ],
     },
@@ -72,12 +78,4 @@ export default buildConfig({
       connectionString: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
     },
   }),
-
-  // Seeding for development
-  onInit: async (payload) => {
-    if (!process.env.NEXT_PUBLIC_PAYLOAD_DEVELOPMENT) {
-      return;
-    }
-    seed(payload);
-  },
 });
