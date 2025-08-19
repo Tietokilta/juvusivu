@@ -6,16 +6,11 @@ import {
   JSXConvertersFunction,
   RichText,
 } from "@payloadcms/richtext-lexical/react";
-import { Block } from "payload";
-import Events from "./events/Events";
+import Events from "../events/Events";
 import React, { JSX } from "react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { getCurrentLocale } from "@locales/server";
-
-export const EventGridBlock: Block = {
-  slug: "eventGrid",
-  fields: [],
-};
+import { EventGridBlock } from "./Blocks";
 
 type NodeTypes = DefaultNodeTypes | SerializedBlockNode<typeof EventGridBlock>;
 
@@ -52,3 +47,4 @@ export const LexicalSerializer: React.FC<{
 
   return <RichText converters={jsxConverters} data={data} />;
 };
+export { EventGridBlock };

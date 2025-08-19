@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import Header from "@components/Header";
+import localFont from "next/font/local";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -14,6 +15,11 @@ const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
   subsets: ["latin"],
   weight: "400",
+});
+
+const pixelFont = localFont({
+  src: "../../../public/fonts/w95fa/w95fa.woff2",
+  variable: "--font-pixel",
 });
 
 const icons = {
@@ -46,7 +52,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="bg-accent-light">
-      <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} antialiased`}
+      >
         <Navbar />
         <Header />
         {children}

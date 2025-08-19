@@ -4,7 +4,7 @@ import Link from "next/link";
 export default async function Navbar() {
   const t = await getI18n();
   return (
-    <nav className="fixed top-0 z-10 flex w-1/1 items-center justify-between bg-gray-400 font-mono">
+    <nav className="bg-accent-light fixed top-0 z-10 flex w-1/1 items-center justify-between font-mono">
       <Link
         href="/"
         className="bg-accent-dark w-1/2 p-4 text-lg font-bold text-white"
@@ -16,7 +16,7 @@ export default async function Navbar() {
           <Link
             href="/"
             key={i}
-            className="flex-1 text-center font-bold text-black hover:underline"
+            className="text-header flex-1 text-center font-bold hover:underline"
           >
             Link
           </Link>

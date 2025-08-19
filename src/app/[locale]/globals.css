@@ -2,13 +2,20 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: var(--color-gray-50);
-  --foreground: var(--color-gray-950);
+  --background: var(--color-juvu-white);
+  --foreground: var(--color-juvu-blue);
 }
 
 @theme {
-  --color-accent-dark: #0e0c84;
-  --color-accent-light: #bac1f0;
+  --color-juvu-blue: #091f43;
+  --color-juvu-blue-light: #c4cfe1;
+  --color-juvu-white: #fcf7f1;
+  --color-juvu-gold: #d4ae63;
+  --color-juvu-red: #ff675e;
+  --color-accent-dark: var(--color-juvu-blue);
+  --color-accent-light: var(--color-juvu-blue-light);
+  --color-header: var(--color-juvu-blue);
+  --font-pixel: var(--font-pixel);
 }
 
 @theme inline {
@@ -21,5 +28,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }

@@ -4,6 +4,7 @@ const fi = {
   "sponsors-title": "Mukana sponsoroimassa",
   "navbar-title": "Tietokilta 40 vuotta",
   "open-button": "Avaa",
+  "read-more": "Lue lisää",
 };
 
 type EnKey = keyof typeof en;

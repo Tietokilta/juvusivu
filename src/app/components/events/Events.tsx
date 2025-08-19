@@ -13,7 +13,9 @@ export default async function Events({ locale }: { locale: Locale }) {
   return (
     <div className="flex shrink-0 flex-wrap justify-center">
       {events.docs.map((event) => (
-        <EventBox key={event.id} event={event} />
+        <div className="flex-1" key={event.id}>
+          <EventBox event={event} />
+        </div>
       ))}
     </div>
   );

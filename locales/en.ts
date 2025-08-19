@@ -4,6 +4,7 @@ const en = {
   "sponsors-title": "Our sponsors",
   "navbar-title": "Tietokilta 40 years",
   "open-button": "Open",
+  "read-more": "Read more",
 };
 
 type FiKey = keyof typeof fi;
