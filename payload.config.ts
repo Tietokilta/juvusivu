@@ -2,7 +2,7 @@ import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
 import { MainPage } from "./src/lib/api/mainPage";
-import { EventGridBlock } from "@components/LexicalSerializer";
+import { EventGridBlock } from "@components/lexical/Blocks";
 
 const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
 
@@ -36,6 +36,11 @@ export default buildConfig({
           name: "description",
           type: "textarea",
           localized: true,
+        },
+        {
+          name: "slug",
+          type: "text",
+          localized: false,
         },
       ],
     },

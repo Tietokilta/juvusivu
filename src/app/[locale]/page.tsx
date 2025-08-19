@@ -1,6 +1,6 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
-import { LexicalSerializer } from "@components/LexicalSerializer";
+import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import { getCurrentLocale } from "../../../locales/server";
 
 export default async function Home() {

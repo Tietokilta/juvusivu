@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 
 const redaction35 = localFont({
-  src: "../../../public/fonts/Redaction_35-Bold.woff2",
+  src: "../../../public/fonts/redaction/Redaction_35-Bold.woff2",
 });
 
 export const Redaction = ({
