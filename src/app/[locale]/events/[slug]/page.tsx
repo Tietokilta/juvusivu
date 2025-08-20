@@ -204,8 +204,8 @@ export default async function Page({
   }
   const event = await fetchEvent(slug);
   return (
-    <div className="container mx-auto grid max-w-5xl grid-cols-3 px-4 py-8">
-      <div className="col-span-3 m-5">
+    <div className="container mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-3">
+      <div className="md:col-span-3">
         <Window title={event.title}>
           {event.location && (
             <p>
@@ -233,12 +233,12 @@ export default async function Page({
           )}
         </Window>
       </div>
-      <div className="col-span-2 row-start-2 m-5">
+      <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
           <Markdown>{event.description}</Markdown>
         </Window>
       </div>
-      <div className="col-start-3 row-start-2 m-5">
+      <div className="md:col-start-3 md:row-start-2">
         <Window title={t("Ilmoittautuminen")} className="font-pixel mb-5">
           <div className="flex items-center justify-center">
             <Button
@@ -263,7 +263,7 @@ export default async function Page({
         </Window>
       </div>
       {event.registrationStartDate && event.registrationEndDate && (
-        <div className="col-span-3 row-start-3 m-5">
+        <div className="md:col-span-3 md:row-start-3">
           <Window title={t("Ilmoittautuneet")}>
             <SignUpList event={event} />
           </Window>
