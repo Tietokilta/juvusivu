@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@components/*": ["./src/app/components/*"],
+      "@lib/*": ["./src/lib/*"],
       "@fonts/*": ["./public/fonts/*"],
       "@payload-config": ["./payload.config.ts"],
       "@locales/*": ["./locales/*"]

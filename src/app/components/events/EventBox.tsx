@@ -6,13 +6,10 @@ import { getI18n } from "@locales/server";
 
 export const EventBox = async ({ event }: { event: Event }) => {
   const t = await getI18n();
-  const url =
-    event.slug && event.released
-      ? `https://tietokilta.fi/fi/tapahtumat/${event.slug}`
-      : undefined;
+  const url = event.slug && event.released ? `events/${event.slug}` : undefined;
   return (
     <div className="event-box m-8 max-w-[400px] min-w-[250px] shadow-lg shadow-gray-500">
-      <Window link={url}>
+      <Window link={url} simple={false}>
         <div className="border-accent-dark bg-juvu-white mb-2 border-2 p-1">
           <h2 className="text-accent-dark font-pixel mx-2 text-lg">
             C:\..\Juhlavuosi\{event.title}
