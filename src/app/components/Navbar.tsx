@@ -13,7 +13,7 @@ export default async function Navbar() {
     locale,
   });
   return (
-    <nav className="bg-accent-light border-accent-dark z-10 flex w-1/1 flex-wrap items-center justify-between border-b-2 font-mono">
+    <nav className="bg-accent-light border-accent-dark z-10 flex w-full flex-wrap items-center justify-between border-b-2 font-mono">
       <Link
         href="/"
         className="bg-accent-dark min-w-[300px] flex-1 p-4 text-lg font-bold text-white"

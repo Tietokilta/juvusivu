@@ -1,6 +1,7 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import Markdown from "react-markdown";
+import { notFound } from "next/navigation";
 import {
   EventQuestion,
   EventQuota,
@@ -200,7 +201,7 @@ export default async function Page({
   const t = await getScopedI18n("ilmomasiina");
 
   if (event_cms.docs.length === 0) {
-    return <div>Event not found</div>;
+    notFound();
   }
   const event = await fetchEvent(slug);
   return (
