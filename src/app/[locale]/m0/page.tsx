@@ -1,12 +1,19 @@
 import CountDown from "@components/CountDown";
-import { Redaction } from "@components/Redaction";
+import Header from "@components/Header";
+import { Window } from "@components/Window";
+import { getCurrentLocale } from "@locales/server";
 
-export default function M0page() {
+export default async function M0page() {
+  const locale = await getCurrentLocale();
   return (
     <>
-      <Redaction text="Muistinnollaus 101000" />
-      <div className="flex w-full justify-center">
-        <CountDown date={"2026-02-13T14:00:00"} />
+      <Header text="Muistinnollaus 101000" />
+      <div className="mx-4 my-10 flex w-full justify-center">
+        <Window>
+          <div className="bg-juvu-white font-pixel">
+            <CountDown date={"2026-02-13T14:00:00"} locale={locale} />
+          </div>
+        </Window>
       </div>
     </>
   );

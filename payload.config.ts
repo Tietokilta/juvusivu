@@ -48,6 +48,11 @@ export default buildConfig({
           localized: false,
           defaultValue: false,
         },
+        {
+          name: "date",
+          type: "date",
+          localized: false,
+        },
       ],
     },
     {
@@ -60,6 +65,22 @@ export default buildConfig({
         },
         {
           name: "url",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    {
+      slug: "links",
+      fields: [
+        {
+          name: "name",
+          type: "text",
+          required: true,
+          localized: true,
+        },
+        {
+          name: "page",
           type: "text",
           required: true,
         },
