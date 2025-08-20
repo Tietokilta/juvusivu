@@ -2,6 +2,7 @@ import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import { getCurrentLocale } from "../../../locales/server";
+import Header from "@components/Header";
 
 export default async function Home() {
   const payload = await getPayload({ config: configPromise });
@@ -11,8 +12,11 @@ export default async function Home() {
     locale,
   });
   return (
-    <main className="container mx-auto max-w-5xl px-4 py-8">
-      <LexicalSerializer data={content.body} />
-    </main>
+    <>
+      <Header text="Tietokilta 40" />
+      <main className="container mx-auto max-w-5xl px-4 py-8">
+        <LexicalSerializer data={content.body} />
+      </main>
+    </>
   );
 }

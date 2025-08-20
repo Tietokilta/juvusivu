@@ -8,6 +8,7 @@ export default async function Events({ locale }: { locale: Locale }) {
   const events = await payload.find({
     collection: "events",
     locale,
+    sort: "date", // Orders by date descending (newest first)
   });
 
   return (

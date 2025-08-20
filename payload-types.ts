@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     events: Event;
     sponsors: Sponsor;
+    links: Link;
     users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     events: EventsSelect<false> | EventsSelect<true>;
     sponsors: SponsorsSelect<false> | SponsorsSelect<true>;
+    links: LinksSelect<false> | LinksSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -129,6 +131,7 @@ export interface Event {
   description?: string | null;
   slug?: string | null;
   released?: boolean | null;
+  date?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -140,6 +143,17 @@ export interface Sponsor {
   id: number;
   name: string;
   url: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links".
+ */
+export interface Link {
+  id: number;
+  name: string;
+  page: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -181,6 +195,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'sponsors';
         value: number | Sponsor;
+      } | null)
+    | ({
+        relationTo: 'links';
+        value: number | Link;
       } | null)
     | ({
         relationTo: 'users';
@@ -237,6 +255,7 @@ export interface EventsSelect<T extends boolean = true> {
   description?: T;
   slug?: T;
   released?: T;
+  date?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -247,6 +266,16 @@ export interface EventsSelect<T extends boolean = true> {
 export interface SponsorsSelect<T extends boolean = true> {
   name?: T;
   url?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "links_select".
+ */
+export interface LinksSelect<T extends boolean = true> {
+  name?: T;
+  page?: T;
   updatedAt?: T;
   createdAt?: T;
 }
