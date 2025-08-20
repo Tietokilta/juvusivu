@@ -29,7 +29,7 @@ export const EventBox = async ({ event }: { event: Event }) => {
               </div>
               <div className="mt-5 flex justify-evenly gap-2">
                 <Button text={t("ready")} disabled />
-                <Button text={t("cancel")} />
+                <Button text={t("cancel")} fake />
               </div>
             </>
           )}

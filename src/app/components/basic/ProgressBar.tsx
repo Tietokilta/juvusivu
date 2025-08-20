@@ -1,6 +1,6 @@
 export const ProgressBar = ({ max, value }: { max: number; value: number }) => {
   return (
-    <div className="border-accent-dark flex w-1/1 gap-[2px] border-2 p-[2px]">
+    <div className="border-accent-dark flex w-full gap-[2px] border-2 p-[2px]">
       {Array.from({ length: value }).map((_, i) => (
         <span
           key={`filled-${i}`}
