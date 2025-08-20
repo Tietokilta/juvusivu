@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-accent-light">
       <body
-        className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} antialiased`}
+        className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} mt-15 antialiased`}
       >
         <Navbar />
         {children}

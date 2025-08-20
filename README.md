@@ -21,3 +21,16 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result (admin panel is [http://localhost:3000/admin](http://localhost:3000/admin))
+
+## Content
+
+Most of the content (e.g. Main page, events, links and sponsors) can be edited using the Payload CMS.
+
+### Events
+
+General idea: Events can be added to Payload as "placeholders", with close to no information. When event is getting closer, it is created to Ilmomasiina and linked to this site for more detailed information.
+
+- Events can be added to Payload
+  - Title: Shown on the front page
+  - Slug: Event slug in the Tietokilta ilmomasiina, to show more information about the event
+  - Date: Only used for ordering the events in the front page
