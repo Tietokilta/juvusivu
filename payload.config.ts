@@ -42,6 +42,12 @@ export default buildConfig({
           type: "text",
           localized: false,
         },
+        {
+          name: "released",
+          type: "checkbox",
+          localized: false,
+          defaultValue: false,
+        },
       ],
     },
     {

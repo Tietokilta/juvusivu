@@ -1,10 +1,15 @@
+import { Button } from "@components/basic/Button";
 import { Event } from "../../../../payload-types";
 import { Window } from "@components/Window";
+import { ProgressBar } from "@components/basic/ProgressBar";
+import { getI18n } from "@locales/server";
 
 export const EventBox = async ({ event }: { event: Event }) => {
-  const url = event.slug
-    ? `https://tietokilta.fi/fi/tapahtumat/${event.slug}`
-    : undefined;
+  const t = await getI18n();
+  const url =
+    event.slug && event.released
+      ? `https://tietokilta.fi/fi/tapahtumat/${event.slug}`
+      : undefined;
   return (
     <div className="event-box m-8 max-w-[400px] min-w-[250px] shadow-lg shadow-gray-500">
       <Window link={url}>
@@ -14,8 +19,23 @@ export const EventBox = async ({ event }: { event: Event }) => {
           </h2>
         </div>
         <div className="bg-juvu-white border-accent-dark font-pixel border-2 p-4 text-lg">
-          <p>{event.description}</p>
-          <p>XX.XX.XXXX at XX:XX</p>
+          {event.released ? (
+            <>
+              <p>{event.description}</p>
+              <p>XX.XX.XXXX at XX:XX</p>
+            </>
+          ) : (
+            <>
+              <p className="text-center">{t("loading")}</p>
+              <div className="mx-auto mt-2 flex w-3/4">
+                <ProgressBar max={16} value={9} />
+              </div>
+              <div className="mt-5 flex justify-evenly gap-2">
+                <Button text={t("ready")} disabled />
+                <Button text={t("cancel")} />
+              </div>
+            </>
+          )}
         </div>
       </Window>
     </div>

@@ -128,6 +128,7 @@ export interface Event {
   title?: string | null;
   description?: string | null;
   slug?: string | null;
+  released?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -235,6 +236,7 @@ export interface EventsSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   slug?: T;
+  released?: T;
   updatedAt?: T;
   createdAt?: T;
 }
