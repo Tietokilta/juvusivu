@@ -11,7 +11,7 @@ export default async function Home() {
     locale,
   });
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="container mx-auto max-w-5xl px-4 py-8">
       <LexicalSerializer data={content.body} />
     </main>
   );

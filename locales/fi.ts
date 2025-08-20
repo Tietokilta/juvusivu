@@ -5,6 +5,9 @@ const fi = {
   "navbar-title": "Tietokilta 40 vuotta",
   "open-button": "Avaa",
   "read-more": "Lue lisää",
+  "loading": "Ladataan...",
+  "ready": "Valmis",
+  "cancel": "Eiku",
 };
 
 type EnKey = keyof typeof en;

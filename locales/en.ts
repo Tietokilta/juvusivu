@@ -5,6 +5,9 @@ const en = {
   "navbar-title": "Tietokilta 40 years",
   "open-button": "Open",
   "read-more": "Read more",
+  "loading": "Loading...",
+  "ready": "Ready",
+  "cancel": "Cancel",
 };
 
 type FiKey = keyof typeof fi;
