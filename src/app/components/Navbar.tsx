@@ -16,7 +16,7 @@ export default async function Navbar() {
     <nav className="bg-accent-light border-accent-dark z-10 flex w-full flex-wrap items-center justify-between border-b-2 font-mono">
       <Link
         href="/"
-        className="bg-accent-dark min-w-[300px] flex-1 p-4 text-lg font-bold text-white"
+        className="bg-accent-dark text-juvu-white min-w-[300px] flex-1 p-4 text-center text-lg font-bold sm:text-left"
       >
         {t("navbar-title")}
       </Link>
