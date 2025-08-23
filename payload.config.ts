@@ -3,6 +3,7 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
 import { MainPage } from "./src/lib/api/mainPage";
 import { EventGridBlock } from "@components/lexical/Blocks";
+import { Media } from "@lib/api/Media";
 
 const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
 
@@ -31,6 +32,7 @@ export default buildConfig({
           name: "title",
           type: "text",
           localized: true,
+          required: true,
         },
         {
           name: "description",
@@ -51,6 +53,12 @@ export default buildConfig({
         {
           name: "date",
           type: "date",
+          localized: false,
+        },
+        {
+          name: "photo",
+          type: "relationship",
+          relationTo: "media",
           localized: false,
         },
       ],
@@ -86,6 +94,7 @@ export default buildConfig({
         },
       ],
     },
+    Media,
   ],
 
   globals: [MainPage],
