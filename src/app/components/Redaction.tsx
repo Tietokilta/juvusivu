@@ -1,6 +1,6 @@
 "use client";
 import localFont from "next/font/local";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const redaction70 = localFont({
   src: "../../../public/fonts/redaction/Redaction_70-Bold.woff2",
@@ -32,6 +32,14 @@ export const Redaction = ({
   animated?: boolean;
 }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
+  const handleMouseEnter = useCallback((index: number) => {
+    setHoverIndex(index);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setHoverIndex(null);
+  }, []);
 
   const sizeClass =
     size === "small"
@@ -65,8 +73,8 @@ export const Redaction = ({
           return (
             <span
               key={index}
-              onMouseEnter={() => setHoverIndex(index)}
-              onMouseLeave={() => setHoverIndex(null)}
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
               className={`${font}`}
             >
               {char}
