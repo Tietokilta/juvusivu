@@ -33,4 +33,5 @@ General idea: Events can be added to Payload as "placeholders", with close to no
 - Events can be added to Payload
   - Title: Shown on the front page
   - Slug: Event slug in the Tietokilta ilmomasiina, to show more information about the event
-  - Date: Only used for ordering the events in the front page
+  - Date: Shown in the card title (if event is released)
+  - Image: If image is defined, it is shown in the card instead of description

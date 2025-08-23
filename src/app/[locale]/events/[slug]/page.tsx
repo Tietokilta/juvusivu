@@ -229,7 +229,7 @@ export default async function Page({
           {event.price && (
             <p>
               <span className="font-bold">{t("headers.Hinta")}:</span>{" "}
-              {event.price} €
+              {event.price}
             </p>
           )}
         </Window>
