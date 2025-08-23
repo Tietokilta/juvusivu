@@ -12,7 +12,7 @@ export const Window: React.FC<{
   const t = await getI18n();
   return (
     <div
-      className={`border-accent-dark ${className} border-2 shadow-lg shadow-gray-500`}
+      className={`border-accent-dark ${className ?? ""} border-2 shadow-lg shadow-gray-500`}
     >
       <div className={`border-juvu-blue-light bg-juvu-blue-light border-6`}>
         <div className="flex justify-between">

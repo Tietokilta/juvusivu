@@ -8,7 +8,7 @@ export default function Header({
   animated?: boolean;
 }) {
   return (
-    <div className="bg-accent-light text-header relative flex h-[55vh] max-h-[450px] items-end justify-center py-24 md:h-[65vh]">
+    <div className="bg-accent-light text-header relative flex items-end justify-center py-20">
       <Redaction text={text} animated={animated} />
     </div>
   );

@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <>
       <Header text="Tietokilta 40" animated />
-      <main className="container mx-auto max-w-5xl px-4 py-8">
+      <main className="container mx-auto max-w-5xl px-8 py-8">
         <LexicalSerializer data={content.body} />
       </main>
     </>

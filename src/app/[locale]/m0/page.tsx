@@ -8,13 +8,13 @@ export default async function M0page() {
   return (
     <>
       <Header text="Muistinnollaus 101000" />
-      <div className="mx-4 my-10 flex w-full justify-center">
-        <Window>
+      <main className="container mx-auto max-w-5xl px-4 py-8">
+        <Window className="mx-auto max-w-[500px]">
           <div className="bg-juvu-white font-pixel">
             <CountDown date={"2026-02-13T14:00:00"} locale={locale} />
           </div>
         </Window>
-      </div>
+      </main>
     </>
   );
 }

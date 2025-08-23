@@ -34,7 +34,11 @@ export const Redaction = ({
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const sizeClass =
-    size === "small" ? "text-4xl" : size === "medium" ? "text-6xl" : "text-8xl";
+    size === "small"
+      ? "md:text-4xl text-3xl"
+      : size === "medium"
+        ? "md:text-6xl text-5xl"
+        : "text-[clamp(3rem,13vw,6rem)]";
   return (
     <h1 className={`${sizeClass} ${redaction35.className} m-8 text-center`}>
       {animated ? (

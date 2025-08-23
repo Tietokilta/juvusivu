@@ -12,10 +12,10 @@ export default async function Events({ locale }: { locale: Locale }) {
   });
 
   return (
-    <div className="flex shrink-0 flex-wrap justify-center">
+    <div className="my-8 flex shrink-0 flex-wrap justify-center gap-8">
       {events.docs.map((event) => (
         <div className="flex-1" key={event.id}>
-          <EventBox event={event} />
+          <EventBox event={event} className="mx-auto" />
         </div>
       ))}
     </div>

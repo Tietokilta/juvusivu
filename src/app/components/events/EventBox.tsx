@@ -4,13 +4,19 @@ import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
 import { getI18n } from "@locales/server";
 
-export const EventBox = async ({ event }: { event: Event }) => {
+export const EventBox = async ({
+  event,
+  className,
+}: {
+  event: Event;
+  className?: string;
+}) => {
   const t = await getI18n();
   const url = event.slug && event.released ? `events/${event.slug}` : undefined;
   const date = event.date && event.released ? new Date(event.date) : undefined;
   const photo = event.photo as Media | undefined;
   return (
-    <div className="event-box m-8 max-w-[400px] min-w-[250px]">
+    <div className={`event-box max-w-[400px] min-w-[250px] ${className ?? ""}`}>
       <Window
         link={url}
         simple={false}
@@ -25,11 +31,7 @@ export const EventBox = async ({ event }: { event: Event }) => {
           {event.released ? (
             photo?.url ? (
               <>
-                <img
-                  src={photo.url}
-                  alt={event.title}
-                  className="mb-2 w-full rounded"
-                />
+                <img src={photo.url} alt={event.title} className="w-full" />
               </>
             ) : (
               <>
