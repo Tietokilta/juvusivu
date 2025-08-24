@@ -1,8 +1,8 @@
 import { withPayload } from "@payloadcms/next/withPayload";
+import type { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Your Next.js config here
+const nextConfig: NextConfig = {
+  output: "standalone",
 };
 
 // Make sure you wrap your `nextConfig`
