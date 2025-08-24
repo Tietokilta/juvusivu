@@ -20,6 +20,8 @@ const {
   AZURE_STORAGE_ALLOW_CONTAINER_CREATE,
 } = process.env;
 
+const forceMigrations = process.env.FORCE_MIGRATIONS === "true";
+
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor({
@@ -126,7 +128,7 @@ export default buildConfig({
 
   plugins: [
     azureStorage({
-      enabled: isCloudStorageEnabled(),
+      enabled: isCloudStorageEnabled() || forceMigrations, // Migrations need production config
       connectionString: AZURE_STORAGE_CONNECTION_STRING ?? "",
       containerName: AZURE_STORAGE_CONTAINER_NAME ?? "",
       allowContainerCreate: AZURE_STORAGE_ALLOW_CONTAINER_CREATE === "true",

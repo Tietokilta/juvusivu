@@ -35,3 +35,13 @@ General idea: Events can be added to Payload as "placeholders", with close to no
   - Slug: Event slug in the Tietokilta ilmomasiina, to show more information about the event
   - Date: Shown in the card title (if event is released)
   - Image: If image is defined, it is shown in the card instead of description
+
+## Database migrations
+
+When running the dev version, database schema updates automatically. However, when you update something that affects the schema, you have to create database migrations for production.
+
+```sh
+pnpm migrate:create
+```
+
+Migrations are then automatically applied on production database when deploying.
