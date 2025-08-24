@@ -13,6 +13,7 @@
     "generate:importmap": "payload generate:importMap",
     "generate:types": "payload generate:types",
     "lint": "next lint",
+    "migrate:create": "FORCE_MIGRATIONS=true payload migrate:create",
     "start": "pnpm payload migrate && node .next/standalone/server.js"
   },
   "dependencies": {
