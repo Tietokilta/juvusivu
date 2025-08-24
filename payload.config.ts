@@ -147,4 +147,39 @@ export default buildConfig({
       connectionString: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
     },
   }),
+
+  onInit: async (payloadInstance) => {
+    const { PAYLOAD_DEFAULT_USER_EMAIL, PAYLOAD_DEFAULT_USER_PASSWORD } =
+      process.env;
+    if (PAYLOAD_DEFAULT_USER_EMAIL && PAYLOAD_DEFAULT_USER_PASSWORD) {
+      const email = PAYLOAD_DEFAULT_USER_EMAIL;
+      const password = PAYLOAD_DEFAULT_USER_PASSWORD;
+
+      // check if the user exists, if not, create it
+      const user = await payloadInstance.find({
+        collection: "users",
+        where: { email: { equals: email } },
+      });
+      if (user.totalDocs === 0) {
+        payloadInstance.logger.warn(`user ${email} not found, creating...`);
+        await payloadInstance.create({
+          collection: "users",
+          data: {
+            email,
+            password,
+          },
+        });
+      } else {
+        payloadInstance.logger.info(
+          `user ${email} found, resetting password...`,
+        );
+        const defaultUser = user.docs[0];
+        await payloadInstance.update({
+          collection: "users",
+          id: defaultUser.id,
+          data: { password },
+        });
+      }
+    }
+  },
 });
