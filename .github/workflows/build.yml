@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: ["main"]
 
-  push:
-    branches: ["main"]
+  # Allow other workflows to call this one (i.e. from deploy.yml)
+  workflow_call:
 
 jobs:
   build:
