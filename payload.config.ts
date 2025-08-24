@@ -6,6 +6,7 @@ import { EventGridBlock } from "@components/lexical/Blocks";
 import { Media } from "@lib/api/Media";
 import { azureStorage } from "@payloadcms/storage-azure";
 import { isCloudStorageEnabled } from "@util/index";
+import { migrations } from "./src/migrations";
 
 const {
   DB_USER,
@@ -147,6 +148,7 @@ export default buildConfig({
       connectionString: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
       ssl: process.env.NODE_ENV === "production",
     },
+    prodMigrations: migrations,
   }),
 
   onInit: async (payloadInstance) => {
