@@ -145,6 +145,7 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
+      ssl: process.env.NODE_ENV === "production",
     },
   }),
 
