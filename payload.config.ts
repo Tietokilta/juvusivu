@@ -4,8 +4,20 @@ import { buildConfig } from "payload";
 import { MainPage } from "./src/lib/api/mainPage";
 import { EventGridBlock } from "@components/lexical/Blocks";
 import { Media } from "@lib/api/Media";
+import { azureStorage } from "@payloadcms/storage-azure";
+import { isCloudStorageEnabled } from "@util/index";
 
-const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST, DB_PORT } = process.env;
+const {
+  DB_USER,
+  DB_PASSWORD,
+  DB_NAME,
+  DB_HOST,
+  DB_PORT,
+  AZURE_STORAGE_CONNECTION_STRING,
+  AZURE_STORAGE_CONTAINER_NAME,
+  AZURE_STORAGE_ACCOUNT_BASEURL,
+  AZURE_STORAGE_ALLOW_CONTAINER_CREATE,
+} = process.env;
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
@@ -110,6 +122,22 @@ export default buildConfig({
           }
         : false,
   },
+
+  plugins: [
+    azureStorage({
+      enabled: isCloudStorageEnabled(),
+      connectionString: AZURE_STORAGE_CONNECTION_STRING ?? "",
+      containerName: AZURE_STORAGE_CONTAINER_NAME ?? "",
+      allowContainerCreate: AZURE_STORAGE_ALLOW_CONTAINER_CREATE === "true",
+      baseURL: AZURE_STORAGE_ACCOUNT_BASEURL ?? "",
+      collections: {
+        [Media.slug]: {
+          disableLocalStorage: true,
+          prefix: Media.slug,
+        },
+      },
+    }),
+  ],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || "",
