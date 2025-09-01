@@ -74,7 +74,9 @@ async function SignUpRow({
         </td>
       ) : null}
       <td className="border-b border-gray-900 px-2 py-1">
-        {new Date(signup.createdAt).toLocaleString("fi-FI")}
+        {new Date(signup.createdAt).toLocaleString("fi-FI", {
+          timeZone: "Europe/Helsinki",
+        })}
       </td>
     </tr>
   );
@@ -217,13 +219,17 @@ export default async function Page({
           {event.date && (
             <p>
               <span className="font-bold">{t("headers.Alkaa")}:</span>{" "}
-              {new Date(event.date).toLocaleString("fi-FI")}
+              {new Date(event.date).toLocaleString("fi-FI", {
+                timeZone: "Europe/Helsinki",
+              })}
             </p>
           )}
           {event.endDate && (
             <p>
               <span className="font-bold">{t("headers.Loppuu")}:</span>{" "}
-              {new Date(event.endDate).toLocaleString("fi-FI")}
+              {new Date(event.endDate).toLocaleString("fi-FI", {
+                timeZone: "Europe/Helsinki",
+              })}
             </p>
           )}
           {event.price && (
