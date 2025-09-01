@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
-import Link from "next/link";
 import { getI18n } from "@locales/server";
+import Sponsor from "./Sponsor";
 
 export default async function Footer() {
   const payload = await getPayload({ config: configPromise });
@@ -16,11 +16,7 @@ export default async function Footer() {
           </p>
           <div className="mt-6 flex gap-8">
             {sponsors.docs.map((sponsor) => (
-              <Link key={sponsor.id} href={sponsor.url}>
-                <div className="flex h-16 w-32 items-center justify-center rounded bg-white text-gray-400 shadow">
-                  {sponsor.name}
-                </div>
-              </Link>
+              <Sponsor key={sponsor.id} sponsor={sponsor} />
             ))}
           </div>
         </>
