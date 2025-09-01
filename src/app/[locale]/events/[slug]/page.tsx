@@ -236,7 +236,9 @@ export default async function Page({
       </div>
       <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
-          <Markdown>{event.description}</Markdown>
+          <div className="prose text-accent-dark">
+            <Markdown>{event.description}</Markdown>
+          </div>
         </Window>
       </div>
       <div className="md:col-start-3 md:row-start-2">
@@ -253,11 +255,14 @@ export default async function Page({
           {event.quotas.map((quota) => (
             <div key={quota.id} className="mb-4">
               <p>
-                {quota.title} ({quota.signupCount ?? 0}/{quota.size ?? 0})
+                {quota.title}{" "}
+                {quota.size
+                  ? `(${quota.signupCount ?? 0}/${quota.size ?? 0})`
+                  : `(${quota.signupCount ?? 0})`}
               </p>
               <ProgressBar
-                max={quota.size ?? 0}
-                value={quota.signupCount ?? 0}
+                max={quota.size ?? 1}
+                value={quota.size ? (quota.signupCount ?? 0) : 0}
               />
             </div>
           ))}
