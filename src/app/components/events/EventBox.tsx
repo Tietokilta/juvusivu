@@ -2,6 +2,7 @@ import { Button } from "@components/basic/Button";
 import { Event, Media } from "../../../../payload-types";
 import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
+import { EikuButton } from "@components/EikuButton";
 import { getI18n } from "@locales/server";
 import Image from "next/image";
 
@@ -53,7 +54,7 @@ export const EventBox = async ({
               </div>
               <div className="mt-5 flex justify-evenly gap-2">
                 <Button text={t("ready")} disabled />
-                <Button text={t("cancel")} fake />
+                <EikuButton text={t("cancel")} />
               </div>
             </>
           )}
