@@ -74,7 +74,9 @@ async function SignUpRow({
         </td>
       ) : null}
       <td className="border-b border-gray-900 px-2 py-1">
-        {new Date(signup.createdAt).toLocaleString("fi-FI")}
+        {new Date(signup.createdAt).toLocaleString("fi-FI", {
+          timeZone: "Europe/Helsinki",
+        })}
       </td>
     </tr>
   );
@@ -217,13 +219,17 @@ export default async function Page({
           {event.date && (
             <p>
               <span className="font-bold">{t("headers.Alkaa")}:</span>{" "}
-              {new Date(event.date).toLocaleString("fi-FI")}
+              {new Date(event.date).toLocaleString("fi-FI", {
+                timeZone: "Europe/Helsinki",
+              })}
             </p>
           )}
           {event.endDate && (
             <p>
               <span className="font-bold">{t("headers.Loppuu")}:</span>{" "}
-              {new Date(event.endDate).toLocaleString("fi-FI")}
+              {new Date(event.endDate).toLocaleString("fi-FI", {
+                timeZone: "Europe/Helsinki",
+              })}
             </p>
           )}
           {event.price && (
@@ -236,7 +242,9 @@ export default async function Page({
       </div>
       <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
-          <Markdown>{event.description}</Markdown>
+          <div className="prose text-accent-dark">
+            <Markdown>{event.description}</Markdown>
+          </div>
         </Window>
       </div>
       <div className="md:col-start-3 md:row-start-2">
@@ -253,11 +261,14 @@ export default async function Page({
           {event.quotas.map((quota) => (
             <div key={quota.id} className="mb-4">
               <p>
-                {quota.title} ({quota.signupCount ?? 0}/{quota.size ?? 0})
+                {quota.title}{" "}
+                {quota.size
+                  ? `(${quota.signupCount ?? 0}/${quota.size ?? 0})`
+                  : `(${quota.signupCount ?? 0})`}
               </p>
               <ProgressBar
-                max={quota.size ?? 0}
-                value={quota.signupCount ?? 0}
+                max={quota.size ?? 1}
+                value={quota.size ? (quota.signupCount ?? 0) : 0}
               />
             </div>
           ))}

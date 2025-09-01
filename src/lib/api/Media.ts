@@ -36,5 +36,14 @@ export const Media: CollectionConfig = {
       name: "alt",
       type: "text",
     },
+    // This is required for type consistency with Azure Blob Storage configuration
+    {
+      name: "prefix",
+      type: "text",
+      admin: {
+        readOnly: true,
+        hidden: true,
+      },
+    },
   ],
 };
