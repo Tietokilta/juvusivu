@@ -1,6 +1,8 @@
 import { getI18n } from "@locales/server";
 import { Button } from "./basic/Button";
-import { Minus, Square, X } from "lucide-react";
+import CloseIcon from "./icons/Close";
+import MaximizeIcon from "./icons/Maximize";
+import MinimizeIcon from "./icons/Minimize";
 
 export const Window: React.FC<{
   children: React.ReactNode;
@@ -16,28 +18,16 @@ export const Window: React.FC<{
     >
       <div className={`border-juvu-blue-light bg-juvu-blue-light border-6`}>
         <div className="flex justify-between">
-          <span className="font-pixel block text-lg">{title}</span>
+          <span className="font-pixel block pl-1 text-lg">{title}</span>
           <div className="bg-juvu-blue-light flex items-center justify-end gap-1 pb-2">
-            <div className="border-juvu-blue h-5 w-5 border-2">
-              <Minus
-                className="stroke-juvu-blue m-[2px] mt-[5px] mb-0"
-                size={12}
-                strokeWidth={4}
-              />
+            <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
+              <MinimizeIcon size={12} />
             </div>
-            <div className="border-juvu-blue h-5 w-5 border-2">
-              <Square
-                className="stroke-juvu-blue m-[2px]"
-                size={12}
-                strokeWidth={4}
-              />
+            <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
+              <MaximizeIcon size={12} />
             </div>
-            <div className="border-juvu-blue bg-juvu-red h-5 w-5 border-2">
-              <X
-                className="stroke-juvu-blue m-[2px]"
-                size={12}
-                strokeWidth={4}
-              />
+            <div className="border-juvu-blue bg-juvu-red flex h-5 w-5 items-center justify-center border-2">
+              <CloseIcon size={12} />
             </div>
           </div>
         </div>
