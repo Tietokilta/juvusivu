@@ -2,6 +2,12 @@
 
 ## Getting Started
 
+Setup env variables:
+
+```bash
+cp .env.example .env
+```
+
 Install dependencies:
 
 ```bash
@@ -45,3 +51,9 @@ pnpm migrate:create
 ```
 
 Migrations are then automatically applied on production database when deploying.
+
+## Idea of this repository
+
+This project was created for Tietokilta 40 anniversary year, to promote different kinds of events during the year. It can be adapted to normal years as well (by e.g. highlighting events of the annual ball week).
+
+The styling is created using Tailwind, and changing color palette should be easy using the variables in `globals.css`. Other style changes may require more work, depending on what is needed.
