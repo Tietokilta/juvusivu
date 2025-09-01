@@ -19,6 +19,7 @@ import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
 import { getScopedI18n } from "@locales/server";
 import { Button } from "@components/basic/Button";
+import remarkGfm from "remark-gfm";
 
 function getFormattedAnswer(
   question: EventQuestion,
@@ -243,7 +244,7 @@ export default async function Page({
       <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
           <div className="prose text-accent-dark">
-            <Markdown>{event.description}</Markdown>
+            <Markdown remarkPlugins={[remarkGfm]}>{event.description}</Markdown>
           </div>
         </Window>
       </div>
@@ -268,7 +269,9 @@ export default async function Page({
               </p>
               <ProgressBar
                 max={quota.size ?? 1}
-                value={quota.size ? (quota.signupCount ?? 0) : 0}
+                value={
+                  quota.size ? Math.min(quota.signupCount ?? 0, quota.size) : 0
+                }
               />
             </div>
           ))}
