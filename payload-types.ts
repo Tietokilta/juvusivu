@@ -192,6 +192,7 @@ export interface Sponsor {
   id: number;
   name: string;
   url: string;
+  logo?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -320,6 +321,7 @@ export interface EventsSelect<T extends boolean = true> {
 export interface SponsorsSelect<T extends boolean = true> {
   name?: T;
   url?: T;
+  logo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

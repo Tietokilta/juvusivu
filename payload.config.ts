@@ -91,6 +91,12 @@ export default buildConfig({
           type: "text",
           required: true,
         },
+        {
+          name: "logo",
+          type: "relationship",
+          relationTo: "media",
+          localized: false,
+        },
       ],
     },
     {
