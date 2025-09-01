@@ -46,4 +46,8 @@ export const Media: CollectionConfig = {
       },
     },
   ],
+  access: {
+    // Allow public read access to uploaded images
+    read: () => true,
+  },
 };
