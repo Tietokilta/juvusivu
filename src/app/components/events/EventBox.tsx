@@ -3,6 +3,7 @@ import { Event, Media } from "../../../../payload-types";
 import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
 import { getI18n } from "@locales/server";
+import Image from "next/image";
 
 export const EventBox = async ({
   event,
@@ -31,7 +32,13 @@ export const EventBox = async ({
           {event.released ? (
             photo?.url ? (
               <>
-                <img src={photo.url} alt={event.title} className="w-full" />
+                <Image
+                  src={photo.url}
+                  alt={event.title}
+                  className="w-full"
+                  width={400}
+                  height={300}
+                />
               </>
             ) : (
               <>
