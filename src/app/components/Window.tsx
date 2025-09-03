@@ -26,8 +26,10 @@ export const Window: React.FC<{
             <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
               <MaximizeIcon size={12} />
             </div>
-            <a className="border-juvu-blue bg-juvu-red flex h-5 w-5 items-center justify-center border-2 select-pointer"
-            href="/">
+            <a
+              className="border-juvu-blue bg-juvu-red select-pointer flex h-5 w-5 items-center justify-center border-2"
+              href="/"
+            >
               <CloseIcon size={12} />
             </a>
           </div>
