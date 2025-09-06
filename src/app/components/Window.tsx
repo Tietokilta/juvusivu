@@ -3,6 +3,7 @@ import { Button } from "./basic/Button";
 import CloseIcon from "./icons/Close";
 import MaximizeIcon from "./icons/Maximize";
 import MinimizeIcon from "./icons/Minimize";
+import Link from "next/link";
 
 export const Window: React.FC<{
   children: React.ReactNode;
@@ -26,9 +27,12 @@ export const Window: React.FC<{
             <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
               <MaximizeIcon size={12} />
             </div>
-            <div className="border-juvu-blue bg-juvu-red flex h-5 w-5 items-center justify-center border-2">
+            <Link
+              className="border-juvu-blue bg-juvu-red select-pointer flex h-5 w-5 items-center justify-center border-2"
+              href="/"
+            >
               <CloseIcon size={12} />
-            </div>
+            </Link>
           </div>
         </div>
         {windowPath && (
