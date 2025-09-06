@@ -50,7 +50,6 @@ export default async function Page(props: Props) {
         size="medium"
         className="sticky top-0 z-50 backdrop-blur-2xl"
       />
-      v
       <main className="container mx-auto max-w-5xl px-8 py-4">
         {page.body &&
           page.body.map(
