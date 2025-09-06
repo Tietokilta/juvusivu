@@ -50,7 +50,7 @@ export default async function Page(props: Props) {
         size="medium"
         className="sticky top-0 z-50 break-words hyphens-auto backdrop-blur-2xl"
       />
-      <main className="container mx-auto max-w-[90dvh] px-8 py-4 sm:max-w-5xl md:max-w-none">
+      <main className="container mx-auto max-w-[90dvh] px-8 py-4 sm:max-w-4xl">
         {page.body &&
           page.body.map(
             (block, idx) =>

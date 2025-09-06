@@ -1,7 +1,7 @@
 import fi, { assertType } from "./fi";
 
 const en = {
-  "sponsors-title": "Supporting the jubilee year",
+  "sponsors-title": "Supporting the Jubilee-year",
   "navbar-title": "Tietokilta 40 years",
   "open-button": "Open",
   "read-more": "Read more",
