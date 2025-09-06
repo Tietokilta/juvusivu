@@ -19,7 +19,9 @@ export const Window: React.FC<{
     >
       <div className={`border-juvu-blue-light bg-juvu-blue-light border-6`}>
         <div className="flex justify-between">
-          <span className="font-pixel block pl-1 text-lg">{title}</span>
+          <span className="font-pixel line-clamp-1 pl-1 text-xl font-extrabold">
+            {title}
+          </span>
           <div className="bg-juvu-blue-light flex items-center justify-end gap-1 pb-2">
             <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
               <MinimizeIcon size={12} />
@@ -36,7 +38,7 @@ export const Window: React.FC<{
           </div>
         </div>
         {windowPath && (
-          <div className="border-accent-dark bg-juvu-white mb-2 border-2 p-1">
+          <div className="border-accent-dark bg-juvu-white mb-2 truncate border-2 p-1">
             <h2 className="text-accent-dark font-pixel mx-2 text-lg">
               {windowPath}
             </h2>
@@ -44,7 +46,11 @@ export const Window: React.FC<{
         )}
       </div>
       <div className={"bg-juvu-blue-light flex flex-col justify-between p-1"}>
-        <div className={"border-accent-dark bg-juvu-white mb-2 border-2 p-4"}>
+        <div
+          className={
+            "border-accent-dark bg-juvu-white mb-2 border-2 p-4 break-words hyphens-auto"
+          }
+        >
           {children}
         </div>
         {link && (
