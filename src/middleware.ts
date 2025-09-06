@@ -1,18 +1,28 @@
-import { createI18nMiddleware } from "next-international/middleware";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-const I18nMiddleware = createI18nMiddleware({
-  locales: ["en", "fi"],
-  defaultLocale: "fi",
-  urlMappingStrategy: "rewriteDefault",
-  resolveLocaleFromRequest: () => {
-    // ignore Accept-Language header and use the default locale always
-    return "fi";
-  },
-});
+const locales = ["fi", "en"] as const;
+const defaultLocale = "fi";
 
 export function middleware(request: NextRequest) {
-  return I18nMiddleware(request);
+  const { pathname } = request.nextUrl;
+
+  // skip static and api
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.includes(".")
+  )
+    return;
+
+  const hasLocale = locales.some(
+    (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
+  );
+  if (!hasLocale) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${defaultLocale}${pathname}`;
+    return NextResponse.redirect(url);
+  }
 }
 
 export const config = {

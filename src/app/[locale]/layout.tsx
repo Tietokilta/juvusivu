@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@components/Footer";
 import Navbar from "@components/Navbar";
 import localFont from "next/font/local";
+import { I18nProviderClient } from "@locales/client";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -44,19 +45,31 @@ export const metadata: Metadata = {
   icons,
 };
 
-export default function RootLayout({
+const locales = ["en", "fi"] as const;
+type Locale = (typeof locales)[number];
+
+export function generateStaticParams() {
+  return locales.map((l) => ({ locale: l }));
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: Locale }>;
 }>) {
+  const { locale } = await params;
   return (
-    <html lang="en" className="bg-accent-light">
+    <html lang={locale} className="bg-accent-light">
       <body
         className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <I18nProviderClient locale={locale}>
+          <Navbar />
+          {children}
+          <Footer />
+        </I18nProviderClient>
       </body>
     </html>
   );
