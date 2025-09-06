@@ -1,4 +1,4 @@
-import { getPayload } from "payload";
+import { getPayload, Locale } from "payload";
 import configPromise from "@payload-config";
 import Markdown from "react-markdown";
 import { notFound } from "next/navigation";
@@ -15,9 +15,11 @@ import {
   QuotaSignup,
   QuotaSignupWithQuotaTitle,
 } from "@lib/api/external/ilmomasiina";
+import { remarkI18n } from "@lib/plugins/remark-i18n";
+
 import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
-import { getScopedI18n } from "@locales/server";
+import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import { Button } from "@components/basic/Button";
 import remarkGfm from "remark-gfm";
 
@@ -194,6 +196,20 @@ async function SignUpList({ event }: { event: IlmomasiinaEvent }) {
   );
 }
 
+export function getLocalizedEventTitle(eventTitle: string, locale: "fi" | "en") {
+  const titleLocaleSeparator = " // ";
+  const [fiTitle, enTitle] = eventTitle.split(titleLocaleSeparator);
+  console.log(enTitle);
+  console.log(fiTitle);
+  console.log(locale)
+
+  if (locale === "en") {
+    return enTitle || fiTitle;
+  }
+
+  return fiTitle;
+}
+
 export default async function Page({
   params,
 }: {
@@ -211,6 +227,7 @@ export default async function Page({
     limit: 1,
   });
   const t = await getScopedI18n("ilmomasiina");
+  const locale = await getCurrentLocale();
 
   if (event_cms.docs.length === 0) {
     notFound();
@@ -219,7 +236,7 @@ export default async function Page({
   return (
     <div className="container mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-3">
       <div className="md:col-span-3">
-        <Window title={event.title}>
+        <Window title={getLocalizedEventTitle(event.title, locale)}>
           {event.location && (
             <p>
               <span className="font-bold">{t("headers.Paikka")}:</span>{" "}
@@ -252,9 +269,15 @@ export default async function Page({
       </div>
       <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
-          <div className="prose text-accent-dark">
-            <Markdown remarkPlugins={[remarkGfm]}>{event.description}</Markdown>
-          </div>
+            {event.description ? (
+              <div className="prose text-accent-dark">
+                <Markdown
+                  remarkPlugins={[[remarkI18n, { locale }], remarkGfm]}
+                >
+                  {event.description}
+                </Markdown>
+              </div>
+            ) : null}
         </Window>
       </div>
       <div className="md:col-start-3 md:row-start-2">
