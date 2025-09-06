@@ -4,6 +4,7 @@ import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import { getCurrentLocale } from "@locales/server";
 import Header from "@components/Header";
 import { Window } from "@components/Window";
+
 interface NextPage<Params extends Record<string, unknown>> {
   params: Promise<Params>;
 }
