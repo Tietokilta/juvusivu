@@ -99,10 +99,9 @@ export const fetchEvent = async (slug: string): Promise<IlmomasiinaEvent> => {
 
       throw new Error("ilmomasiina-fetch-fail");
     }
-    const data = (await response.json()) as IlmomasiinaEvent;
 
-    return data;
-  } catch (_) {
+    return (await response.json()) as IlmomasiinaEvent;
+  } catch {
     throw new Error("ilmomasiina-fetch-fail");
   }
 };

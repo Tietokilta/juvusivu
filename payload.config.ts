@@ -100,6 +100,49 @@ export default buildConfig({
       ],
     },
     {
+      slug: "pages",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+          localized: true,
+          required: true,
+        },
+        {
+          name: "slug",
+          type: "text",
+          localized: false,
+          required: true,
+        },
+        {
+          name: "body",
+          type: "array",
+          labels: { singular: "Section", plural: "Sections" },
+          // maxRows: 20, // optional limit
+          fields: [
+            {
+              name: "title",
+              type: "text",
+              localized: true,
+              required: false,
+            },
+            {
+              name: "path",
+              type: "text",
+              localized: false,
+              required: false,
+            },
+            {
+              name: "content",
+              type: "richText",
+              editor: lexicalEditor(),
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
       slug: "links",
       fields: [
         {
