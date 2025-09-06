@@ -4,7 +4,6 @@ import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import { getCurrentLocale } from "@locales/server";
 import Header from "@components/Header";
 import { Window } from "@components/Window";
-
 interface NextPage<Params extends Record<string, unknown>> {
   params: Promise<Params>;
 }
@@ -33,9 +32,9 @@ export default async function Page(props: Props) {
           text="Tietokilta 404 - Page Not Found"
           animated
           size="small"
-          className="py-10"
+          className="min-w-full py-10"
         />
-        <main className="container mx-auto max-w-5xl px-8 py-8">
+        <main className="container mx-auto max-w-5xl px-8 py-8 sm:max-w-[90dvw]">
           <h1>Sivua ei löytynyt</h1>
           <p>Yritit hakea sivua: {path}</p>
         </main>
@@ -45,12 +44,12 @@ export default async function Page(props: Props) {
   return (
     <>
       <Header
-        text={page.title}
+        text={page.title.replaceAll("&shy;", "\u00AD")}
         animated
         size="medium"
-        className="sticky top-0 z-50 backdrop-blur-2xl"
+        className="sticky top-0 z-50 break-words hyphens-auto backdrop-blur-2xl"
       />
-      <main className="container mx-auto max-w-5xl px-8 py-4">
+      <main className="container mx-auto max-w-[90dvh] px-8 py-4 sm:max-w-5xl md:max-w-none">
         {page.body &&
           page.body.map(
             (block, idx) =>
