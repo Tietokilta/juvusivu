@@ -1,7 +1,7 @@
 import type en from "./en";
 
 const fi = {
-  "sponsors-title": "Mukana juhlavuodessa",
+  "sponsors-title": "Mukana Juhlavuodessa",
   "navbar-title": "Tietokilta 40 vuotta",
   "open-button": "Avaa",
   "read-more": "Lue lisää",
