@@ -8,9 +8,9 @@ export const Window: React.FC<{
   children: React.ReactNode;
   link?: string;
   title?: string;
+  windowPath?: string;
   className?: string;
-  simple?: boolean;
-}> = async ({ children, link, title, className, simple = true }) => {
+}> = async ({ children, link, title, windowPath, className }) => {
   const t = await getI18n();
   return (
     <div
@@ -31,11 +31,16 @@ export const Window: React.FC<{
             </div>
           </div>
         </div>
-        <div
-          className={
-            simple ? "bg-juvu-white border-accent-dark border-2 p-4" : ""
-          }
-        >
+        {windowPath && (
+          <div className="border-accent-dark bg-juvu-white mb-2 border-2 p-1">
+            <h2 className="text-accent-dark font-pixel mx-2 text-lg">
+              {windowPath}
+            </h2>
+          </div>
+        )}
+      </div>
+      <div className={"bg-juvu-blue-light flex flex-col justify-between p-1"}>
+        <div className={"border-accent-dark bg-juvu-white mb-2 border-2 p-4"}>
           {children}
         </div>
         {link && (

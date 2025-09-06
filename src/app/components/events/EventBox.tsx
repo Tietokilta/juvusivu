@@ -37,15 +37,10 @@ export const EventBox = async ({
     <div className={`event-box max-w-[400px] min-w-[250px] ${className ?? ""}`}>
       <Window
         link={url}
-        simple={false}
         title={date ? `${date.getDate()}.${date.getMonth() + 1}.` : undefined}
+        windowPath={`C:\\..\\Juhlavuosi\\${event.title}`}
       >
-        <div className="border-accent-dark bg-juvu-white mb-2 border-2 p-1">
-          <h2 className="text-accent-dark font-pixel mx-2 text-lg">
-            C:\..\Juhlavuosi\{event.title}
-          </h2>
-        </div>
-        <div className="bg-juvu-white border-accent-dark font-pixel border-2 p-4 text-lg">
+        <div className="font-pixel p-4 text-lg">
           {event.released ? (
             photo?.url ? (
               <>

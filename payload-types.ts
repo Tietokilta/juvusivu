@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     events: Event;
     sponsors: Sponsor;
+    pages: Page;
     links: Link;
     media: Media;
     users: User;
@@ -80,6 +81,7 @@ export interface Config {
   collectionsSelect: {
     events: EventsSelect<false> | EventsSelect<true>;
     sponsors: SponsorsSelect<false> | SponsorsSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     links: LinksSelect<false> | LinksSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
@@ -198,6 +200,39 @@ export interface Sponsor {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  slug: string;
+  body?:
+    | {
+        title?: string | null;
+        path?: string | null;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "links".
  */
 export interface Link {
@@ -245,6 +280,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'sponsors';
         value: number | Sponsor;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'links';
@@ -322,6 +361,24 @@ export interface SponsorsSelect<T extends boolean = true> {
   name?: T;
   url?: T;
   logo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  body?:
+    | T
+    | {
+        title?: T;
+        path?: T;
+        content?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
