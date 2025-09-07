@@ -202,10 +202,6 @@ export function getLocalizedEventTitle(
 ) {
   const titleLocaleSeparator = " // ";
   const [fiTitle, enTitle] = eventTitle.split(titleLocaleSeparator);
-  console.log(enTitle);
-  console.log(fiTitle);
-  console.log(locale);
-
   if (locale === "en") {
     return enTitle || fiTitle;
   }
