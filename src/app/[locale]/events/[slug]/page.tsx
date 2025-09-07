@@ -178,17 +178,12 @@ async function SignUpList({ event }: { event: IlmomasiinaEvent }) {
       <ul className="space-y-4">
         {quotasWithOpenAndQueue.map((quota) => (
           <li key={quota.id} className="space-y-2">
-            <Window
-              title={quota.title}
-              windowPath={`tietokilta.fi/fi/tapahtumat/ilmoittautuneet?kiintiö=${quota.signupCount}/${quota.size}`}
-              className="mx-4"
-            >
-              <SignUpTable
-                signupsPublic={event.signupsPublic}
-                publicQuestions={publicQuestions}
-                quota={quota}
-              />
-            </Window>
+            <h4 className="font-pixel text-lg">{quota.title}</h4>
+            <SignUpTable
+              signupsPublic={event.signupsPublic}
+              publicQuestions={publicQuestions}
+              quota={quota}
+            />
           </li>
         ))}
       </ul>
