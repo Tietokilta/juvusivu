@@ -41,6 +41,8 @@ const en = {
   "ilmomasiina.quotas": "Quotas",
   "ilmomasiina.description": "Event description",
   "ilmomasiina.signup": "Sign up",
+  "page-not-found": "Page not found",
+  "tried-to-access": "You tried to access:",
 };
 
 type FiKey = keyof typeof fi;

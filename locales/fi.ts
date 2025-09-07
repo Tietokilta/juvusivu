@@ -43,6 +43,8 @@ const fi = {
   "ilmomasiina.quotas": "Kiintiöt",
   "ilmomasiina.description": "Tapahtuman kuvaus",
   "ilmomasiina.signup": "Ilmoittaudu",
+  "page-not-found": "Sivua ei löytynyt",
+  "tried-to-access": "Yritit hakea sivua:",
 };
 
 type EnKey = keyof typeof en;
