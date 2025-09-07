@@ -15,9 +15,11 @@ import {
   QuotaSignup,
   QuotaSignupWithQuotaTitle,
 } from "@lib/api/external/ilmomasiina";
+import { remarkI18n } from "@lib/plugins/remark-i18n";
+
 import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
-import { getScopedI18n } from "@locales/server";
+import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import { Button } from "@components/basic/Button";
 import remarkGfm from "remark-gfm";
 
@@ -50,10 +52,10 @@ async function SignUpRow({
   const t = await getScopedI18n("ilmomasiina");
   return (
     <tr className="odd:bg-row-odd even:bg-row-even">
-      <td className="border-b border-gray-900 px-2 py-1">
+      <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
         <span>{signup.position}.</span>
       </td>
-      <td className="border-b border-gray-900 px-2 py-1">
+      <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
         {signup.namePublic ? (
           <span>
             {signup.firstName} {signup.lastName}
@@ -65,16 +67,19 @@ async function SignUpRow({
         )}
       </td>
       {publicQuestions.map((question) => (
-        <td key={question.id} className="border-b border-gray-900 px-2 py-1">
+        <td
+          key={question.id}
+          className="font-pixel border-b border-gray-900 px-2 py-1 text-base"
+        >
           {getFormattedAnswer(question, signup.answers)}
         </td>
       ))}
       {isGeneratedQuota ? (
-        <td className="border-b border-gray-900 px-2 py-1">
+        <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
           {"quotaTitle" in signup ? signup.quotaTitle : ""}
         </td>
       ) : null}
-      <td className="border-b border-gray-900 px-2 py-1">
+      <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
         {new Date(signup.createdAt).toLocaleString("fi-FI", {
           timeZone: "Europe/Helsinki",
         })}
@@ -105,30 +110,33 @@ async function SignUpTable({
 
   const isOpenQuota = quota.id === OPEN_QUOTA_ID;
   const isQueueQuota = quota.id === QUEUE_QUOTA_ID;
-  const isGeneratedQuota = !!isOpenQuota || !!isQueueQuota;
+  const isGeneratedQuota = isOpenQuota || isQueueQuota;
 
   return (
     <div className="shadow-solid border-accent-dark block w-full overflow-x-auto border-2">
       <table className="w-full table-auto border-separate border-spacing-0">
         <thead>
           <tr className="bg-row-even">
-            <th className="rounded-tl-md border-b border-gray-900 p-2">
+            <th className="font-pixel rounded-tl-md border-b border-gray-900 p-2 text-lg">
               {t("headers.Sija")}
             </th>
-            <th className="border-b border-gray-900 p-2">
+            <th className="font-pixel border-b border-gray-900 p-2 text-lg">
               {t("headers.Nimi")}
             </th>
             {publicQuestions.map((question) => (
-              <th key={question.id} className="border-b border-gray-900 p-2">
+              <th
+                key={question.id}
+                className="font-pixel border-b border-gray-900 p-2 text-lg"
+              >
                 {question.question}
               </th>
             ))}
             {isGeneratedQuota ? (
-              <th className="border-b border-gray-900 p-2">
+              <th className="font-pixel border-b border-gray-900 p-2 text-lg">
                 {t("headers.Kiintiö")}
               </th>
             ) : null}
-            <th className="rounded-tr-md border-b border-gray-900 p-2">
+            <th className="font-pixel rounded-tr-md border-b border-gray-900 p-2 text-lg">
               {t("headers.Ilmoittautumisaika")}
             </th>
           </tr>
@@ -167,22 +175,38 @@ async function SignUpList({ event }: { event: IlmomasiinaEvent }) {
 
   return (
     <div className="space-y-4">
-      <ul className="space-y-16">
+      <ul className="space-y-4">
         {quotasWithOpenAndQueue.map((quota) => (
           <li key={quota.id} className="space-y-2">
-            <h3 className="font-pixel text-lg font-semibold text-gray-900">
-              {quota.title}
-            </h3>
-            <SignUpTable
-              signupsPublic={event.signupsPublic}
-              publicQuestions={publicQuestions}
-              quota={quota}
-            />
+            <Window
+              title={quota.title}
+              windowPath={`tietokilta.fi/fi/tapahtumat/ilmoittautuneet?kiintiö=${quota.signupCount}/${quota.size}`}
+              className="mx-4"
+            >
+              <SignUpTable
+                signupsPublic={event.signupsPublic}
+                publicQuestions={publicQuestions}
+                quota={quota}
+              />
+            </Window>
           </li>
         ))}
       </ul>
     </div>
   );
+}
+
+export function getLocalizedEventTitle(
+  eventTitle: string,
+  locale: "fi" | "en",
+) {
+  const titleLocaleSeparator = " // ";
+  const [fiTitle, enTitle] = eventTitle.split(titleLocaleSeparator);
+  if (locale === "en") {
+    return enTitle || fiTitle;
+  }
+
+  return fiTitle;
 }
 
 export default async function Page({
@@ -202,6 +226,7 @@ export default async function Page({
     limit: 1,
   });
   const t = await getScopedI18n("ilmomasiina");
+  const locale = await getCurrentLocale();
 
   if (event_cms.docs.length === 0) {
     notFound();
@@ -210,7 +235,7 @@ export default async function Page({
   return (
     <div className="container mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-3">
       <div className="md:col-span-3">
-        <Window title={event.title}>
+        <Window title={getLocalizedEventTitle(event.title, locale)}>
           {event.location && (
             <p>
               <span className="font-bold">{t("headers.Paikka")}:</span>{" "}
@@ -243,9 +268,13 @@ export default async function Page({
       </div>
       <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
-          <div className="prose text-accent-dark">
-            <Markdown remarkPlugins={[remarkGfm]}>{event.description}</Markdown>
-          </div>
+          {event.description ? (
+            <div className="prose text-accent-dark">
+              <Markdown remarkPlugins={[[remarkI18n, { locale }], remarkGfm]}>
+                {event.description}
+              </Markdown>
+            </div>
+          ) : null}
         </Window>
       </div>
       <div className="md:col-start-3 md:row-start-2">

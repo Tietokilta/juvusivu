@@ -1,9 +1,10 @@
-import { getI18n } from "@locales/server";
+"use client";
+import { useState } from "react";
 import { Button } from "./basic/Button";
 import CloseIcon from "./icons/Close";
 import MaximizeIcon from "./icons/Maximize";
 import MinimizeIcon from "./icons/Minimize";
-import Link from "next/link";
+import { useI18n } from "@locales/client";
 
 export const Window: React.FC<{
   children: React.ReactNode;
@@ -11,8 +12,14 @@ export const Window: React.FC<{
   title?: string;
   windowPath?: string;
   className?: string;
-}> = async ({ children, link, title, windowPath, className }) => {
-  const t = await getI18n();
+}> = ({ children, link, title, windowPath, className }) => {
+  const t = useI18n();
+  const [minimised, setMinimised] = useState(false);
+  const [showWindow, setShowWindow] = useState(true);
+
+  if (!showWindow) {
+    return null;
+  }
   return (
     <div
       className={`border-accent-dark ${className ?? ""} border-2 shadow-lg shadow-gray-500`}
@@ -23,18 +30,30 @@ export const Window: React.FC<{
             {title}
           </span>
           <div className="bg-juvu-blue-light flex items-center justify-end gap-1 pb-2">
-            <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
+            <div
+              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2"
+              onClick={() => {
+                setMinimised(true);
+              }}
+            >
               <MinimizeIcon size={12} />
             </div>
-            <div className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2">
+            <div
+              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2"
+              onClick={() => {
+                setMinimised(false);
+              }}
+            >
               <MaximizeIcon size={12} />
             </div>
-            <Link
+            <div
               className="border-juvu-blue bg-juvu-red select-pointer flex h-5 w-5 items-center justify-center border-2"
-              href="/"
+              onClick={() => {
+                setShowWindow(false);
+              }}
             >
               <CloseIcon size={12} />
-            </Link>
+            </div>
           </div>
         </div>
         {windowPath && (
@@ -46,13 +65,15 @@ export const Window: React.FC<{
         )}
       </div>
       <div className={"bg-juvu-blue-light flex flex-col justify-between p-1"}>
-        <div
-          className={
-            "border-accent-dark bg-juvu-white mb-2 border-2 p-4 break-words hyphens-auto"
-          }
-        >
-          {children}
-        </div>
+        {!minimised && (
+          <div
+            className={
+              "border-accent-dark bg-juvu-white mb-2 border-2 p-4 break-words hyphens-auto"
+            }
+          >
+            {children}
+          </div>
+        )}
         {link && (
           <div className="bg-juvu-blue-light flex justify-center p-2">
             <Button text={t("read-more")} href={link} />

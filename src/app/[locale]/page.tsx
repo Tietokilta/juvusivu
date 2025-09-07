@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
-import { getCurrentLocale } from "../../../locales/server";
+import { getCurrentLocale } from "@locales/server";
 import Header from "@components/Header";
 
 export default async function Home() {
