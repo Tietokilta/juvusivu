@@ -210,7 +210,7 @@ export interface Page {
     | {
         title?: string | null;
         path?: string | null;
-        content: {
+        content?: {
           root: {
             type: string;
             children: {
@@ -224,7 +224,7 @@ export interface Page {
             version: number;
           };
           [k: string]: unknown;
-        };
+        } | null;
         id?: string | null;
       }[]
     | null;
