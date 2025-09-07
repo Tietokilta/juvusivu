@@ -31,7 +31,7 @@ export const Window: React.FC<{
           </span>
           <div className="bg-juvu-blue-light flex items-center justify-end gap-1 pb-2">
             <div
-              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2"
+              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
               onClick={() => {
                 setMinimised(true);
               }}
@@ -39,7 +39,7 @@ export const Window: React.FC<{
               <MinimizeIcon size={12} />
             </div>
             <div
-              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2"
+              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
               onClick={() => {
                 setMinimised(false);
               }}
@@ -47,7 +47,7 @@ export const Window: React.FC<{
               <MaximizeIcon size={12} />
             </div>
             <div
-              className="border-juvu-blue bg-juvu-red select-pointer flex h-5 w-5 items-center justify-center border-2"
+              className="border-juvu-blue bg-juvu-red select-pointer flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
               onClick={() => {
                 setShowWindow(false);
               }}
@@ -63,22 +63,23 @@ export const Window: React.FC<{
             </h2>
           </div>
         )}
-      </div>
-      <div className={"bg-juvu-blue-light flex flex-col justify-between p-1"}>
-        {!minimised && (
-          <div
-            className={
-              "border-accent-dark bg-juvu-white mb-2 border-2 p-4 break-words hyphens-auto"
-            }
-          >
-            {children}
-          </div>
-        )}
-        {link && (
-          <div className="bg-juvu-blue-light flex justify-center p-2">
-            <Button text={t("read-more")} href={link} />
-          </div>
-        )}
+
+        <div className={"bg-juvu-blue-light flex flex-col justify-between"}>
+          {!minimised && (
+            <div
+              className={
+                "border-accent-dark bg-juvu-white border-2 p-4 break-words hyphens-auto"
+              }
+            >
+              {children}
+            </div>
+          )}
+          {link && (
+            <div className="bg-juvu-blue-light flex justify-center p-2">
+              <Button text={t("read-more")} href={link} />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
