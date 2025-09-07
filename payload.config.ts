@@ -136,6 +136,7 @@ export default buildConfig({
               name: "content",
               type: "richText",
               editor: lexicalEditor(),
+              localized: true,
               required: true,
             },
           ],
