@@ -1,4 +1,4 @@
-import { getPayload, Locale } from "payload";
+import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import Markdown from "react-markdown";
 import { notFound } from "next/navigation";
@@ -196,12 +196,15 @@ async function SignUpList({ event }: { event: IlmomasiinaEvent }) {
   );
 }
 
-export function getLocalizedEventTitle(eventTitle: string, locale: "fi" | "en") {
+export function getLocalizedEventTitle(
+  eventTitle: string,
+  locale: "fi" | "en",
+) {
   const titleLocaleSeparator = " // ";
   const [fiTitle, enTitle] = eventTitle.split(titleLocaleSeparator);
   console.log(enTitle);
   console.log(fiTitle);
-  console.log(locale)
+  console.log(locale);
 
   if (locale === "en") {
     return enTitle || fiTitle;
@@ -269,15 +272,13 @@ export default async function Page({
       </div>
       <div className="md:col-span-2 md:row-start-2">
         <Window title={t("description")}>
-            {event.description ? (
-              <div className="prose text-accent-dark">
-                <Markdown
-                  remarkPlugins={[[remarkI18n, { locale }], remarkGfm]}
-                >
-                  {event.description}
-                </Markdown>
-              </div>
-            ) : null}
+          {event.description ? (
+            <div className="prose text-accent-dark">
+              <Markdown remarkPlugins={[[remarkI18n, { locale }], remarkGfm]}>
+                {event.description}
+              </Markdown>
+            </div>
+          ) : null}
         </Window>
       </div>
       <div className="md:col-start-3 md:row-start-2">

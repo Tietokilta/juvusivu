@@ -30,6 +30,7 @@ interface Options {
  */
 export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
   function (options = {}, ..._ignored) {
+    void _ignored;
     const defaultLocaleTree: Root = { type: "root", children: [] };
     const localeTrees = new Map<string, Root>();
 
@@ -57,8 +58,8 @@ export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
 
           // Move nodes between last definition and this one to appropriate tree
           const targetTree = currentLocale
-            ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- checked above
-            localeTrees.get(currentLocale)!
+            ?
+              localeTrees.get(currentLocale)!
             : defaultLocaleTree;
 
           const nodesToMove =
@@ -71,13 +72,11 @@ export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
       );
 
       // Handle remaining nodes after the last definition
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- extra safety just in case
       if (tree.type === "root") {
         const remainingNodes = tree.children.slice(lastDefinitionIndex + 1);
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- false negative
         const targetTree = currentLocale
-          ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- we know it's there because of the last definition
-          localeTrees.get(currentLocale)!
+          ?
+            localeTrees.get(currentLocale)!
           : defaultLocaleTree;
         targetTree.children.push(...remainingNodes);
       }
@@ -98,7 +97,7 @@ export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
 
       // Return the appropriate tree based on options
       if (options.locale && localeTrees.has(options.locale)) {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- checked above
+
         return localeTrees.get(options.locale)!;
       }
 
