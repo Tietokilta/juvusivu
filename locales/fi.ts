@@ -45,6 +45,7 @@ const fi = {
   "ilmomasiina.signup": "Ilmoittaudu",
   "page-not-found": "Sivua ei löytynyt",
   "tried-to-access": "Yritit hakea sivua:",
+  "error": "Virhe",
 };
 
 type EnKey = keyof typeof en;

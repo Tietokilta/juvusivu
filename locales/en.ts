@@ -43,6 +43,7 @@ const en = {
   "ilmomasiina.signup": "Sign up",
   "page-not-found": "Page not found",
   "tried-to-access": "You tried to access:",
+  "error": "Error",
 };
 
 type FiKey = keyof typeof fi;
