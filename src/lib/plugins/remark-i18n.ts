@@ -58,8 +58,7 @@ export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
 
           // Move nodes between last definition and this one to appropriate tree
           const targetTree = currentLocale
-            ?
-              localeTrees.get(currentLocale)!
+            ? localeTrees.get(currentLocale)!
             : defaultLocaleTree;
 
           const nodesToMove =
@@ -75,8 +74,7 @@ export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
       if (tree.type === "root") {
         const remainingNodes = tree.children.slice(lastDefinitionIndex + 1);
         const targetTree = currentLocale
-          ?
-            localeTrees.get(currentLocale)!
+          ? localeTrees.get(currentLocale)!
           : defaultLocaleTree;
         targetTree.children.push(...remainingNodes);
       }
@@ -97,7 +95,6 @@ export const remarkI18n: Plugin<[options: Options] | undefined[], Root> =
 
       // Return the appropriate tree based on options
       if (options.locale && localeTrees.has(options.locale)) {
-
         return localeTrees.get(options.locale)!;
       }
 
