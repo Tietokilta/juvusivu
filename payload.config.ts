@@ -64,6 +64,19 @@ export default buildConfig({
           type: "checkbox",
           localized: false,
           defaultValue: false,
+          admin: {
+            description: "When false, only name of the event is shown publicly",
+          },
+        },
+        {
+          name: "loading",
+          type: "checkbox",
+          localized: false,
+          defaultValue: false,
+          admin: {
+            description:
+              "Set to true to show loading state even if event is released",
+          },
         },
         {
           name: "date",
