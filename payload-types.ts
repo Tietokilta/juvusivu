@@ -134,7 +134,14 @@ export interface Event {
   title: string;
   description?: string | null;
   slug?: string | null;
+  /**
+   * When false, only name of the event is shown publicly
+   */
   released?: boolean | null;
+  /**
+   * Set to true to show loading state even if event is released
+   */
+  loading?: boolean | null;
   date?: string | null;
   photo?: (number | null) | Media;
   updatedAt: string;
@@ -348,6 +355,7 @@ export interface EventsSelect<T extends boolean = true> {
   description?: T;
   slug?: T;
   released?: T;
+  loading?: T;
   date?: T;
   photo?: T;
   updatedAt?: T;

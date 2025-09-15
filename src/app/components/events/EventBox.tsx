@@ -41,7 +41,7 @@ export const EventBox = async ({
         windowPath={`C:\\..\\Juhlavuosi\\${event.title}`}
       >
         <div className="font-pixel p-4 text-lg">
-          {event.released ? (
+          {event.released && !event.loading ? (
             photo?.url ? (
               <>
                 <Image
