@@ -22,6 +22,7 @@ import { ProgressBar } from "@components/basic/ProgressBar";
 import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import { Button } from "@components/basic/Button";
 import remarkGfm from "remark-gfm";
+import { Metadata } from "next";
 
 function getFormattedAnswer(
   question: EventQuestion,
@@ -203,6 +204,13 @@ export function getLocalizedEventTitle(
 
   return fiTitle;
 }
+
+export const metadata: Metadata = {
+  robots: {
+    index: false, // prevents indexing
+    follow: false, // prevents link following
+  },
+};
 
 export default async function Page({
   params,
