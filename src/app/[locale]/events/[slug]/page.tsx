@@ -235,6 +235,8 @@ export default async function Page({
     notFound();
   }
   const event = await fetchEvent(slug);
+  const hasSignup = event.quotas.length > 0;
+
   return (
     <div className="container mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-3">
       <div className="md:col-span-3">
@@ -269,7 +271,9 @@ export default async function Page({
           )}
         </Window>
       </div>
-      <div className="md:col-span-2 md:row-start-2">
+      <div
+        className={`${hasSignup ? "md:col-span-2" : "md:col-span-3"} md:row-start-2`}
+      >
         <Window title={t("description")}>
           {event.description ? (
             <div className="prose text-accent-dark">
@@ -280,42 +284,48 @@ export default async function Page({
           ) : null}
         </Window>
       </div>
-      <div className="md:col-start-3 md:row-start-2">
-        <Window title={t("Ilmoittautuminen")} className="font-pixel mb-5">
-          <div className="flex items-center justify-center">
-            <Button
-              text={t("signup")}
-              href={`https://ilmo.tietokilta.fi/events/${slug}`}
-              disabled={event.registrationClosed ?? true}
-            />
-          </div>
-        </Window>
-        <Window title={t("quotas")} className="font-pixel">
-          {event.quotas.map((quota) => (
-            <div key={quota.id} className="mb-4">
-              <p>
-                {quota.title}{" "}
-                {quota.size
-                  ? `(${quota.signupCount ?? 0}/${quota.size ?? 0})`
-                  : `(${quota.signupCount ?? 0})`}
-              </p>
-              <ProgressBar
-                max={quota.size ?? 1}
-                value={
-                  quota.size ? Math.min(quota.signupCount ?? 0, quota.size) : 0
-                }
+      {hasSignup && (
+        <div className="md:col-start-3 md:row-start-2">
+          <Window title={t("Ilmoittautuminen")} className="font-pixel mb-5">
+            <div className="flex items-center justify-center">
+              <Button
+                text={t("signup")}
+                href={`https://ilmo.tietokilta.fi/events/${slug}`}
+                disabled={event.registrationClosed ?? true}
               />
             </div>
-          ))}
-        </Window>
-      </div>
-      {event.registrationStartDate && event.registrationEndDate && (
-        <div className="md:col-span-3 md:row-start-3">
-          <Window title={t("Ilmoittautuneet")}>
-            <SignUpList event={event} />
+          </Window>
+          <Window title={t("quotas")} className="font-pixel">
+            {event.quotas.map((quota) => (
+              <div key={quota.id} className="mb-4">
+                <p>
+                  {quota.title}{" "}
+                  {quota.size
+                    ? `(${quota.signupCount ?? 0}/${quota.size ?? 0})`
+                    : `(${quota.signupCount ?? 0})`}
+                </p>
+                <ProgressBar
+                  max={quota.size ?? 1}
+                  value={
+                    quota.size
+                      ? Math.min(quota.signupCount ?? 0, quota.size)
+                      : 0
+                  }
+                />
+              </div>
+            ))}
           </Window>
         </div>
       )}
+      {event.registrationStartDate &&
+        event.registrationEndDate &&
+        hasSignup && (
+          <div className="md:col-span-3 md:row-start-3">
+            <Window title={t("Ilmoittautuneet")}>
+              <SignUpList event={event} />
+            </Window>
+          </div>
+        )}
     </div>
   );
 }
