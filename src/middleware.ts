@@ -1,5 +1,5 @@
 import { createI18nMiddleware } from "next-international/middleware";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ["fi", "en"],
@@ -8,6 +8,22 @@ const I18nMiddleware = createI18nMiddleware({
   resolveLocaleFromRequest: () => "fi", // default to Finnish
 });
 export function middleware(req: NextRequest) {
+  // When we have separate domain for anniversary year,
+  // we want muistinnollaus.fi to redirect there
+  const primaryDomain = process.env.PRIMARY_DOMAIN;
+  const hostname = req.headers.get("host")!;
+  if (
+    primaryDomain &&
+    hostname !== primaryDomain &&
+    (hostname === "muistinnollaus.fi" ||
+      hostname === "www.muistinnollaus.fi" ||
+      hostname === "localhost:3000")
+  ) {
+    return NextResponse.redirect(
+      new URL(`https://${primaryDomain}/m0`, req.url),
+    );
+  }
+
   return I18nMiddleware(req);
 }
 export const config = {

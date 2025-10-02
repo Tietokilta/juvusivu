@@ -52,6 +52,10 @@ pnpm migrate:create
 
 Migrations are then automatically applied on production database when deploying.
 
+## Production configuration
+
+If you want to redirect muistinnollaus.fi to juhlavuosi.fi (or some other domain) during anniversary year, you can add `PRIMARY_DOMAIN=juhlavuosi.fi` environment variable (and point both domains to this app).
+
 ## Idea of this repository
 
 This project was created for Tietokilta 40 anniversary year, to promote different kinds of events during the year. It can be adapted to normal years as well (by e.g. highlighting events of the annual ball week).
