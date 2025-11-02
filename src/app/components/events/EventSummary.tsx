@@ -1,27 +1,16 @@
 import { Window } from "@components/Window";
-import { IlmomasiinaEvent } from "@lib/api/external/ilmomasiina";
 import { getScopedI18n, getCurrentLocale } from "@locales/server";
-
-function getLocalizedEventTitle(eventTitle: string, locale: "fi" | "en") {
-  const titleLocaleSeparator = " // ";
-  const [fiTitle, enTitle] = eventTitle.split(titleLocaleSeparator);
-  if (locale === "en") {
-    return enTitle || fiTitle;
-  }
-
-  return fiTitle;
-}
+import { UserEventResponse } from "@tietokilta/ilmomasiina-models";
 
 export default async function EventSummary({
   event,
 }: {
-  event: IlmomasiinaEvent;
+  event: UserEventResponse;
 }) {
   const t = await getScopedI18n("ilmomasiina");
-  const locale = await getCurrentLocale();
 
   return (
-    <Window title={getLocalizedEventTitle(event.title, locale)}>
+    <Window title={event.title}>
       {event.location && (
         <p>
           <span className="font-bold">{t("headers.Paikka")}:</span>{" "}

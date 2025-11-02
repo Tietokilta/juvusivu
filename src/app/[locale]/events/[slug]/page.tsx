@@ -43,7 +43,7 @@ export default async function Page({
   if (event_cms.docs.length === 0) {
     notFound();
   }
-  const event = await fetchEvent(slug);
+  const event = await fetchEvent(slug, locale);
   const hasSignup = event.quotas.length > 0;
 
   return (

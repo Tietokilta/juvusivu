@@ -27,6 +27,12 @@ importers:
       '@tailwindcss/line-clamp':
         specifier: ^0.4.4
         version: 0.4.4(tailwindcss@4.1.12)
+      '@tietokilta/ilmomasiina-client':
+        specifier: 2.0.0-alpha46
+        version: 2.0.0-alpha46(react@19.1.1)
+      '@tietokilta/ilmomasiina-models':
+        specifier: 2.0.0-alpha46
+        version: 2.0.0-alpha46
       graphql:
         specifier: ^16.11.0
         version: 16.11.0
@@ -1212,6 +1218,9 @@ packages:
   '@rushstack/eslint-patch@1.12.0':
     resolution: {integrity: sha512-5EwMtOqvJMMa3HbmxLlF74e+3/HhwBTMcvt3nqVJgGCozO6hzIPOBlwm8mGVNR9SN2IJpxSnlxczyDjcn7qIyw==}
 
+  '@sinclair/typebox@0.32.35':
+    resolution: {integrity: sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==}
+
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
@@ -1312,6 +1321,17 @@ packages:
     resolution: {integrity: sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
+
+  '@tietokilta/ilmomasiina-client@2.0.0-alpha46':
+    resolution: {integrity: sha512-xfuny3CyGX9ElYXZg9QnXMqXTJ6INnfYanBSB6Dxtzb50vj9JtLEiJrIQeLn1ZonDzKXxkve5BPWcYwYVz4dfA==}
+    peerDependencies:
+      react: ^17 || ^18
+    peerDependenciesMeta:
+      react:
+        optional: true
+
+  '@tietokilta/ilmomasiina-models@2.0.0-alpha46':
+    resolution: {integrity: sha512-GXpvsSPyFQJPd0zxsvCIgKyeajI4GIbV7DhH7JNu0btMwOxCnY79cM6BYb9DT8hh5KZ2/QMff1HyROuXowuZ2w==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -2772,6 +2792,9 @@ packages:
   locate-path@6.0.0:
     resolution: {integrity: sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==}
     engines: {node: '>=10'}
+
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
 
   lodash.castarray@4.4.0:
     resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
@@ -5158,6 +5181,8 @@ snapshots:
 
   '@rushstack/eslint-patch@1.12.0': {}
 
+  '@sinclair/typebox@0.32.35': {}
+
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
@@ -5245,6 +5270,17 @@ snapshots:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.12
+
+  '@tietokilta/ilmomasiina-client@2.0.0-alpha46(react@19.1.1)':
+    dependencies:
+      '@tietokilta/ilmomasiina-models': 2.0.0-alpha46
+      lodash-es: 4.17.21
+    optionalDependencies:
+      react: 19.1.1
+
+  '@tietokilta/ilmomasiina-models@2.0.0-alpha46':
+    dependencies:
+      '@sinclair/typebox': 0.32.35
 
   '@tokenizer/token@0.3.0': {}
 
@@ -6836,6 +6872,8 @@ snapshots:
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
+
+  lodash-es@4.17.21: {}
 
   lodash.castarray@4.4.0: {}
 

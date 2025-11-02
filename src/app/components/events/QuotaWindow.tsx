@@ -1,12 +1,12 @@
 import { ProgressBar } from "@components/basic/ProgressBar";
 import { Window } from "@components/Window";
-import { IlmomasiinaEvent } from "@lib/api/external/ilmomasiina";
 import { getScopedI18n } from "@locales/server";
+import { UserEventResponse } from "@tietokilta/ilmomasiina-models";
 
 export default async function QuotaWindow({
   event,
 }: {
-  event: IlmomasiinaEvent;
+  event: UserEventResponse;
 }) {
   const t = await getScopedI18n("ilmomasiina");
 
