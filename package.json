@@ -22,6 +22,8 @@
     "@payloadcms/richtext-lexical": "^3.54.0",
     "@payloadcms/storage-azure": "^3.54.0",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "@tietokilta/ilmomasiina-client": "2.0.0-alpha46",
+    "@tietokilta/ilmomasiina-models": "2.0.0-alpha46",
     "graphql": "^16.11.0",
     "lucide-react": "^0.541.0",
     "mdast": "^3.0.0",

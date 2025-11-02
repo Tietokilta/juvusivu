@@ -1,20 +1,19 @@
-import {
-  EventQuestion,
-  QuestionAnswer,
-  QuotaSignup,
-  QuotaSignupWithQuotaTitle,
-  EventQuota,
-  EventQuotaWithSignups,
-  OPEN_QUOTA_ID,
-  QUEUE_QUOTA_ID,
-  IlmomasiinaEvent,
-  getQuotasWithOpenAndQueue,
-} from "@lib/api/external/ilmomasiina";
 import { getScopedI18n } from "@locales/server";
+import {
+  UserEventResponse,
+  SignupStatus,
+  Question,
+  PublicSignupSchema,
+} from "@tietokilta/ilmomasiina-models";
+import {
+  getSignupsByQuota,
+  QuotaSignups,
+  SignupWithQuota,
+} from "@tietokilta/ilmomasiina-client/dist/utils/signupUtils";
 
 function getFormattedAnswer(
-  question: EventQuestion,
-  answers: QuestionAnswer[],
+  question: Question,
+  answers: PublicSignupSchema["answers"],
 ) {
   const answer = answers.find((a) => a.questionId === question.id)?.answer;
 
@@ -34,8 +33,8 @@ async function SignUpRow({
   publicQuestions,
   isGeneratedQuota,
 }: {
-  signup: QuotaSignup | QuotaSignupWithQuotaTitle;
-  publicQuestions: EventQuestion[];
+  signup: SignupWithQuota;
+  publicQuestions: Question[];
   isGeneratedQuota: boolean;
 }) {
   const t = await getScopedI18n("ilmomasiina");
@@ -65,7 +64,7 @@ async function SignUpRow({
       ))}
       {isGeneratedQuota ? (
         <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
-          {"quotaTitle" in signup ? signup.quotaTitle : ""}
+          {signup.quota.title}
         </td>
       ) : null}
       <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
@@ -82,8 +81,8 @@ async function SignUpTable({
   publicQuestions,
   signupsPublic,
 }: {
-  quota: EventQuota | EventQuotaWithSignups;
-  publicQuestions: EventQuestion[];
+  quota: QuotaSignups;
+  publicQuestions: Question[];
   signupsPublic?: boolean;
 }) {
   const t = await getScopedI18n("ilmomasiina");
@@ -97,8 +96,8 @@ async function SignUpTable({
     return <p>{t("status.Ei ilmoittautuneita vielä")}</p>;
   }
 
-  const isOpenQuota = quota.id === OPEN_QUOTA_ID;
-  const isQueueQuota = quota.id === QUEUE_QUOTA_ID;
+  const isOpenQuota = quota.type === SignupStatus.IN_OPEN_QUOTA;
+  const isQueueQuota = quota.type === SignupStatus.IN_QUEUE;
   const isGeneratedQuota = isOpenQuota || isQueueQuota;
 
   return (
@@ -133,9 +132,12 @@ async function SignUpTable({
         <tbody>
           {signups
             .filter(
-              (signup) => isGeneratedQuota || signup.status === "in-quota",
+              (signup) =>
+                isGeneratedQuota || signup.status === SignupStatus.IN_QUOTA,
             )
-            .toSorted((a, b) => a.position - b.position)
+            .toSorted(
+              (a, b) => (a.position ?? Infinity) - (b.position ?? Infinity),
+            )
             .map((signup) => (
               <SignUpRow
                 key={signup.position}
@@ -150,24 +152,28 @@ async function SignUpTable({
   );
 }
 
-async function SignUpList({ event }: { event: IlmomasiinaEvent }) {
+async function SignUpList({ event }: { event: UserEventResponse }) {
   if (!event.registrationStartDate || !event.registrationEndDate) {
     return null;
   }
+  const t = await getScopedI18n("ilmomasiina");
 
-  const quotasWithOpenAndQueue = getQuotasWithOpenAndQueue(
-    event.quotas,
-    event.openQuotaSize,
-  );
+  const signupsByQuota = getSignupsByQuota(event);
 
   const publicQuestions = event.questions.filter((question) => question.public);
 
   return (
     <div className="space-y-4">
       <ul className="space-y-4">
-        {quotasWithOpenAndQueue.map((quota) => (
-          <li key={quota.id} className="space-y-2">
-            <h4 className="font-pixel text-lg">{quota.title}</h4>
+        {signupsByQuota.map((quota) => (
+          <li key={quota.id ?? quota.type} className="space-y-2">
+            <h4 className="font-pixel text-lg">
+              {quota.type === SignupStatus.IN_OPEN_QUOTA
+                ? t("Avoin kiintiö")
+                : quota.type === SignupStatus.IN_QUEUE
+                  ? t("Jonossa")
+                  : quota.title}
+            </h4>
             <SignUpTable
               signupsPublic={event.signupsPublic}
               publicQuestions={publicQuestions}
