@@ -42,9 +42,10 @@ const CountDown = ({ date, locale }: CountDownProps) => {
     } else {
       // Render a countdown
       const headerName = "sm:text-5xl text-4xl m-1 text-center";
-      const textName = "sm:text-lg text-base m-1 text-center";
+      const textName =
+        "sm:text-lg min-[430px]:text-base text-sm m-1 text-center";
       return (
-        <div className="grid w-full grid-cols-4 justify-center gap-x-1 gap-y-1 p-3 md:gap-x-3 md:p-5">
+        <div className="grid w-full grid-cols-4 justify-center gap-x-1 gap-y-1 md:gap-x-3 md:p-5">
           {/* Top row: numbers */}
           <h1 className={headerName}>{days}</h1>
           <h1 className={headerName}>{hours}</h1>
@@ -61,7 +62,7 @@ const CountDown = ({ date, locale }: CountDownProps) => {
   };
 
   return (
-    <div className="flex h-full max-w-[500px] min-w-[320px] flex-col items-center justify-center">
+    <div className="flex h-full max-w-[500px] min-w-[280px] flex-col items-center justify-center">
       <Countdown date={new Date(date)} renderer={renderer} />
     </div>
   );
