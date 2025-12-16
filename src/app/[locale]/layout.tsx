@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
-import "../globals.css";
-import localFont from "next/font/local";
+import "./globals.css";
 import { I18nProviderClient } from "@locales/client";
+import localFont from "next/font/local";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -16,7 +16,7 @@ const robotoMono = Roboto_Mono({
 });
 
 const pixelFont = localFont({
-  src: "../../../../public/fonts/w95fa/w95fa.woff2",
+  src: "../../../public/fonts/w95fa/w95fa.woff2",
   variable: "--font-pixel",
 });
 
@@ -50,7 +50,7 @@ export function generateStaticParams() {
   return locales.map((l) => ({ locale: l }));
 }
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: Readonly<{
