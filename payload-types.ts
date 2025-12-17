@@ -139,6 +139,10 @@ export interface Event {
    */
   released?: boolean | null;
   /**
+   * When true, date of the event is shown on the event box even if the event is unreleased
+   */
+  showDate?: boolean | null;
+  /**
    * Set to true to show loading state even if event is released
    */
   loading?: boolean | null;
@@ -355,6 +359,7 @@ export interface EventsSelect<T extends boolean = true> {
   description?: T;
   slug?: T;
   released?: T;
+  showDate?: T;
   loading?: T;
   date?: T;
   photo?: T;

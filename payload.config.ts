@@ -69,6 +69,17 @@ export default buildConfig({
           },
         },
         {
+          name: "showDate",
+          type: "checkbox",
+          localized: false,
+          defaultValue: false,
+          admin: {
+            description:
+              "When true, date of the event is shown on the event box even if the event is unreleased",
+            condition: (_, siblingData) => !siblingData.released, // only show the toggle for unreleased events
+          },
+        },
+        {
           name: "loading",
           type: "checkbox",
           localized: false,
