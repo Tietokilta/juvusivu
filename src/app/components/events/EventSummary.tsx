@@ -1,5 +1,5 @@
 import { Window } from "@components/Window";
-import { getScopedI18n, getCurrentLocale } from "@locales/server";
+import { getScopedI18n } from "@locales/server";
 import { UserEventResponse } from "@tietokilta/ilmomasiina-models";
 
 export default async function EventSummary({

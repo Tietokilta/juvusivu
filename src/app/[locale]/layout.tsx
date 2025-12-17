@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
-import Footer from "@components/Footer";
-import Navbar from "@components/Navbar";
-import localFont from "next/font/local";
 import { I18nProviderClient } from "@locales/client";
+import localFont from "next/font/local";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,7 +50,7 @@ export function generateStaticParams() {
   return locales.map((l) => ({ locale: l }));
 }
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params,
 }: Readonly<{
@@ -65,11 +63,7 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} antialiased`}
       >
-        <I18nProviderClient locale={locale}>
-          <Navbar />
-          {children}
-          <Footer />
-        </I18nProviderClient>
+        <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
       </body>
     </html>
   );
