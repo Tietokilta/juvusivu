@@ -37,7 +37,7 @@ export const EventBox = async ({
       <Window
         link={url}
         title={date ? `${date.getDate()}.${date.getMonth() + 1}.` : undefined}
-        windowPath={`C:\\..\\Juhlavuosi\\${event.title}`}
+        windowPath={`C:\\..\\${t("jubilee")}\\${event.title}`}
       >
         <div className="font-pixel p-4 text-lg">
           {event.released && !event.loading ? (

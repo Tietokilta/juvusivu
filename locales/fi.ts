@@ -46,6 +46,7 @@ const fi = {
   "page-not-found": "Sivua ei löytynyt",
   "tried-to-access": "Yritit hakea sivua:",
   "error": "Virhe",
+  "jubilee": "Juhlavuosi",
 };
 
 type EnKey = keyof typeof en;
