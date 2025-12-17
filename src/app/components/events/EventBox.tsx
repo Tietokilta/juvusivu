@@ -15,7 +15,10 @@ export const EventBox = async ({
 }) => {
   const t = await getI18n();
   const url = event.slug && event.released ? `events/${event.slug}` : undefined;
-  const date = event.date && event.released ? new Date(event.date) : undefined;
+  const date =
+    event.date && (event.released || event.showDate)
+      ? new Date(event.date)
+      : undefined;
   const photo = event.photo as Media | undefined;
   // Calculate the state of loading bar based on date
   const loadingState = event.date
