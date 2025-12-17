@@ -44,6 +44,7 @@ const en = {
   "page-not-found": "Page not found",
   "tried-to-access": "You tried to access:",
   "error": "Error",
+  "jubilee": "Jubilee",
 };
 
 type FiKey = keyof typeof fi;
