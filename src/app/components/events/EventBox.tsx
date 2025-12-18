@@ -66,7 +66,7 @@ export const EventBox = async ({
                 <ProgressBar max={16} value={loadingState} />
               </div>
               <div className="mt-5 flex justify-evenly gap-2">
-                <Button text={t("ready")} disabled />
+                <Button type="button" text={t("ready")} disabled />
                 <EikuButton text={t("cancel")} />
               </div>
             </>

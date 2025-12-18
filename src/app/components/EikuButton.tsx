@@ -37,7 +37,7 @@ export const EikuButton = ({ text }: { text: string }) => {
   };
   return (
     <div ref={ref} onClick={spawn} className="cursor-pointer select-none">
-      <Button text={text} fake />
+      <Button text={text} type="fake" />
     </div>
   );
 };

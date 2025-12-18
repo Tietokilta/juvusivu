@@ -7,12 +7,12 @@ import { remarkI18n } from "@lib/plugins/remark-i18n";
 
 import { Window } from "@components/Window";
 import { getCurrentLocale, getScopedI18n } from "@locales/server";
-import { Button } from "@components/basic/Button";
 import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
 import SignUpList from "@components/events/SignUpList";
 import QuotaWindow from "@components/events/QuotaWindow";
 import EventSummary from "@components/events/EventSummary";
+import { SignUp } from "./SignUp";
 
 export const metadata: Metadata = {
   robots: {
@@ -27,23 +27,15 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const payload = await getPayload({ config: configPromise });
-  const event_cms = await payload.find({
-    collection: "events",
-    where: {
-      slug: {
-        equals: slug,
-      },
-    },
-    limit: 1,
-  });
+
   const t = await getScopedI18n("ilmomasiina");
   const locale = await getCurrentLocale();
 
-  if (event_cms.docs.length === 0) {
+  const eventResponse = await fetchEvent(slug, locale);
+  if (eventResponse.error) {
     notFound();
   }
-  const event = await fetchEvent(slug, locale);
+  const event = eventResponse.data;
   const hasSignup = event.quotas.length > 0;
 
   return (
@@ -67,12 +59,14 @@ export default async function Page({
       {hasSignup && (
         <div className="md:col-start-3 md:row-start-2">
           <Window title={t("Ilmoittautuminen")} className="font-pixel mb-5">
-            <div className="flex items-center justify-center">
-              <Button
-                text={t("signup")}
-                href={`https://ilmo.tietokilta.fi/events/${slug}`}
-                disabled={event.registrationClosed ?? true}
-              />
+            <div className="flex flex-col items-center justify-center gap-2">
+              {event.quotas.map((quota) => (
+                <SignUp
+                  key={quota.id}
+                  quota={quota}
+                  disabled={event.registrationClosed ?? true}
+                />
+              ))}
             </div>
           </Window>
           <QuotaWindow event={event} />

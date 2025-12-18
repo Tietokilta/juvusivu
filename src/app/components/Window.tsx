@@ -74,7 +74,7 @@ export const Window: React.FC<{
           )}
           {link && (
             <div className="bg-juvu-blue-light flex justify-center p-2">
-              <Button text={t("read-more")} href={link} />
+              <Button type="link" text={t("read-more")} href={link} />
             </div>
           )}
         </div>

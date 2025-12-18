@@ -1,39 +1,49 @@
 import Link from "next/link";
 
 export const Button = ({
+  type,
   text,
   href = "#",
   disabled = false,
-  fake = false,
+  onClick,
 }: {
+  type: "submit" | "button" | "link" | "fake";
   text: string;
   href?: string;
   disabled?: boolean;
-  fake?: boolean;
+
+  onClick?: () => void;
 }) => {
-  if (disabled) {
+  const style =
+    "border-accent-dark bg-juvu-white font-pixel border-2 px-2 text-lg disabled:opacity-50";
+
+  if (type === "fake") {
+    return <div className={style}>{text}</div>;
+  }
+  if (type === "submit") {
+    return (
+      <button type="submit" className={style} disabled={disabled}>
+        {text}
+      </button>
+    );
+  }
+  if (type === "button") {
     return (
       <button
-        className="border-accent-dark bg-juvu-white font-pixel border-2 px-2 text-lg opacity-50"
-        disabled
+        type="button"
+        className={style}
+        onClick={onClick}
+        disabled={disabled}
       >
         {text}
       </button>
     );
   }
-  if (fake) {
+  if (type === "link") {
     return (
-      <div className="border-accent-dark bg-juvu-white font-pixel border-2 px-2 text-lg">
+      <Link className={style} href={href}>
         {text}
-      </div>
+      </Link>
     );
   }
-  return (
-    <Link
-      className={`border-accent-dark bg-juvu-white font-pixel border-2 px-2 text-lg`}
-      href={href}
-    >
-      {text}
-    </Link>
-  );
 };
