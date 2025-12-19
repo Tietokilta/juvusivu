@@ -7,8 +7,8 @@ export default async function InfoscreenPage() {
 
   return (
     <div className="h-full w-full">
-      <h1 className="font-pixel w-full pt-4 text-center text-4xl font-extrabold">
-        {t("all-events.Kaikki tapahtumat")}
+      <h1 className="w-full pt-4 text-center text-4xl">
+        Juhlavuoden Tapahtumia
       </h1>
       <Events locale={locale} />
     </div>
