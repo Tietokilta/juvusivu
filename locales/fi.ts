@@ -47,6 +47,7 @@ const fi = {
   "tried-to-access": "Yritit hakea sivua:",
   "error": "Virhe",
   "jubilee": "Juhlavuosi",
+  "jubilee-events-title": "Juhlavuoden tapahtumia",
 };
 
 type EnKey = keyof typeof en;
