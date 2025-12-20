@@ -15,7 +15,7 @@ import { EventGridBlock } from "./Blocks";
 type NodeTypes = DefaultNodeTypes | SerializedBlockNode<typeof EventGridBlock>;
 
 const headingClasses: Record<string, string> = {
-  h1: "text-4xl font-bold mt-6",
+  h1: "text-4xl font-bold mt-6 font-mono",
   h2: "text-3xl font-semibold font-mono mt-5 mb-2",
   h3: "text-2xl font-medium font-mono mt-4",
   h4: "text-xl font-medium mt-3",

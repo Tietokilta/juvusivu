@@ -45,6 +45,7 @@ const en = {
   "tried-to-access": "You tried to access:",
   "error": "Error",
   "jubilee": "Jubilee",
+  "jubilee-events-title": "Jubilee events",
 };
 
 type FiKey = keyof typeof fi;
