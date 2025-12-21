@@ -1,10 +1,7 @@
-import { getPayload } from "payload";
-import configPromise from "@payload-config";
 import Markdown from "react-markdown";
 import { notFound } from "next/navigation";
 import { fetchEvent } from "@lib/api/external/ilmomasiina";
 import { remarkI18n } from "@lib/plugins/remark-i18n";
-
 import { Window } from "@components/Window";
 import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import remarkGfm from "remark-gfm";
@@ -12,7 +9,7 @@ import { Metadata } from "next";
 import SignUpList from "@components/events/SignUpList";
 import QuotaWindow from "@components/events/QuotaWindow";
 import EventSummary from "@components/events/EventSummary";
-import { SignUp } from "./SignUp";
+import { SignUpCountdown } from "./SignUpCountdown";
 
 export const metadata: Metadata = {
   robots: {
@@ -59,15 +56,7 @@ export default async function Page({
       {hasSignup && (
         <div className="md:col-start-3 md:row-start-2">
           <Window title={t("Ilmoittautuminen")} className="font-pixel mb-5">
-            <div className="flex flex-col items-center justify-center gap-2">
-              {event.quotas.map((quota) => (
-                <SignUp
-                  key={quota.id}
-                  quota={quota}
-                  disabled={event.registrationClosed ?? true}
-                />
-              ))}
-            </div>
+            <SignUpCountdown event={event} />
           </Window>
           <QuotaWindow event={event} />
         </div>

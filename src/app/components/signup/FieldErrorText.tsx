@@ -7,5 +7,5 @@ export const FieldErrorText = ({ error }: { error?: SignupFieldError }) => {
     return null;
   }
   const t = useScopedI18n("errors.ilmo.fieldError");
-  return <div className="text-red-600">{t(error)}</div>;
+  return <div className="text-juvu-red-dark">{t(error)}</div>;
 };

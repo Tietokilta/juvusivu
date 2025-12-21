@@ -15,7 +15,7 @@ export const Button = ({
   onClick?: () => void;
 }) => {
   const style =
-    "border-accent-dark bg-juvu-white font-pixel border-2 px-2 text-lg disabled:opacity-50";
+    "border-accent-dark bg-juvu-white font-pixel border-2 px-2 text-lg hover:bg-juvu-white-dark disabled:hover:bg-juvu-white disabled:opacity-50";
 
   if (type === "fake") {
     return <div className={style}>{text}</div>;

@@ -8,12 +8,22 @@
 
 @theme {
   --color-juvu-blue: #091f43;
-  --color-juvu-blue-light: #c4cfe1;
+  --color-juvu-lightblue: #c4cfe1;
   --color-juvu-white: #fcf7f1;
   --color-juvu-gold: #d4ae63;
   --color-juvu-red: #ff675e;
+  --color-juvu-blue-dark: #000010;
+  --color-juvu-lightblue-dark: #919cae;
+  --color-juvu-white-dark: #c9c4be;
+  --color-juvu-gold-dark: #a17b30;
+  --color-juvu-red-dark: #cc342b;
+  --color-juvu-blue-light: #3c5276;
+  --color-juvu-lightblue-light: #f7ffff;
+  --color-juvu-white-light: #ffffff;
+  --color-juvu-gold-light: #ffe196;
+  --color-juvu-red-light: #ff9a91;
   --color-accent-dark: var(--color-juvu-blue);
-  --color-accent-light: var(--color-juvu-blue-light);
+  --color-accent-light: var(--color-juvu-lightblue);
   --color-row-odd: #e6ebf5;
   --color-row-even: #f3f6fa;
   --color-header: var(--color-juvu-blue);

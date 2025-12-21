@@ -18,7 +18,7 @@ import { Button } from "@components/basic/Button";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
 import { FormEvent, startTransition, useActionState, useState } from "react";
-import { useScopedI18n } from "@locales/client";
+import { useI18n, useScopedI18n } from "@locales/client";
 import { FieldErrorText } from "@components/signup/FieldErrorText";
 import { QuestionInput } from "@components/signup/QuestionInput";
 import { QuotaPositionText } from "@components/signup/QuotaPositionText";
@@ -42,7 +42,7 @@ const InputRow = ({
 }) => (
   <div className="mb-2">
     <p className="font-pixel text-lg">
-      {label} {mandatory && <span className="text-juvu-red">*</span>}
+      {label} {mandatory && <span className="text-juvu-red-dark">*</span>}
     </p>
     {children}
   </div>
@@ -62,8 +62,7 @@ const EditFormInternal = () => {
   const deleteSignup = useDeleteSignup();
   const t = useScopedI18n("ilmomasiina");
   const t_e = useScopedI18n("errors.ilmo.code");
-  console.log("isNew", isNew);
-  console.log("localizedSignup", localizedSignup);
+  const t_general = useI18n();
   const [saved, setSaved] = useState<boolean>(false);
   const confirmed = localizedSignup?.confirmed || saved;
 
@@ -109,7 +108,7 @@ const EditFormInternal = () => {
           : null;
       const generalError = error instanceof ApiError ? error : null;
 
-      return { errors: fieldErrors, generalError, success: null };
+      return { fieldErrors, generalError, success: null };
     }
   };
 
@@ -133,7 +132,7 @@ const EditFormInternal = () => {
   };
 
   const handleDelete = () => {
-    if (confirm("Are you sure you want to delete your signup?")) {
+    if (confirm(t("delete-confirm"))) {
       deleteSignup();
       router.push(`/events/${localizedEvent?.slug}`);
     }
@@ -141,17 +140,17 @@ const EditFormInternal = () => {
 
   if (pending) {
     return (
-      <Window title="Loading signup" className="mx-auto my-7 max-w-3xl">
-        <p className="font-pixel text-lg">Loading...</p>
+      <Window title={t("loading-signup")} className="mx-auto my-7 max-w-3xl">
+        <p className="font-pixel text-lg">{t_general("loading")}</p>
       </Window>
     );
   }
 
   if (!localizedSignup || !localizedEvent) {
     return (
-      <Window title="Signup not found" className="mx-auto my-7 max-w-3xl">
+      <Window title={t_e("NoSuchSignup")} className="mx-auto my-7 max-w-3xl">
         <p className="font-pixel text-lg">
-          Try signing up again or check the link.
+          {t_general("errors.ilmomasiina-signup-not-found")}
         </p>
       </Window>
     );
@@ -237,7 +236,7 @@ const EditFormInternal = () => {
               </p>
             )}
             {generalError && (
-              <p className="font-pixel text-juvu-red text-lg">
+              <p className="font-pixel text-juvu-red-dark text-lg">
                 {generalError.code
                   ? t_e(generalError.code)
                   : generalError.message}
@@ -264,8 +263,4 @@ TODO
 - Better confirm dialog for Deletion
 - Show what info is public
 - Styling
-- Activate signup button when signup opens
-- Show when signup is open/closed
-- Localization
-- Refactor components
 */
