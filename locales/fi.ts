@@ -121,6 +121,8 @@ const fi = {
   "ilmomasiina.delete-confirm":
     "Oletko varma, että haluat poistaa ilmoittautumisesi?",
   "ilmomasiina.loading-signup": "Ladataan ilmoittautumista",
+  "ilmomasiina.delete-fail":
+    "Ilmoittautumisen poistaminen epäonnistui. Yritä myöhemmin uudelleen.",
   "ilmo.status.open": "Auki",
   "ilmo.status.closed": "Suljettu",
   "ilmo.status.opens-at": "Aukeaa",

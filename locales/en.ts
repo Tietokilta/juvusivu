@@ -118,6 +118,7 @@ const en = {
   "ilmomasiina.signup-for": "Sign up for",
   "ilmomasiina.delete-confirm": "Are you sure you want to delete your signup?",
   "ilmomasiina.loading-signup": "Loading signup",
+  "ilmomasiina.delete-fail": "Failed to delete signup. Please try again later.",
   "ilmo.status.open": "Open",
   "ilmo.status.closed": "Closed",
   "ilmo.status.opens-at": "Opens at",

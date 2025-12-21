@@ -130,10 +130,15 @@ const EditFormInternal = () => {
     });
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (confirm(t("delete-confirm"))) {
-      deleteSignup();
-      router.push(`/events/${localizedEvent?.slug}`);
+      try {
+        await deleteSignup();
+        router.push(`/events/${localizedEvent?.slug}`);
+      } catch (error) {
+        console.log("Error deleting signup:", error);
+        alert(t("delete-fail"));
+      }
     }
   };
 

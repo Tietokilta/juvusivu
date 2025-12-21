@@ -19,8 +19,13 @@ export const SignUp = ({
 
   const signUpAction = async () => {
     setLoading(true);
-    const result = await beginSignup(quota.id);
-    router.push(`/signups/${result.id}/${result.editToken}`);
+    try {
+      const result = await beginSignup(quota.id);
+      router.push(`/signups/${result.id}/${result.editToken}`);
+    } catch (error) {
+      console.log("Error signing up:", error);
+      setLoading(false);
+    }
   };
 
   return (
