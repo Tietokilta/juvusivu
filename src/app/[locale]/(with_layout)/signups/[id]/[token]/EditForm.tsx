@@ -55,8 +55,7 @@ type SignupState = {
 };
 
 const EditFormInternal = () => {
-  const { localizedEvent, localizedSignup, pending, isNew } =
-    useEditSignupContext();
+  const { localizedEvent, localizedSignup, pending } = useEditSignupContext();
   const router = useRouter();
   const saveSignup = useUpdateSignup();
   const deleteSignup = useDeleteSignup();

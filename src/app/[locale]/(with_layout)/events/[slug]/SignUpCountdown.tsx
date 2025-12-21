@@ -83,7 +83,7 @@ const SignupStatusText = ({
     }
   } else if (!isOpen && !isClosed && event.registrationStartDate) {
     // Upcoming
-    let counter =
+    const counter =
       total < 60 * 1000 ? (
         <span className="text-green-600">{` (${seconds} s)`}</span>
       ) : null;
