@@ -8,7 +8,6 @@ const MaximizeIcon = ({ size = 24 }: { size?: number }) => (
   >
     <path
       d="M23.8657 3.07565V24.018H2.92334V3.07565H23.8657Z"
-      fill="#C4CFE1"
       stroke="#091F43"
       strokeWidth="4.18855"
     />
