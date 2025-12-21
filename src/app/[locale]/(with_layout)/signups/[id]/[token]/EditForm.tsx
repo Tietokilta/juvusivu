@@ -1,5 +1,5 @@
 "use client";
-import { Checkbox, Input, Radio } from "@components/basic/input";
+import { Checkbox, Input } from "@components/basic/input";
 import {
   ApiError,
   EditSignupProvider,
@@ -10,16 +10,18 @@ import {
 import { Window } from "@components/Window";
 import {
   ErrorCode,
-  Question,
   QuestionType,
-  SignupFieldError,
   SignupUpdateBody,
   SignupValidationError,
 } from "@tietokilta/ilmomasiina-models";
 import { Button } from "@components/basic/Button";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
-import { useActionState } from "react";
+import { FormEvent, startTransition, useActionState, useState } from "react";
+import { useScopedI18n } from "@locales/client";
+import { FieldErrorText } from "@components/signup/FieldErrorText";
+import { QuestionInput } from "@components/signup/QuestionInput";
+import { QuotaPositionText } from "@components/signup/QuotaPositionText";
 
 export const EditForm = ({ id, token }: { id: string; token: string }) => {
   return (
@@ -40,85 +42,32 @@ const InputRow = ({
 }) => (
   <div className="mb-2">
     <p className="font-pixel text-lg">
-      {label} {mandatory && <span className="text-red-600">*</span>}
+      {label} {mandatory && <span className="text-juvu-red">*</span>}
     </p>
     {children}
   </div>
 );
 
-const QuestionInput = ({
-  question,
-  defaultValue,
-}: {
-  question: Question;
-  defaultValue?: string | string[];
-}) => {
-  if (question.type === QuestionType.TEXT) {
-    return (
-      <Input
-        type="text"
-        name={`question_${question.id}`}
-        placeholder="Text"
-        defaultValue={defaultValue}
-      />
-    );
-  } else if (question.type === QuestionType.TEXT_AREA) {
-    return (
-      <textarea
-        className="border-b-accent-dark bg-juvu-white flex w-full border-2"
-        defaultValue={defaultValue}
-      ></textarea>
-    );
-  } else if (question.type === QuestionType.CHECKBOX) {
-    return (
-      <>
-        {(question.options ?? []).map((option) => (
-          <div key={option}>
-            <label>
-              <Checkbox
-                name={`question_${question.id}`}
-                value={option}
-                defaultChecked={defaultValue?.includes(option)}
-              />
-              {option}
-            </label>
-          </div>
-        ))}
-      </>
-    );
-  } else if (question.type === QuestionType.SELECT) {
-    return (
-      <>
-        {(question.options ?? []).map((option) => (
-          <div key={option}>
-            <label>
-              <Radio
-                name={`question_${question.id}`}
-                value={option}
-                defaultChecked={defaultValue === option}
-              />
-              {option}
-            </label>
-          </div>
-        ))}
-      </>
-    );
-  } else if (question.type === QuestionType.NUMBER) {
-    return <Input type="number" name={`question_${question.id}`} />;
-  }
+type SignupState = {
+  fieldErrors?: SignupValidationError["errors"] | null;
+  generalError?: ApiError | null;
+  success?: boolean | null;
 };
 
 const EditFormInternal = () => {
-  const { localizedEvent, localizedSignup, pending } = useEditSignupContext();
+  const { localizedEvent, localizedSignup, pending, isNew } =
+    useEditSignupContext();
   const router = useRouter();
   const saveSignup = useUpdateSignup();
   const deleteSignup = useDeleteSignup();
-  const confirmed = localizedSignup?.confirmed ?? false;
+  const t = useScopedI18n("ilmomasiina");
+  const t_e = useScopedI18n("errors.ilmo.code");
+  console.log("isNew", isNew);
+  console.log("localizedSignup", localizedSignup);
+  const [saved, setSaved] = useState<boolean>(false);
+  const confirmed = localizedSignup?.confirmed || saved;
 
-  const handleSubmit = async (
-    prevState: SignupValidationError["errors"] | null,
-    formData: FormData,
-  ) => {
+  const SaveAction = async (prevState: SignupState, formData: FormData) => {
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
@@ -150,22 +99,38 @@ const EditFormInternal = () => {
 
     try {
       await saveSignup(updateBody);
-      return null; // Success - clear errors
+      setSaved(true);
+      return { errors: null, success: true }; // Success - clear errors
     } catch (error) {
-      const errors =
+      const fieldErrors =
         error instanceof ApiError &&
         error.code === ErrorCode.SIGNUP_VALIDATION_ERROR
           ? (error.response! as SignupValidationError).errors
           : null;
+      const generalError = error instanceof ApiError ? error : null;
 
-      return errors ?? null;
+      return { errors: fieldErrors, generalError, success: null };
     }
   };
 
-  const [errors, formAction] = useActionState<
-    SignupValidationError["errors"] | null,
-    FormData
-  >(handleSubmit, null);
+  const [state, formAction] = useActionState<SignupState, FormData>(
+    SaveAction,
+    { fieldErrors: null, generalError: null, success: null },
+  );
+  const errors = state?.fieldErrors;
+  const generalError = state?.generalError;
+
+  const handleSubmit = (event: FormEvent) => {
+    if (!(event.target instanceof HTMLFormElement))
+      throw new Error("Form submission event target is not a form element");
+
+    event.preventDefault();
+    const formData = new FormData(event.target);
+
+    startTransition(() => {
+      formAction(formData);
+    });
+  };
 
   const handleDelete = () => {
     if (confirm("Are you sure you want to delete your signup?")) {
@@ -175,54 +140,76 @@ const EditFormInternal = () => {
   };
 
   if (pending) {
-    return <div>Loading...</div>; //TODO: Better loading state
+    return (
+      <Window title="Loading signup" className="mx-auto my-7 max-w-3xl">
+        <p className="font-pixel text-lg">Loading...</p>
+      </Window>
+    );
+  }
+
+  if (!localizedSignup || !localizedEvent) {
+    return (
+      <Window title="Signup not found" className="mx-auto my-7 max-w-3xl">
+        <p className="font-pixel text-lg">
+          Try signing up again or check the link.
+        </p>
+      </Window>
+    );
   }
 
   return (
     <div>
       <Window
-        title={`Signup for ${localizedEvent?.title}`}
+        title={`${t("signup-for")} ${localizedEvent?.title}`}
         className="mx-auto my-7 max-w-3xl"
       >
-        <Form action={formAction}>
+        <Form onSubmit={handleSubmit} action={() => undefined}>
           <div className="flex flex-col gap-2">
+            <QuotaPositionText
+              signup={localizedSignup}
+              event={localizedEvent}
+            />
             {localizedEvent?.nameQuestion && (
               <>
-                <InputRow label="First name" mandatory={true}>
+                <InputRow label={t("form.First name")} mandatory={true}>
                   <Input
                     type="text"
                     name="firstName"
-                    placeholder="First name"
+                    placeholder={t("form.First name")}
                     defaultValue={localizedSignup?.firstName ?? ""}
                     disabled={confirmed}
                   />
+                  <FieldErrorText error={errors?.firstName} />
                 </InputRow>
-                <InputRow label="Last name" mandatory={true}>
+                <InputRow label={t("form.Last name")} mandatory={true}>
                   <Input
                     type="text"
                     name="lastName"
-                    placeholder="Last name"
+                    placeholder={t("form.Last name")}
                     defaultValue={localizedSignup?.lastName ?? ""}
                     disabled={confirmed}
                   />
+                  <FieldErrorText error={errors?.lastName} />
                 </InputRow>
-                <InputRow label="Display name publicly">
+                <label className="mb-2">
                   <Checkbox
                     name="namePublic"
                     defaultChecked={localizedSignup?.namePublic ?? false}
                   />
-                </InputRow>
+                  {t("form.Show name in the public list of sign ups")}
+                </label>
               </>
             )}
             {localizedEvent?.emailQuestion && (
-              <InputRow label="Email" mandatory={true}>
+              <InputRow label={t("form.Email")} mandatory={true}>
                 <Input
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder={t("form.Email")}
                   defaultValue={localizedSignup?.email ?? ""}
                   disabled={confirmed}
                 />
+                <FieldErrorText error={errors?.email} />
               </InputRow>
             )}
             {localizedEvent?.questions.map((q) => (
@@ -235,14 +222,35 @@ const EditFormInternal = () => {
                     )?.answer ?? undefined
                   }
                 />
-                {errors?.answers?.[q.id] && (
-                  <div className="text-red-600">{errors.answers[q.id]}</div>
-                )}
+                <FieldErrorText error={errors?.answers?.[q.id]} />
               </InputRow>
             ))}
+            <p className="font-pixel text-lg">
+              {t(
+                "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
+              )}
+            </p>
+
+            {state?.success && (
+              <p className="font-pixel text-lg text-green-700">
+                {t("form.Sign up saved")}
+              </p>
+            )}
+            {generalError && (
+              <p className="font-pixel text-juvu-red text-lg">
+                {generalError.code
+                  ? t_e(generalError.code)
+                  : generalError.message}
+              </p>
+            )}
+
             <div className="flex gap-2">
-              <Button type="submit" text="Save" />
-              <Button text="Delete" type="button" onClick={handleDelete} />
+              <Button type="submit" text={t("form.Submit")} />
+              <Button
+                type="button"
+                text={t("form.Delete")}
+                onClick={handleDelete}
+              />
             </div>
           </div>
         </Form>
@@ -253,11 +261,8 @@ const EditFormInternal = () => {
 
 /*
 TODO
-- Do not reset the form on error
 - Better confirm dialog for Deletion
-- Info about queue position
-- Better errors
-- Better loading state
+- Show what info is public
 - Styling
 - Activate signup button when signup opens
 - Show when signup is open/closed

@@ -41,14 +41,12 @@ const en = {
   "errors.ilmo.fieldError.invalidEmail": "Invalid email address.",
   "errors.ilmo.fieldError.notANumber": "Value must be a number.",
   "errors.ilmo.fieldError.notAnOption": "Invalid option.",
-  "ilmomasiina.form.You are in queue at position {position}":
-    "You are in queue at position {position}.",
-  "ilmomasiina.form.You are in the open quota at position {position}/{quotaSize}":
-    "You are in the open quota at position {position}/{quotaSize}.",
-  "ilmomasiina.form.You are in the quota {quotaName} at position {position}":
-    "You are in the quota {quotaName} at position {position}.",
-  "ilmomasiina.form.You are in the quota {quotaName} at position {position}/{quotaSize}":
-    "You are in the quota {quotaName} at position {position}/{quotaSize}.",
+  "ilmomasiina.form.You are in queue at position":
+    "You are in queue at position",
+  "ilmomasiina.form.You are in the open quota at position":
+    "You are in the open quota at position",
+  "ilmomasiina.form.You are in the quota": "You are in the quota",
+  "ilmomasiina.form.at position": "at position",
   "ilmomasiina.form.fieldError.missing": "This field is required.",
   "ilmomasiina.form.fieldError.wrongType":
     "The answer to this field is of the wrong type. Try refreshing the page.",
@@ -71,6 +69,7 @@ const en = {
     "Show name in the public list of sign ups",
   "ilmomasiina.form.Submit": "Submit",
   "ilmomasiina.form.Update": "Update",
+  "ilmomasiina.form.Delete": "Delete",
   "ilmomasiina.form.Edit sign up": "Edit sign up",
   "ilmomasiina.form.Delete sign up": "Delete sign up",
   "ilmomasiina.form.Sign up saved": "Sign up saved!",
@@ -116,6 +115,7 @@ const en = {
   "ilmomasiina.quotas": "Quotas",
   "ilmomasiina.description": "Event description",
   "ilmomasiina.signup": "Sign up",
+  "ilmomasiina.signup-for": "Sign up for",
   "page-not-found": "Page not found",
   "tried-to-access": "You tried to access:",
   "error": "Error",

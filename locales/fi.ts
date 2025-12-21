@@ -42,14 +42,11 @@ const fi = {
   "errors.ilmo.fieldError.invalidEmail": "Virheellinen sähköpostiosoite.",
   "errors.ilmo.fieldError.notANumber": "Arvon tulee olla numero.",
   "errors.ilmo.fieldError.notAnOption": "Virheellinen valinta.",
-  "ilmomasiina.form.You are in queue at position {position}":
-    "Olet jonossa sijalla {position}.",
-  "ilmomasiina.form.You are in the open quota at position {position}/{quotaSize}":
-    "Olet avoimessa kiintiössä sijalla {position}/{quotaSize}.",
-  "ilmomasiina.form.You are in the quota {quotaName} at position {position}":
-    "Olet kiintiössä {quotaName} sijalla {position}.",
-  "ilmomasiina.form.You are in the quota {quotaName} at position {position}/{quotaSize}":
-    "Olet kiintiössä {quotaName} sijalla {position}/{quotaSize}.",
+  "ilmomasiina.form.You are in queue at position": "Olet jonossa sijalla.",
+  "ilmomasiina.form.You are in the open quota at position":
+    "Olet avoimessa kiintiössä sijalla",
+  "ilmomasiina.form.You are in the quota": "Olet kiintiössä",
+  "ilmomasiina.form.at position": "sijalla",
   "ilmomasiina.form.fieldError.missing": "Tämä kenttä on pakollinen.",
   "ilmomasiina.form.fieldError.wrongType":
     "Kentän vastaus on väärää tyyppiä. Kokeile päivittää sivu.",
@@ -72,6 +69,7 @@ const fi = {
     "Näytä nimi julkisessa osallistujalistassa",
   "ilmomasiina.form.Submit": "Tallenna",
   "ilmomasiina.form.Update": "Päivitä",
+  "ilmomasiina.form.Delete": "Poista",
   "ilmomasiina.form.Edit sign up": "Muokkaa ilmoittautumista",
   "ilmomasiina.form.Delete sign up": "Poista ilmoittautuminen",
   "ilmomasiina.form.Sign up saved": "Ilmoittautuminen tallennettu!",
@@ -119,6 +117,7 @@ const fi = {
   "ilmomasiina.quotas": "Kiintiöt",
   "ilmomasiina.description": "Tapahtuman kuvaus",
   "ilmomasiina.signup": "Ilmoittaudu",
+  "ilmomasiina.signup-for": "Ilmoittautuminen tapahtumaan",
   "page-not-found": "Sivua ei löytynyt",
   "tried-to-access": "Yritit hakea sivua:",
   "error": "Virhe",
