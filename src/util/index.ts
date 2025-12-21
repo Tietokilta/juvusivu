@@ -5,3 +5,15 @@ export const isCloudStorageEnabled = (): boolean => {
     typeof process.env.AZURE_STORAGE_ACCOUNT_BASEURL === "string"
   );
 };
+
+export const dateFormatter = (date: string, locale: "en" | "fi"): string => {
+  const d = new Date(date);
+  return d.toLocaleString(`${locale}-FI`, {
+    timeZone: "Europe/Helsinki",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};

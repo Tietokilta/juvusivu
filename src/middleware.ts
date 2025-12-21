@@ -8,6 +8,15 @@ const I18nMiddleware = createI18nMiddleware({
   resolveLocaleFromRequest: () => "fi", // default to Finnish
 });
 export function middleware(req: NextRequest) {
+  // Redirect API calls for signups to ilmomasiina
+  if (req.nextUrl.pathname.startsWith("/api/signups")) {
+    const target = new URL(
+      `${req.nextUrl.pathname}${req.nextUrl.search}`,
+      "https://ilmo.tietokilta.fi",
+    );
+    return NextResponse.redirect(target);
+  }
+
   // When we have separate domain for anniversary year,
   // we want muistinnollaus.fi to redirect there
   const primaryDomain = process.env.PRIMARY_DOMAIN;
@@ -27,5 +36,8 @@ export function middleware(req: NextRequest) {
   return I18nMiddleware(req);
 }
 export const config = {
-  matcher: ["/((?!api|static|admin|.*\\..*|_next|favicon.ico|robots.txt).*)"],
+  matcher: [
+    "/api/signups/:path*",
+    "/((?!api|static|admin|.*\\..*|_next|favicon.ico|robots.txt).*)",
+  ],
 };

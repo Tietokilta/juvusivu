@@ -24,10 +24,10 @@ export const Window: React.FC<{
     <div
       className={`border-accent-dark ${className ?? ""} border-2 shadow-lg shadow-gray-500`}
     >
-      <div className={`border-juvu-blue-light bg-juvu-blue-light border-6`}>
+      <div className={`border-juvu-lightblue bg-juvu-lightblue border-6`}>
         <div className="flex justify-between">
           <span className="font-pixel line-clamp-1 pl-1 text-xl">{title}</span>
-          <div className="bg-juvu-blue-light flex items-center justify-end gap-1 pb-2">
+          <div className="bg-juvu-lightblue flex items-center justify-end gap-1 pb-2">
             <div
               className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
               onClick={() => {
@@ -62,7 +62,7 @@ export const Window: React.FC<{
           </div>
         )}
 
-        <div className={"bg-juvu-blue-light flex flex-col justify-between"}>
+        <div className={"bg-juvu-lightblue flex flex-col justify-between"}>
           {!minimised && (
             <div
               className={
@@ -73,8 +73,8 @@ export const Window: React.FC<{
             </div>
           )}
           {link && (
-            <div className="bg-juvu-blue-light flex justify-center p-2">
-              <Button text={t("read-more")} href={link} />
+            <div className="bg-juvu-lightblue flex justify-center p-2">
+              <Button type="link" text={t("read-more")} href={link} />
             </div>
           )}
         </div>
