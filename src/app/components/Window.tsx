@@ -29,7 +29,7 @@ export const Window: React.FC<{
           <span className="font-pixel line-clamp-1 pl-1 text-xl">{title}</span>
           <div className="bg-juvu-lightblue flex items-center justify-end gap-1 pb-2">
             <div
-              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
+              className="border-juvu-blue hover:bg-juvu-lightblue-dark flex h-5 w-5 items-center justify-center border-2"
               onClick={() => {
                 setMinimised(true);
               }}
@@ -37,7 +37,7 @@ export const Window: React.FC<{
               <MinimizeIcon size={12} />
             </div>
             <div
-              className="border-juvu-blue flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
+              className="border-juvu-blue hover:bg-juvu-lightblue-dark flex h-5 w-5 items-center justify-center border-2"
               onClick={() => {
                 setMinimised(false);
               }}
@@ -45,7 +45,7 @@ export const Window: React.FC<{
               <MaximizeIcon size={12} />
             </div>
             <div
-              className="border-juvu-blue bg-juvu-red select-pointer flex h-5 w-5 items-center justify-center border-2 hover:cursor-pointer"
+              className="border-juvu-blue bg-juvu-red hover:bg-juvu-red-dark select-pointer flex h-5 w-5 items-center justify-center border-2"
               onClick={() => {
                 setShowWindow(false);
               }}
