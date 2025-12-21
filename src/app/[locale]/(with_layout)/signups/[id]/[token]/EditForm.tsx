@@ -98,7 +98,7 @@ const EditFormInternal = () => {
     try {
       await saveSignup(updateBody);
       setSaved(true);
-      return { errors: null, success: true }; // Success - clear errors
+      return { success: true }; // Success - clear errors
     } catch (error) {
       const fieldErrors =
         error instanceof ApiError &&

@@ -46,4 +46,5 @@ export const Button = ({
       </Link>
     );
   }
+  return null;
 };

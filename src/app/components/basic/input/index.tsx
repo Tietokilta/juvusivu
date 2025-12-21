@@ -33,7 +33,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     <input
       ref={ref}
       type="checkbox"
-      className={`peer border-accent-dark data-[state=checked]:bg-accent-dark accent-accent-dark mr-2 size-4 shrink-0 cursor-pointer border-2 ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-gray-100 ${className}}`}
+      className={`peer border-accent-dark data-[state=checked]:bg-accent-dark accent-accent-dark mr-2 size-4 shrink-0 cursor-pointer border-2 ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-gray-100 ${className}`}
       {...props}
     />
   ),

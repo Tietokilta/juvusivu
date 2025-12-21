@@ -4,7 +4,7 @@ import { ApiResponse, err, ok } from "../helpers";
 
 export const OPEN_QUOTA_ID = "open";
 export const QUEUE_QUOTA_ID = "queue";
-export const baseUrl = "https://ilmo.tietokilta.fi/";
+export const baseUrl = "https://ilmo.tietokilta.fi";
 
 export const fetchEvent = async (
   slug: string,
