@@ -125,11 +125,11 @@ input[type="radio"] {
 }
 input[type="radio"]::before {
   content: "";
-  inline-size: 0.7rem;
-  block-size: 0.7rem;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
   transform: scale(0);
   transition: transform 0.12s ease-in-out;
-  background: var(--color-juvu-blue);
+  background: var(--color-juvu-white);
   border-radius: 50%;
 }
 
