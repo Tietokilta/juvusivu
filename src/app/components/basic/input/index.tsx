@@ -33,7 +33,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     <input
       ref={ref}
       type="checkbox"
-      className={`peer border-accent-dark data-[state=checked]:bg-accent-dark accent-accent-dark mr-2 size-4 shrink-0 cursor-pointer border-2 ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-gray-100 ${className}`}
+      className={cn(
+        className,
+      )}
       {...props}
     />
   ),
@@ -48,7 +50,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       ref={ref}
       type="radio"
       className={cn(
-        "peer border-accent-dark accent-accent-dark data-[state=checked]:bg-accent-dark mr-2 size-4 shrink-0 cursor-pointer rounded border ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-gray-100",
         className,
       )}
       {...props}
