@@ -30,12 +30,7 @@ export type CheckboxProps = Omit<
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ({ className, ...props }, ref) => (
-    <input
-      ref={ref}
-      type="checkbox"
-      className={`peer border-accent-dark data-[state=checked]:bg-accent-dark accent-accent-dark mr-2 size-4 shrink-0 cursor-pointer border-2 ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-gray-100 ${className}`}
-      {...props}
-    />
+    <input ref={ref} type="checkbox" className={cn(className)} {...props} />
   ),
 );
 Checkbox.displayName = "Checkbox";
@@ -44,15 +39,7 @@ type RadioProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">;
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   ({ className, ...props }, ref) => (
-    <input
-      ref={ref}
-      type="radio"
-      className={cn(
-        "peer border-accent-dark accent-accent-dark data-[state=checked]:bg-accent-dark mr-2 size-4 shrink-0 cursor-pointer rounded border ring-offset-gray-800 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-gray-100",
-        className,
-      )}
-      {...props}
-    />
+    <input ref={ref} type="radio" className={cn(className)} {...props} />
   ),
 );
 Radio.displayName = "Radio";
