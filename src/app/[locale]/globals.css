@@ -59,9 +59,9 @@ input[type="checkbox"] {
   cursor: pointer;
 
   transition:
-          background-color 0.15s ease,
-          border-color 0.15s ease,
-          box-shadow 0.15s ease;
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 input[type="checkbox"]::before {
   content: "";
@@ -119,9 +119,9 @@ input[type="radio"] {
   cursor: pointer;
 
   transition:
-          background-color 0.15s ease,
-          border-color 0.15s ease,
-          box-shadow 0.15s ease;
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 input[type="radio"]::before {
   content: "";

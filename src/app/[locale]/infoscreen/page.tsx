@@ -1,5 +1,5 @@
 import Events from "@components/events/Events";
-import { getCurrentLocale, getI18n, getScopedI18n } from "@locales/server";
+import { getCurrentLocale, getI18n } from "@locales/server";
 
 export default async function InfoscreenPage() {
   const locale = await getCurrentLocale();
