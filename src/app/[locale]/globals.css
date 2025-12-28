@@ -74,7 +74,7 @@ input[type="checkbox"]::before {
 }
 
 input[type="checkbox"]:checked {
-  background-color: var(--color-juvu-gold);
+  background-color: var(--color-juvu-blue-light);
   border-color: var(--color-juvu-blue);
 }
 input[type="checkbox"]:checked::before {
@@ -125,16 +125,16 @@ input[type="radio"] {
 }
 input[type="radio"]::before {
   content: "";
-  inline-size: 0.5rem;
-  block-size: 0.5rem;
+  inline-size: 0.7rem;
+  block-size: 0.7rem;
   transform: scale(0);
   transition: transform 0.12s ease-in-out;
-  background: var(--color-juvu-white);
+  background: var(--color-juvu-blue-light);
   border-radius: 50%;
 }
 
 input[type="radio"]:checked {
-  background-color: var(--color-juvu-gold);
+  background-color: var(--color-juvu-white);
   border-color: var(--color-juvu-blue);
 }
 input[type="radio"]:checked::before {
