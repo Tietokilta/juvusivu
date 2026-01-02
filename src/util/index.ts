@@ -1,3 +1,6 @@
+import { useScopedI18n } from "@locales/client";
+import { useCallback } from "react";
+
 export const isCloudStorageEnabled = (): boolean => {
   return (
     typeof process.env.AZURE_STORAGE_CONNECTION_STRING === "string" &&
@@ -17,3 +20,19 @@ export const dateFormatter = (date: string, locale: "en" | "fi"): string => {
     minute: "2-digit",
   });
 };
+
+// From ilmomasiina duration formatting
+export function useDurationFormatter() {
+  const t = useScopedI18n("duration");
+  return useCallback(
+    (ms: number) => {
+      const sec = ms / 1000;
+      if (sec < 120) return `${Math.floor(sec)} ${t("secs")}`;
+      if (sec < 3600 + 60 - 1) return `${Math.floor(sec / 60)} ${t("mins")}`;
+      if (sec < 86400 + 3600 - 1)
+        return `${Math.floor(sec / 3600)} ${t("hours")}`;
+      return `${Math.floor(sec / 86400)} ${t("days")}`;
+    },
+    [t],
+  );
+}

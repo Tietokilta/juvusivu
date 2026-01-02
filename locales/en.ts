@@ -119,6 +119,9 @@ const en = {
   "ilmomasiina.delete-confirm": "Are you sure you want to delete your signup?",
   "ilmomasiina.loading-signup": "Loading signup",
   "ilmomasiina.delete-fail": "Failed to delete signup. Please try again later.",
+  "ilmomasiina.confirm-time-left": "Your signup is still valid for",
+  "ilmomasiina.confirm-save-or-lose":
+    "Save the form to make sure it doesn't expire.",
   "ilmo.status.open": "Open",
   "ilmo.status.closed": "Closed",
   "ilmo.status.opens-at": "Opens at",
@@ -129,6 +132,10 @@ const en = {
   "error": "Error",
   "jubilee": "Jubilee",
   "jubilee-events-title": "Jubilee events",
+  "duration.secs": "seconds",
+  "duration.mins": "minutes",
+  "duration.hours": "hours",
+  "duration.days": "days",
 };
 
 type FiKey = keyof typeof fi;

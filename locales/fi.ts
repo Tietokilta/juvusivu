@@ -123,6 +123,8 @@ const fi = {
   "ilmomasiina.loading-signup": "Ladataan ilmoittautumista",
   "ilmomasiina.delete-fail":
     "Ilmoittautumisen poistaminen epäonnistui. Yritä myöhemmin uudelleen.",
+  "ilmomasiina.confirm-time-left": "Ilmoittautumisesi on voimassa vielä",
+  "ilmomasiina.confirm-save-or-lose": "Tallenna lomake, jotta se ei vanhene.",
   "ilmo.status.open": "Auki",
   "ilmo.status.closed": "Suljettu",
   "ilmo.status.opens-at": "Aukeaa",
@@ -133,6 +135,10 @@ const fi = {
   "error": "Virhe",
   "jubilee": "Juhlavuosi",
   "jubilee-events-title": "Juhlavuoden tapahtumia",
+  "duration.secs": "sekuntia",
+  "duration.mins": "minuuttia",
+  "duration.hours": "tuntia",
+  "duration.days": "päivää",
 };
 
 type EnKey = keyof typeof en;

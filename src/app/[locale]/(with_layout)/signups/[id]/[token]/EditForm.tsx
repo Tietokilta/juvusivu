@@ -22,6 +22,7 @@ import { useI18n, useScopedI18n } from "@locales/client";
 import { FieldErrorText } from "@components/signup/FieldErrorText";
 import { QuestionInput } from "@components/signup/QuestionInput";
 import { QuotaPositionText } from "@components/signup/QuotaPositionText";
+import { SignupConfirmTime } from "@components/signup/SignupConfirmTime";
 
 export const EditForm = ({ id, token }: { id: string; token: string }) => {
   return (
@@ -55,7 +56,8 @@ type SignupState = {
 };
 
 const EditFormInternal = () => {
-  const { localizedEvent, localizedSignup, pending } = useEditSignupContext();
+  const { localizedEvent, localizedSignup, pending, confirmableUntil } =
+    useEditSignupContext();
   const router = useRouter();
   const saveSignup = useUpdateSignup();
   const deleteSignup = useDeleteSignup();
@@ -161,9 +163,9 @@ const EditFormInternal = () => {
   }
 
   return (
-    <div>
+    <div className="mx-0.5">
       <Window
-        title={`${t("signup-for")} ${localizedEvent?.title}`}
+        title={`${localizedEvent?.title}: ${t("Ilmoittautuminen")} `}
         className="mx-auto my-7 max-w-3xl"
       >
         <Form onSubmit={handleSubmit} action={() => undefined}>
@@ -172,6 +174,7 @@ const EditFormInternal = () => {
               signup={localizedSignup}
               event={localizedEvent}
             />
+            <SignupConfirmTime confirmableUntil={confirmableUntil} />
             {localizedEvent?.nameQuestion && (
               <>
                 <InputRow label={t("form.First name")} mandatory={true}>
