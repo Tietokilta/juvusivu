@@ -1,6 +1,7 @@
 import { Window } from "@components/Window";
-import { getScopedI18n } from "@locales/server";
+import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import { UserEventResponse } from "@tietokilta/ilmomasiina-models";
+import { dateFormatter } from "@util/index";
 
 export default async function EventSummary({
   event,
@@ -8,6 +9,7 @@ export default async function EventSummary({
   event: UserEventResponse;
 }) {
   const t = await getScopedI18n("ilmomasiina");
+  const locale = await getCurrentLocale();
 
   return (
     <Window title={event.title}>
@@ -20,17 +22,13 @@ export default async function EventSummary({
       {event.date && (
         <p>
           <span className="font-bold">{t("headers.Alkaa")}:</span>{" "}
-          {new Date(event.date).toLocaleString("fi-FI", {
-            timeZone: "Europe/Helsinki",
-          })}
+          {dateFormatter(event.date, locale)}
         </p>
       )}
       {event.endDate && (
         <p>
           <span className="font-bold">{t("headers.Loppuu")}:</span>{" "}
-          {new Date(event.endDate).toLocaleString("fi-FI", {
-            timeZone: "Europe/Helsinki",
-          })}
+          {dateFormatter(event.endDate, locale)}
         </p>
       )}
       {event.price && (
