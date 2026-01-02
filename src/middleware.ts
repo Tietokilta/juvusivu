@@ -28,11 +28,17 @@ export function middleware(req: NextRequest) {
       hostname === "www.muistinnollaus.fi" ||
       hostname === "localhost:3000")
   ) {
-    return NextResponse.redirect(
-      new URL(`https://${primaryDomain}/m0`, req.url),
-    );
+    // Only trigger for frontpage requests (this allows easier redirect urls)
+    if (
+      req.nextUrl.pathname == "/" ||
+      req.nextUrl.pathname === "/fi" ||
+      req.nextUrl.pathname === "/en"
+    ) {
+      return NextResponse.redirect(
+        new URL(`https://${primaryDomain}/m0`, req.url),
+      );
+    }
   }
-
   return I18nMiddleware(req);
 }
 export const config = {
