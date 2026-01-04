@@ -1,6 +1,19 @@
 import { Block } from "payload";
+import { EVENT_CATEGORY_OPTIONS, EventCategory } from "@util/constants";
+
+export interface EventGridBlockType {
+  category?: EventCategory;
+  blockType: "eventGrid";
+}
 
 export const EventGridBlock: Block = {
   slug: "eventGrid",
-  fields: [],
+  fields: [
+    {
+      name: "category",
+      type: "select",
+      localized: false,
+      options: EVENT_CATEGORY_OPTIONS,
+    },
+  ],
 };

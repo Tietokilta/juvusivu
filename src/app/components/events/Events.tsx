@@ -3,10 +3,17 @@ import configPromise from "@payload-config";
 import { EventBox } from "./EventBox";
 import { Locale } from "@locales/server";
 
-export default async function Events({ locale }: { locale: Locale }) {
+export default async function Events({
+  locale,
+  category,
+}: {
+  locale: Locale;
+  category?: string;
+}) {
   const payload = await getPayload({ config: configPromise });
   const events = await payload.find({
     collection: "events",
+    ...(category && { where: { category: { equals: category } } }),
     locale,
     sort: "date", // Orders by date descending (newest first)
   });
