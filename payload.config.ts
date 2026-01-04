@@ -7,6 +7,7 @@ import { Media } from "@lib/api/Media";
 import { azureStorage } from "@payloadcms/storage-azure";
 import { isCloudStorageEnabled } from "@util/index";
 import { migrations } from "./src/migrations";
+import { EVENT_CATEGORY_OPTIONS } from "@util/constants";
 
 const {
   DB_USER,
@@ -99,6 +100,12 @@ export default buildConfig({
           type: "relationship",
           relationTo: "media",
           localized: false,
+        },
+        {
+          name: "category",
+          type: "select",
+          localized: false,
+          options: EVENT_CATEGORY_OPTIONS,
         },
       ],
     },

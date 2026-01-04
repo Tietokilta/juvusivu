@@ -10,9 +10,9 @@ import Events from "../events/Events";
 import React, { JSX } from "react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { getCurrentLocale } from "@locales/server";
-import { EventGridBlock } from "./Blocks";
+import { EventGridBlock, EventGridBlockType } from "./Blocks";
 
-type NodeTypes = DefaultNodeTypes | SerializedBlockNode<typeof EventGridBlock>;
+type NodeTypes = DefaultNodeTypes | SerializedBlockNode<EventGridBlockType>;
 
 const headingClasses: Record<string, string> = {
   h1: "text-4xl font-bold mt-6 font-mono",
@@ -41,7 +41,11 @@ export const LexicalSerializer: React.FC<{
     },
 
     blocks: {
-      eventGrid: () => <Events locale={locale} />,
+      eventGrid: ({
+        node,
+      }: {
+        node: SerializedBlockNode<EventGridBlockType>;
+      }) => <Events locale={locale} category={node.fields.category} />,
     },
   });
 

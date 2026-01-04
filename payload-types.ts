@@ -151,6 +151,7 @@ export interface Event {
   loading?: boolean | null;
   date?: string | null;
   photo?: (number | null) | Media;
+  category?: ('juhlavuosi' | 'vujuviikko' | 'muu') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -383,6 +384,7 @@ export interface EventsSelect<T extends boolean = true> {
   loading?: T;
   date?: T;
   photo?: T;
+  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
