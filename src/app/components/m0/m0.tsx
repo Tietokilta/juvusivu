@@ -47,6 +47,7 @@ export default async function M0content({ slug }: { slug?: string }) {
     locale,
   );
   const event = eventResponse?.data;
+  const hasSignup = event && event.quotas.length > 0;
 
   const text =
     "Tietokilta (TiK) system \n\
@@ -74,7 +75,7 @@ Proceed with Format (Y/N)? y";
           <CountDown date={config.eventDate ?? defaultDate} locale={locale} />
         </div>
       </div>
-      <main className="container mx-auto grid max-w-5xl gap-5 px-4 py-8 md:grid-cols-2">
+      <main className="container mx-auto grid max-w-5xl gap-5 px-4 py-8">
         {config.description && hasText(config.description) && (
           <div className="md:col-span-2 md:row-start-1 md:px-10">
             <Window title="Muistinnollaus">
@@ -83,11 +84,11 @@ Proceed with Format (Y/N)? y";
           </div>
         )}
         <div className="md:row-start-2">
-          <Window title="Muistinnollaus.gif">
+          <Window title="Muistinnollaus.gif" className="mx-auto max-w-xl">
             <BouncyLogo />
           </Window>
         </div>
-        {event && (
+        {hasSignup && (
           <>
             <div className="md:col-start-2 md:row-start-2">
               <Window title={t("ilmomasiina.Ilmoittautuminen")}>
