@@ -1,5 +1,6 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
+import { hasText } from "@payloadcms/richtext-lexical/shared";
 import { BouncyLogo } from "@components/BouncyLogo";
 import CountDown from "@components/CountDown";
 import { Window } from "@components/Window";
@@ -75,33 +76,32 @@ Proceed with Format (Y/N)? y";
         </div>
       </div>
       <main className="container mx-auto grid max-w-5xl gap-5 px-4 py-8 md:grid-cols-2">
-        <div className="md:col-span-2 md:row-start-1 md:px-10">
-          {config.description && (
+        {config.description && hasText(config.description) && (
+          <div className="md:col-span-2 md:row-start-1 md:px-10">
             <Window title="Muistinnollaus">
               <LexicalSerializer data={config.description} />
             </Window>
-          )}
-        </div>
+          </div>
+        )}
         <div className="md:row-start-2">
           <Window title="Muistinnollaus.gif">
             <BouncyLogo />
           </Window>
         </div>
-        <div className="md:col-start-2 md:row-start-2">
-          {event && (
-            <Window title={t("ilmomasiina.Ilmoittautuminen")}>
-              <SignUpCountdown event={event} />
-            </Window>
-          )}
-        </div>
-
-        <div className="md:col-span-2 md:row-start-4 md:px-10">
-          {event && (
-            <Window title={t("ilmomasiina.Ilmoittautuneet")}>
-              <SignUpList event={event} />
-            </Window>
-          )}
-        </div>
+        {event && (
+          <>
+            <div className="md:col-start-2 md:row-start-2">
+              <Window title={t("ilmomasiina.Ilmoittautuminen")}>
+                <SignUpCountdown event={event} />
+              </Window>
+            </div>
+            <div className="md:col-span-2 md:row-start-4 md:px-10">
+              <Window title={t("ilmomasiina.Ilmoittautuneet")}>
+                <SignUpList event={event} />
+              </Window>
+            </div>
+          </>
+        )}
       </main>
     </>
   );
