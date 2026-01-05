@@ -9,7 +9,7 @@ export const LanguageButton = () => {
     <button
       onClick={() => changeLocale(locale === "fi" ? "en" : "fi")}
       key="locale-toggle"
-      className="text-header flex-1 text-center font-bold hover:cursor-pointer hover:underline"
+      className="flex-1 text-center font-bold hover:cursor-pointer hover:underline"
     >
       {locale === "fi" ? "In English" : "Suomeksi"}
     </button>

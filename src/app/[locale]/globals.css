@@ -28,6 +28,7 @@
   --color-row-even: #f3f6fa;
   --color-header: var(--color-juvu-blue);
   --font-pixel: var(--font-pixel);
+  --font-redaction: var(--font-redaction);
 }
 
 @theme inline {

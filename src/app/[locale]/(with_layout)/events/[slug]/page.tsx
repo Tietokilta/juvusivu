@@ -9,7 +9,7 @@ import { Metadata } from "next";
 import SignUpList from "@components/events/SignUpList";
 import QuotaWindow from "@components/events/QuotaWindow";
 import EventSummary from "@components/events/EventSummary";
-import { SignUpCountdown } from "./SignUpCountdown";
+import { SignUpCountdown } from "@components/signup/SignUpCountdown";
 
 export const metadata: Metadata = {
   robots: {

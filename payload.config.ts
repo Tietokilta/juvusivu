@@ -8,6 +8,7 @@ import { azureStorage } from "@payloadcms/storage-azure";
 import { isCloudStorageEnabled } from "@util/index";
 import { migrations } from "./src/migrations";
 import { EVENT_CATEGORY_OPTIONS } from "@util/constants";
+import { m0config } from "@lib/api/m0";
 
 const {
   DB_USER,
@@ -107,6 +108,14 @@ export default buildConfig({
           localized: false,
           options: EVENT_CATEGORY_OPTIONS,
         },
+        {
+          name: "removePadding",
+          type: "checkbox",
+          localized: false,
+          admin: {
+            description: "Remove padding around image on the EventBox",
+          },
+        },
       ],
     },
     {
@@ -192,7 +201,7 @@ export default buildConfig({
     Media,
   ],
 
-  globals: [MainPage],
+  globals: [MainPage, m0config],
 
   admin: {
     autoLogin:
