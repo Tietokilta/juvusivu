@@ -12,7 +12,8 @@ export const Window: React.FC<{
   title?: string;
   windowPath?: string;
   className?: string;
-}> = ({ children, link, title, windowPath, className }) => {
+  hidePadding?: boolean;
+}> = ({ children, link, title, windowPath, className, hidePadding }) => {
   const t = useI18n();
   const [minimised, setMinimised] = useState(false);
   const [showWindow, setShowWindow] = useState(true);
@@ -65,9 +66,7 @@ export const Window: React.FC<{
         <div className={"bg-juvu-lightblue flex flex-col justify-between"}>
           {!minimised && (
             <div
-              className={
-                "border-accent-dark bg-juvu-white border-2 p-4 break-words hyphens-auto"
-              }
+              className={`border-accent-dark bg-juvu-white border-2 ${hidePadding ? "" : "p-4"} break-words hyphens-auto`}
             >
               {children}
             </div>
