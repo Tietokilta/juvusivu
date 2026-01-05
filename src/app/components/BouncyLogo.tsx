@@ -1,6 +1,13 @@
 "use client";
 import Image from "next/image";
-import { DvdScreensaver } from "react-dvd-screensaver";
+import dynamic from "next/dynamic";
+
+const DvdScreensaver = dynamic(
+  () => import("react-dvd-screensaver").then((mod) => mod.DvdScreensaver),
+  {
+    ssr: false,
+  },
+);
 
 export const BouncyLogo = () => {
   return (

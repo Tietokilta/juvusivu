@@ -4,7 +4,7 @@ import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import { getCurrentLocale } from "@locales/server";
 import Header from "@components/Header";
 import { Window } from "@components/Window";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 interface NextPage<Params extends Record<string, unknown>> {
   params: Promise<Params>;
@@ -27,6 +27,15 @@ export default async function Page(props: Props) {
   });
   const page = docs[0];
   if (!page) {
+    // Check if there is a redirect for this url
+    const m0config = await payload.findGlobal({
+      slug: "m0config",
+      locale,
+    });
+    const redirectPath = m0config.variants?.find((v) => v.label === slug);
+    if (redirectPath) {
+      return redirect(`/m0/${redirectPath.label}`);
+    }
     notFound();
   }
   return (
@@ -41,7 +50,8 @@ export default async function Page(props: Props) {
         {page.body &&
           page.body.map(
             (block, idx) =>
-              block && (
+              block &&
+              block.content && (
                 <Window
                   title={block.title ?? ""}
                   windowPath={block.path ?? undefined}

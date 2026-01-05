@@ -97,9 +97,11 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'fi') | ('en' | 'fi')[];
   globals: {
     mainPage: MainPage;
+    m0config: M0Config;
   };
   globalsSelect: {
     mainPage: MainPageSelect<false> | MainPageSelect<true>;
+    m0config: M0ConfigSelect<false> | M0ConfigSelect<true>;
   };
   locale: 'en' | 'fi';
   user: User & {
@@ -569,11 +571,77 @@ export interface MainPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "m0config".
+ */
+export interface M0Config {
+  id: number;
+  eventDate?: string | null;
+  /**
+   * When true, only shows countdown on the M0 page
+   */
+  hideContents?: boolean | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Default ilmomasiina slug to use for /m0 page
+   */
+  defaultVariant?: string | null;
+  variants?:
+    | {
+        /**
+         * Ilmomasiina slug for this variant
+         */
+        ilmo?: string | null;
+        /**
+         * Slug for this variant in this site (/m0/[label])
+         */
+        label?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mainPage_select".
  */
 export interface MainPageSelect<T extends boolean = true> {
   title?: T;
   body?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "m0config_select".
+ */
+export interface M0ConfigSelect<T extends boolean = true> {
+  eventDate?: T;
+  hideContents?: T;
+  description?: T;
+  defaultVariant?: T;
+  variants?:
+    | T
+    | {
+        ilmo?: T;
+        label?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
