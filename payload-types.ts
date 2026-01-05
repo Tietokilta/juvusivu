@@ -154,6 +154,10 @@ export interface Event {
   date?: string | null;
   photo?: (number | null) | Media;
   category?: ('juhlavuosi' | 'vujuviikko' | 'muu') | null;
+  /**
+   * Remove padding around image on the EventBox
+   */
+  removePadding?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -387,6 +391,7 @@ export interface EventsSelect<T extends boolean = true> {
   date?: T;
   photo?: T;
   category?: T;
+  removePadding?: T;
   updatedAt?: T;
   createdAt?: T;
 }

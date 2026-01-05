@@ -108,6 +108,14 @@ export default buildConfig({
           localized: false,
           options: EVENT_CATEGORY_OPTIONS,
         },
+        {
+          name: "removePadding",
+          type: "checkbox",
+          localized: false,
+          admin: {
+            description: "Remove padding around image on the EventBox",
+          },
+        },
       ],
     },
     {

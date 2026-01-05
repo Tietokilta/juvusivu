@@ -41,8 +41,11 @@ export const EventBox = async ({
         link={url}
         title={date ? `${date.getDate()}.${date.getMonth() + 1}.` : undefined}
         windowPath={`C:\\..\\${t("jubilee")}\\${event.title}`}
+        hidePadding={event.removePadding ?? undefined}
       >
-        <div className="font-pixel p-4 text-lg">
+        <div
+          className={`font-pixel ${event.removePadding ? "" : "p-4"} text-lg`}
+        >
           {event.released && !event.loading ? (
             photo?.url ? (
               <>
