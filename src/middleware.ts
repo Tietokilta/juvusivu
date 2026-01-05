@@ -30,7 +30,7 @@ export function middleware(req: NextRequest) {
   ) {
     // Only trigger for frontpage requests (this allows easier redirect urls)
     if (
-      req.nextUrl.pathname == "/" ||
+      req.nextUrl.pathname === "/" ||
       req.nextUrl.pathname === "/fi" ||
       req.nextUrl.pathname === "/en"
     ) {

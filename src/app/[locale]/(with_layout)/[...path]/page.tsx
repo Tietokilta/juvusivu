@@ -33,7 +33,7 @@ export default async function Page(props: Props) {
       locale,
     });
     const redirectPath = m0config.variants?.find((v) => v.label === slug);
-    if (redirectPath) {
+    if (redirectPath && redirectPath.ilmo) {
       return redirect(`/m0/${redirectPath.label}`);
     }
     notFound();

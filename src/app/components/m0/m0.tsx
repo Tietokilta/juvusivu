@@ -22,6 +22,8 @@ export default async function M0content({ slug }: { slug?: string }) {
     locale,
   });
 
+  const defaultDate = "2026-02-13T14:00:00";
+
   if (config.hideContents) {
     return (
       <>
@@ -30,7 +32,7 @@ export default async function M0content({ slug }: { slug?: string }) {
           <Window className="mx-auto max-w-[500px]">
             <div className="bg-juvu-white font-pixel">
               <CountDown
-                date={config.eventDate ?? "2026-02-13T14:00:00"}
+                date={config.eventDate ?? defaultDate}
                 locale={locale}
               />
             </div>
@@ -69,10 +71,7 @@ Proceed with Format (Y/N)? y";
           className="md:px-4"
         />
         <div className="font-pixel text-juvu-lightblue border-juvu-lightblue mx-auto max-w-125 border-2 border-dashed">
-          <CountDown
-            date={config.eventDate ?? "2026-02-13T14:00:00"}
-            locale={locale}
-          />
+          <CountDown date={config.eventDate ?? defaultDate} locale={locale} />
         </div>
       </div>
       <main className="container mx-auto grid max-w-5xl gap-5 px-4 py-8 md:grid-cols-2">

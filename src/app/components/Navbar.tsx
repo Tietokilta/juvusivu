@@ -18,16 +18,16 @@ export default async function Navbar({
   });
   return (
     <nav
-      className={`${variant == "m0" ? "bg-juvu-blue-dark" : "bg-accent-light border-accent-dark border-b-2"} z-10 flex w-full flex-wrap items-center justify-between font-mono`}
+      className={`${variant === "m0" ? "bg-juvu-blue-dark" : "bg-accent-light border-accent-dark border-b-2"} z-10 flex w-full flex-wrap items-center justify-between font-mono`}
     >
       <Link
         href="/"
-        className={`${variant == "m0" ? "font-redaction text-2xl md:pl-8" : "bg-accent-dark text-lg"} text-juvu-white min-w-[300px] flex-1 p-4 text-center font-bold sm:text-left`}
+        className={`${variant === "m0" ? "font-redaction text-2xl md:pl-8" : "bg-accent-dark text-lg"} text-juvu-white min-w-[300px] flex-1 p-4 text-center font-bold sm:text-left`}
       >
         {t("navbar-title")}
       </Link>
       <ul
-        className={`${variant == "m0" ? "text-juvu-white" : "text-header"} flex flex-1 content-between space-x-4 p-4`}
+        className={`${variant === "m0" ? "text-juvu-white" : "text-header"} flex flex-1 content-between space-x-4 p-4`}
       >
         {links.docs.map((link) => (
           <Link
