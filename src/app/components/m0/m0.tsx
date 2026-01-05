@@ -46,7 +46,7 @@ export default async function M0content({ slug }: { slug?: string }) {
   );
   const event = eventResponse?.data;
 
-  let text =
+  const text =
     "Tietokilta (TiK) system \n\
 (C)Copyright Tietokilta ry 1986-2026 \n\
 \n\
