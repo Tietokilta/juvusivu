@@ -47,21 +47,25 @@ export default async function M0content({ slug }: { slug?: string }) {
 
   let text =
     "Tietokilta (TiK) system \n\
-	(C)Copyright Tietokilta ry 1986-2026 \n\
+(C)Copyright Tietokilta ry 1986-2026 \n\
 \n\
-T:\TIETOKILTA>format T: /s \n\
+T:\TIETOKILTA>format MUISTI: /s \n\
 \n\
 WARNING, ALL DATA ON NON-REMOVABLE DISK \n\
-DRIVE T: WILL BE LOST! \n\
-Proceed with Format (Y/N)? ";
+DRIVE MUISTI: WILL BE LOST! \n\
+Proceed with Format (Y/N)? y";
   return (
     <>
-      <div className="bg-juvu-blue-dark relative flex flex-col items-center justify-center gap-20 px-4 py-20">
+      <div className="bg-juvu-blue-dark relative flex flex-col items-center justify-center gap-20 px-4 pt-2 pb-20">
+        <p className="text-juvu-lightblue-dark self-start pl-2 font-mono text-sm whitespace-pre-line">
+          {text}
+        </p>
         <Image
           src="/m0_logo.svg"
           alt="Muistinnollaus 101000"
           width={1303}
           height={330}
+          className="md:px-4"
         />
         <div className="font-pixel text-juvu-lightblue border-juvu-lightblue mx-auto max-w-125 border-2 border-dashed">
           <CountDown
@@ -78,7 +82,7 @@ Proceed with Format (Y/N)? ";
             </Window>
           )}
         </div>
-        <div className="md:col-start-2 md:row-start-3">
+        <div className="md:row-start-2">
           <Window title="Muistinnollaus.gif">
             <BouncyLogo />
           </Window>
@@ -90,15 +94,7 @@ Proceed with Format (Y/N)? ";
             </Window>
           )}
         </div>
-        <div className="md:row-span-2 md:row-start-2">
-          <Window hidePadding={true}>
-            <div className="bg-accent-dark p-2">
-              <p className="font-pixel text-juvu-white text-lg whitespace-pre-line">
-                {text}
-              </p>
-            </div>
-          </Window>
-        </div>
+
         <div className="md:col-span-2 md:row-start-4 md:px-10">
           {event && (
             <Window title={t("ilmomasiina.Ilmoittautuneet")}>

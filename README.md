@@ -42,6 +42,14 @@ General idea: Events can be added to Payload as "placeholders", with close to no
   - Date: Shown in the card title (if event is released)
   - Image: If image is defined, it is shown in the card instead of description
 
+### Muistinnollaus
+
+General Muistinnollaus page is `/m0`. It contains signup button, list of signups, text that can be customized in Payload and fancy DVD animation for logo.
+
+From Payload you can toggle if the actual M0 page is shown, or only countdown to date set in Payload.
+
+To handle different slots of signups (e.g. invite-only and general), you can assign one ilmomasiina event to default m0, and additional events to custom pages `/m0/<label>` (`/<label>` also redirects there is there is no other page with that url).
+
 ## Database migrations
 
 When running the dev version, database schema updates automatically. However, when you update something that affects the schema, you have to create database migrations for production.

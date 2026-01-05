@@ -20,6 +20,11 @@ const pixelFont = localFont({
   variable: "--font-pixel",
 });
 
+const redactionFont = localFont({
+  src: "../../../public/fonts/redaction/Redaction_35-Bold.woff2",
+  variable: "--font-redaction",
+});
+
 const icons = {
   icon: [
     {
@@ -61,7 +66,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="bg-accent-light">
       <body
-        className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} antialiased`}
+        className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${redactionFont.variable} antialiased`}
       >
         <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
       </body>
