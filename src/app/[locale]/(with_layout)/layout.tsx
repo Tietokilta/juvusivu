@@ -8,7 +8,7 @@ export default async function RootLayout({
 }>) {
   return (
     <>
-      <Navbar />
+      <Navbar variant="m0" />
       {children}
       <Footer />
     </>
