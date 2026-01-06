@@ -12,7 +12,7 @@ export default function MainHeader() {
         width={842}
         height={510}
         alt="Logo"
-        className="px-5"
+        className="mx-5"
       />
       <Redaction text="101000" size="large" animated={true} />
     </div>
