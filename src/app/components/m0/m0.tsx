@@ -60,7 +60,7 @@ DRIVE MUISTI: WILL BE LOST! \n\
 Proceed with Format (Y/N)? y";
   return (
     <>
-      <div className="bg-juvu-blue-dark relative flex flex-col items-center justify-center gap-20 px-4 pt-2 pb-20">
+      <div className="bg-juvu-blue-dark relative flex flex-col items-center justify-center gap-8 px-4 pt-2 pb-20 md:h-[95dvh] md:max-h-[900px] md:min-h-[650px]">
         <p className="text-juvu-lightblue-dark self-start pl-2 font-mono text-sm whitespace-pre-line">
           {text}
         </p>
@@ -69,7 +69,7 @@ Proceed with Format (Y/N)? y";
           alt="Muistinnollaus 101000"
           width={1303}
           height={330}
-          className="md:px-4"
+          className="flex-1 md:min-h-[200px] md:px-4"
         />
         <div className="font-pixel text-juvu-lightblue border-juvu-lightblue mx-auto max-w-125 border-2 border-dashed">
           <CountDown date={config.eventDate ?? defaultDate} locale={locale} />
