@@ -42,7 +42,7 @@ const fi = {
   "errors.ilmo.fieldError.invalidEmail": "Virheellinen sähköpostiosoite.",
   "errors.ilmo.fieldError.notANumber": "Arvon tulee olla numero.",
   "errors.ilmo.fieldError.notAnOption": "Virheellinen valinta.",
-  "ilmomasiina.form.You are in queue at position": "Olet jonossa sijalla.",
+  "ilmomasiina.form.You are in queue at position": "Olet jonossa sijalla",
   "ilmomasiina.form.You are in the open quota at position":
     "Olet avoimessa kiintiössä sijalla",
   "ilmomasiina.form.You are in the quota": "Olet kiintiössä",
