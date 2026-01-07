@@ -19,9 +19,9 @@ export default async function Page({
   });
 
   // Resolve the variant or display 404 error page
-  const slug = config.variants?.find((v) => v.label === variant)?.ilmo;
-  if (!slug) {
+  const variantObj = config.variants?.find((v) => v.label === variant);
+  if (!variantObj) {
     return notFound();
   }
-  return <M0content slug={slug} />;
+  return <M0content slug={variantObj.ilmo ?? undefined} />;
 }
