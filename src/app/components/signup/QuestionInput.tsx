@@ -28,35 +28,43 @@ export const QuestionInput = ({
     case QuestionType.CHECKBOX:
       return (
         <>
-          {(question.options ?? []).map((option) => (
-            <div key={option}>
-              <label>
-                <Checkbox
-                  name={`question_${question.id}`}
-                  value={option}
-                  defaultChecked={defaultValue?.includes(option)}
-                />
-                {option}
-              </label>
-            </div>
-          ))}
+          {(question.options ?? []).map((option, i) => {
+            const price = question.prices ? question.prices[i] : 0;
+            return (
+              <div key={option}>
+                <label>
+                  <Checkbox
+                    name={`question_${question.id}`}
+                    value={option}
+                    defaultChecked={defaultValue?.includes(option)}
+                  />
+                  {option}
+                  {price > 0 ? ` (+${price / 100} €)` : ""}
+                </label>
+              </div>
+            );
+          })}
         </>
       );
     case QuestionType.SELECT:
       return (
         <>
-          {(question.options ?? []).map((option) => (
-            <div key={option}>
-              <label>
-                <Radio
-                  name={`question_${question.id}`}
-                  value={option}
-                  defaultChecked={defaultValue === option}
-                />
-                {option}
-              </label>
-            </div>
-          ))}
+          {(question.options ?? []).map((option, i) => {
+            const price = question.prices ? question.prices[i] : 0;
+            return (
+              <div key={option}>
+                <label>
+                  <Radio
+                    name={`question_${question.id}`}
+                    value={option}
+                    defaultChecked={defaultValue === option}
+                  />
+                  {option}
+                  {price > 0 ? ` (+${price / 100} €)` : ""}
+                </label>
+              </div>
+            );
+          })}
         </>
       );
     case QuestionType.NUMBER:
