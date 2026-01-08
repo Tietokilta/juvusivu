@@ -48,7 +48,7 @@ const SignUpButtons = ({
           isClosed={isClosed}
         />
       </div>
-      <div className="flex flex-col items-center justify-center gap-2">
+      <div className="flex flex-col items-center justify-center gap-3">
         {event.quotas.map((quota) => (
           <SignUp key={quota.id} quota={quota} disabled={!isOpen} />
         ))}

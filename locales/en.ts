@@ -136,6 +136,10 @@ const en = {
   "duration.mins": "minutes",
   "duration.hours": "hours",
   "duration.days": "days",
+  "total-price": "Total",
+  "payment-info": "Payment information",
+  "product": "Product",
+  "price": "Price",
 };
 
 type FiKey = keyof typeof fi;
