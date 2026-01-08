@@ -143,6 +143,7 @@ const fi = {
   "payment-info": "Maksutiedot",
   "product": "Tuote",
   "price": "Hinta",
+  "public": "julkinen",
 };
 
 type EnKey = keyof typeof en;

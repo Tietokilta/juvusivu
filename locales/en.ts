@@ -140,6 +140,7 @@ const en = {
   "payment-info": "Payment information",
   "product": "Product",
   "price": "Price",
+  "public": "public",
 };
 
 type FiKey = keyof typeof fi;
