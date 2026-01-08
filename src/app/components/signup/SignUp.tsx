@@ -30,7 +30,7 @@ export const SignUp = ({
 
   return (
     <Button
-      text={`${t("signup")}: ${quota.title}`}
+      text={`${t("signup")}: ${quota.title} ${quota.price > 0 ? `(${quota.price / 100} €)` : ""}`}
       disabled={disabled || loading}
       type="button"
       onClick={signUpAction}

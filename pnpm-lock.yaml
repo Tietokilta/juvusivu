@@ -31,11 +31,11 @@ importers:
         specifier: ^0.4.4
         version: 0.4.4(tailwindcss@4.1.18)
       '@tietokilta/ilmomasiina-client':
-        specifier: 2.0.0-alpha46
-        version: 2.0.0-alpha46(react@19.2.1)
+        specifier: 3.0.0-alpha.1
+        version: 3.0.0-alpha.1(react@19.2.1)
       '@tietokilta/ilmomasiina-models':
-        specifier: 2.0.0-alpha46
-        version: 2.0.0-alpha46
+        specifier: 3.0.0-alpha.1
+        version: 3.0.0-alpha.1
       graphql:
         specifier: ^16.12.0
         version: 16.12.0
@@ -1096,9 +1096,6 @@ packages:
   '@rushstack/eslint-patch@1.15.0':
     resolution: {integrity: sha512-ojSshQPKwVvSMR8yT2L/QtUkV5SXi/IfDiJ4/8d6UbTPjiHVmxZzUAzGD8Tzks1b9+qQkZa0isUOvYObedITaw==}
 
-  '@sinclair/typebox@0.32.35':
-    resolution: {integrity: sha512-Ul3YyOTU++to8cgNkttakC0dWvpERr6RYoHO2W47DLbFvrwBDJUY31B1sImH6JZSYc4Kt4PyHtoPNu+vL2r2dA==}
-
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
 
@@ -1200,16 +1197,16 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
-  '@tietokilta/ilmomasiina-client@2.0.0-alpha46':
-    resolution: {integrity: sha512-xfuny3CyGX9ElYXZg9QnXMqXTJ6INnfYanBSB6Dxtzb50vj9JtLEiJrIQeLn1ZonDzKXxkve5BPWcYwYVz4dfA==}
+  '@tietokilta/ilmomasiina-client@3.0.0-alpha.1':
+    resolution: {integrity: sha512-NlgkSV628HNI0HPFHtieiXpiMS87b9mBZLPd0nzUeHXoFmIG+4OmQ9zfEb2o2xg5nWbsOWKzTgDD+B0KI66SMw==}
     peerDependencies:
-      react: ^17 || ^18
+      react: ^17 || ^18 || ^19
     peerDependenciesMeta:
       react:
         optional: true
 
-  '@tietokilta/ilmomasiina-models@2.0.0-alpha46':
-    resolution: {integrity: sha512-GXpvsSPyFQJPd0zxsvCIgKyeajI4GIbV7DhH7JNu0btMwOxCnY79cM6BYb9DT8hh5KZ2/QMff1HyROuXowuZ2w==}
+  '@tietokilta/ilmomasiina-models@3.0.0-alpha.1':
+    resolution: {integrity: sha512-zhDgN2qm2of7JzHHXd9VeNHZ1ezTs1Jg/jJocjWeUPaZNlPxu8huMYlKW6MAdq3NxlilbyUW9DL6uuNzuvdzVw==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -3673,6 +3670,9 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
+  typebox@1.0.75:
+    resolution: {integrity: sha512-5u1pkRdAfQiIprkuS59RrrV+5ydXQh2OzR7Lqb/bhgS8sBZznMVcNYZMrZdsmL7xEV+Qhu7wiAKLr9gE1INBPQ==}
+
   typed-array-buffer@1.0.3:
     resolution: {integrity: sha512-nAYYwfY3qnzX30IkA6AQZjVbtK6duGontcQm1WSG1MD94YLqK0515GNApXkoxKOWMusVssAHWLh9SeaoefYFGw==}
     engines: {node: '>= 0.4'}
@@ -4970,8 +4970,6 @@ snapshots:
 
   '@rushstack/eslint-patch@1.15.0': {}
 
-  '@sinclair/typebox@0.32.35': {}
-
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
@@ -5054,16 +5052,16 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.18
 
-  '@tietokilta/ilmomasiina-client@2.0.0-alpha46(react@19.2.1)':
+  '@tietokilta/ilmomasiina-client@3.0.0-alpha.1(react@19.2.1)':
     dependencies:
-      '@tietokilta/ilmomasiina-models': 2.0.0-alpha46
+      '@tietokilta/ilmomasiina-models': 3.0.0-alpha.1
       lodash-es: 4.17.22
     optionalDependencies:
       react: 19.2.1
 
-  '@tietokilta/ilmomasiina-models@2.0.0-alpha46':
+  '@tietokilta/ilmomasiina-models@3.0.0-alpha.1':
     dependencies:
-      '@sinclair/typebox': 0.32.35
+      typebox: 1.0.75
 
   '@tokenizer/token@0.3.0': {}
 
@@ -7956,6 +7954,8 @@ snapshots:
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
+
+  typebox@1.0.75: {}
 
   typed-array-buffer@1.0.3:
     dependencies:
