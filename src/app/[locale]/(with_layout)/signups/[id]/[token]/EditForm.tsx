@@ -23,6 +23,7 @@ import { FieldErrorText } from "@components/signup/FieldErrorText";
 import { QuestionInput } from "@components/signup/QuestionInput";
 import { QuotaPositionText } from "@components/signup/QuotaPositionText";
 import { SignupConfirmTime } from "@components/signup/SignupConfirmTime";
+import { PaymentInfo } from "@components/signup/PaymentInfo";
 
 export const EditForm = ({ id, token }: { id: string; token: string }) => {
   return (
@@ -162,6 +163,12 @@ const EditFormInternal = () => {
     );
   }
 
+  // Use price information from confirmed signup, or default to quota price
+  const price = localizedSignup.price ?? localizedSignup.quota.price;
+  const products = localizedSignup.products ?? [
+    { name: localizedSignup.quota.title, amount: 1, unitPrice: price },
+  ];
+
   return (
     <div className="mx-0.5">
       <Window
@@ -174,7 +181,9 @@ const EditFormInternal = () => {
               signup={localizedSignup}
               event={localizedEvent}
             />
-            <SignupConfirmTime confirmableUntil={confirmableUntil} />
+            {!localizedSignup.confirmed && (
+              <SignupConfirmTime confirmableUntil={confirmableUntil} />
+            )}
             {localizedEvent?.nameQuestion && (
               <>
                 <InputRow label={t("form.First name")} mandatory={true}>
@@ -261,6 +270,7 @@ const EditFormInternal = () => {
           </div>
         </Form>
       </Window>
+      <PaymentInfo price={price} products={products} />
     </div>
   );
 };

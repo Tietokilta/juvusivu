@@ -139,6 +139,10 @@ const fi = {
   "duration.mins": "minuuttia",
   "duration.hours": "tuntia",
   "duration.days": "päivää",
+  "total-price": "Yhteensä",
+  "payment-info": "Maksutiedot",
+  "product": "Tuote",
+  "price": "Hinta",
 };
 
 type EnKey = keyof typeof en;
