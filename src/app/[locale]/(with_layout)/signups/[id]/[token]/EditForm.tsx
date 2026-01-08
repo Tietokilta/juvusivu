@@ -37,18 +37,26 @@ const InputRow = ({
   label,
   children,
   mandatory = false,
+  publicField = false,
 }: {
   label: string;
   children: React.ReactNode;
   mandatory?: boolean;
-}) => (
-  <div className="mb-2">
-    <p className="font-pixel text-lg">
-      {label} {mandatory && <span className="text-juvu-red-dark">*</span>}
-    </p>
-    {children}
-  </div>
-);
+  publicField?: boolean;
+}) => {
+  const t = useI18n();
+  return (
+    <div className="mb-2">
+      <p className="font-pixel text-lg">
+        {label} {mandatory && <span className="text-juvu-red-dark">*</span>}{" "}
+        {publicField && (
+          <span className="text-juvu-blue-light">({t("public")})</span>
+        )}
+      </p>
+      {children}
+    </div>
+  );
+};
 
 type SignupState = {
   fieldErrors?: SignupValidationError["errors"] | null;
@@ -72,6 +80,7 @@ const EditFormInternal = () => {
     const firstName = formData.get("firstName") as string;
     const lastName = formData.get("lastName") as string;
     const email = formData.get("email") as string;
+    const namePublic = formData.get("namePublic") === "on";
 
     // Process answers from questions
     const answers =
@@ -95,6 +104,7 @@ const EditFormInternal = () => {
       firstName,
       lastName,
       email,
+      namePublic,
       answers,
     };
 
@@ -228,7 +238,12 @@ const EditFormInternal = () => {
               </InputRow>
             )}
             {localizedEvent?.questions.map((q) => (
-              <InputRow key={q.id} label={q.question} mandatory={q.required}>
+              <InputRow
+                key={q.id}
+                label={q.question}
+                mandatory={q.required}
+                publicField={q.public}
+              >
                 <QuestionInput
                   question={q}
                   defaultValue={
