@@ -14,7 +14,6 @@ export const QuestionInput = ({
         <Input
           type="text"
           name={`question_${question.id}`}
-          placeholder="Text"
           defaultValue={defaultValue}
         />
       );
