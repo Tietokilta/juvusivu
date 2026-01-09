@@ -1,10 +1,11 @@
 "use client";
 import { useScopedI18n } from "@locales/client";
 import { Button } from "@components/basic/Button";
-import { beginSignup } from "@tietokilta/ilmomasiina-client";
+import { beginSignup, configureApi } from "@tietokilta/ilmomasiina-client";
 import { useRouter } from "next/navigation";
 import { Quota } from "@tietokilta/ilmomasiina-models";
 import React, { useState } from "react";
+import { ILMOMASIINA_API_BASE_URL } from "@util/constants";
 
 export const SignUp = ({
   quota,
@@ -16,6 +17,7 @@ export const SignUp = ({
   const t = useScopedI18n("ilmomasiina");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  configureApi(ILMOMASIINA_API_BASE_URL);
 
   const signUpAction = async () => {
     setLoading(true);

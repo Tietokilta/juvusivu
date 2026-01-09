@@ -17,3 +17,5 @@ export const EVENT_CATEGORY_OPTIONS: Array<{
     value: "muu",
   },
 ];
+
+export const ILMOMASIINA_API_BASE_URL = "https://ilmo.tietokilta.fi/api";

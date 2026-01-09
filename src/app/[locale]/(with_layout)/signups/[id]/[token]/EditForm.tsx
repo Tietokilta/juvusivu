@@ -2,6 +2,7 @@
 import { Checkbox, Input } from "@components/basic/input";
 import {
   ApiError,
+  configureApi,
   EditSignupProvider,
   useDeleteSignup,
   useEditSignupContext,
@@ -24,8 +25,12 @@ import { QuestionInput } from "@components/signup/QuestionInput";
 import { QuotaPositionText } from "@components/signup/QuotaPositionText";
 import { SignupConfirmTime } from "@components/signup/SignupConfirmTime";
 import { PaymentInfo } from "@components/signup/PaymentInfo";
+import { ILMOMASIINA_API_BASE_URL } from "@util/constants";
 
 export const EditForm = ({ id, token }: { id: string; token: string }) => {
+  // Set ilmomasiina API base URL
+  configureApi(ILMOMASIINA_API_BASE_URL);
+
   return (
     <EditSignupProvider id={id} editToken={token}>
       <EditFormInternal />
