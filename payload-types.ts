@@ -585,6 +585,9 @@ export interface M0Config {
    * When true, only shows countdown on the M0 page
    */
   hideContents?: boolean | null;
+  /**
+   * Description shown before other info on the M0 page
+   */
   description?: {
     root: {
       type: string;
@@ -604,6 +607,14 @@ export interface M0Config {
    * Default ilmomasiina slug to use for /m0 page
    */
   defaultVariant?: string | null;
+  /**
+   * When true, shows event description fetched from Ilmomasiina (in addition to the description provided here)
+   */
+  showDescriptionFromIlmo?: boolean | null;
+  /**
+   * When true, shows quota information (how many places sold and available) on the M0 page
+   */
+  showQuotaInfo?: boolean | null;
   variants?:
     | {
         /**
@@ -640,6 +651,8 @@ export interface M0ConfigSelect<T extends boolean = true> {
   hideContents?: T;
   description?: T;
   defaultVariant?: T;
+  showDescriptionFromIlmo?: T;
+  showQuotaInfo?: T;
   variants?:
     | T
     | {

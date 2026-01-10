@@ -1,15 +1,13 @@
-import Markdown from "react-markdown";
 import { notFound } from "next/navigation";
 import { fetchEvent } from "@lib/api/external/ilmomasiina";
-import { remarkI18n } from "@lib/plugins/remark-i18n";
 import { Window } from "@components/Window";
 import { getCurrentLocale, getScopedI18n } from "@locales/server";
-import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
 import SignUpList from "@components/events/SignUpList";
 import QuotaWindow from "@components/events/QuotaWindow";
 import EventSummary from "@components/events/EventSummary";
 import { SignUpCountdown } from "@components/signup/SignUpCountdown";
+import { EventDescription } from "@components/events/EventDescription";
 
 export const metadata: Metadata = {
   robots: {
@@ -43,15 +41,7 @@ export default async function Page({
       <div
         className={`${hasSignup ? "md:col-span-2" : "md:col-span-3"} md:row-start-2`}
       >
-        <Window title={t("description")}>
-          {event.description ? (
-            <div className="prose text-accent-dark">
-              <Markdown remarkPlugins={[[remarkI18n, { locale }], remarkGfm]}>
-                {event.description}
-              </Markdown>
-            </div>
-          ) : null}
-        </Window>
+        <EventDescription event={event} />
       </div>
       {hasSignup && (
         <div className="md:col-start-3 md:row-start-2">

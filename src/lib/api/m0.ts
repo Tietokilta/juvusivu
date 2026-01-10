@@ -26,6 +26,9 @@ export const m0config: GlobalConfig = {
       name: "description",
       type: "richText",
       localized: true,
+      admin: {
+        description: "Description shown before other info on the M0 page",
+      },
     },
     {
       name: "defaultVariant",
@@ -33,6 +36,24 @@ export const m0config: GlobalConfig = {
       localized: false,
       admin: {
         description: "Default ilmomasiina slug to use for /m0 page",
+      },
+    },
+    {
+      name: "showDescriptionFromIlmo",
+      type: "checkbox",
+      localized: false,
+      admin: {
+        description:
+          "When true, shows event description fetched from Ilmomasiina (in addition to the description provided here)",
+      },
+    },
+    {
+      name: "showQuotaInfo",
+      type: "checkbox",
+      localized: false,
+      admin: {
+        description:
+          "When true, shows quota information (how many places sold and available) on the M0 page",
       },
     },
     {

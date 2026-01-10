@@ -11,6 +11,8 @@ import { SignUpCountdown } from "@components/signup/SignUpCountdown";
 import SignUpList from "@components/events/SignUpList";
 import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import Header from "@components/Header";
+import { EventDescription } from "@components/events/EventDescription";
+import QuotaWindow from "@components/events/QuotaWindow";
 
 export default async function M0content({ slug }: { slug?: string }) {
   const payload = await getPayload({ config: configPromise });
@@ -83,17 +85,26 @@ Proceed with Format (Y/N)? y";
             </Window>
           </div>
         )}
-        <div className="md:row-start-2">
+        {event?.description && config.showDescriptionFromIlmo && (
+          <div className="md:col-span-2 md:row-start-2 md:px-10">
+            <EventDescription event={event} />
+          </div>
+        )}
+        <div className="md:row-start-3">
           <Window title="Muistinnollaus.gif" className="mx-auto max-w-xl">
             <BouncyLogo />
           </Window>
         </div>
         {hasSignup && (
           <>
-            <div className="md:col-start-2 md:row-start-2">
-              <Window title={t("ilmomasiina.Ilmoittautuminen")}>
+            <div className="md:col-start-2 md:row-start-3">
+              <Window
+                title={t("ilmomasiina.Ilmoittautuminen")}
+                className="mb-5"
+              >
                 <SignUpCountdown event={event} />
               </Window>
+              {config.showQuotaInfo && <QuotaWindow event={event} />}
             </div>
             <div className="md:col-span-2 md:row-start-4 md:px-10">
               <Window title={t("ilmomasiina.Ilmoittautuneet")}>
