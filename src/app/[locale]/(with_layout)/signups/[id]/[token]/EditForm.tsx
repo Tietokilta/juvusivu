@@ -80,6 +80,11 @@ const EditFormInternal = () => {
   const t_general = useI18n();
   const [saved, setSaved] = useState<boolean>(false);
   const confirmed = localizedSignup?.confirmed || saved;
+  const closed =
+    (localizedEvent?.registrationEndDate &&
+      new Date(localizedEvent.registrationEndDate) < new Date()) ||
+    !localizedEvent?.registrationStartDate ||
+    new Date(localizedEvent.registrationStartDate) > new Date();
 
   const SaveAction = async (prevState: SignupState, formData: FormData) => {
     const firstName = formData.get("firstName") as string;
@@ -196,7 +201,7 @@ const EditFormInternal = () => {
               signup={localizedSignup}
               event={localizedEvent}
             />
-            {!localizedSignup.confirmed && (
+            {!confirmed && (
               <SignupConfirmTime confirmableUntil={confirmableUntil} />
             )}
             {localizedEvent?.nameQuestion && (
@@ -207,7 +212,7 @@ const EditFormInternal = () => {
                     name="firstName"
                     placeholder={t("form.First name")}
                     defaultValue={localizedSignup?.firstName ?? ""}
-                    disabled={confirmed}
+                    disabled={confirmed || closed}
                   />
                   <FieldErrorText error={errors?.firstName} />
                 </InputRow>
@@ -217,7 +222,7 @@ const EditFormInternal = () => {
                     name="lastName"
                     placeholder={t("form.Last name")}
                     defaultValue={localizedSignup?.lastName ?? ""}
-                    disabled={confirmed}
+                    disabled={confirmed || closed}
                   />
                   <FieldErrorText error={errors?.lastName} />
                 </InputRow>
@@ -225,6 +230,7 @@ const EditFormInternal = () => {
                   <Checkbox
                     name="namePublic"
                     defaultChecked={localizedSignup?.namePublic ?? false}
+                    disabled={closed}
                   />
                   {t("form.Show name in the public list of sign ups")}
                 </label>
@@ -237,7 +243,7 @@ const EditFormInternal = () => {
                   name="email"
                   placeholder={t("form.Email")}
                   defaultValue={localizedSignup?.email ?? ""}
-                  disabled={confirmed}
+                  disabled={confirmed || closed}
                 />
                 <FieldErrorText error={errors?.email} />
               </InputRow>
@@ -256,15 +262,23 @@ const EditFormInternal = () => {
                       (answer) => answer.questionId === q.id,
                     )?.answer ?? undefined
                   }
+                  disabled={closed}
                 />
                 <FieldErrorText error={errors?.answers?.[q.id]} />
               </InputRow>
             ))}
-            <p className="font-pixel text-lg">
-              {t(
-                "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
-              )}
-            </p>
+
+            {closed ? (
+              <p className="font-pixel text-juvu-red-dark text-lg">
+                {t_e("SignupsClosed")}
+              </p>
+            ) : (
+              <p className="font-pixel text-lg">
+                {t(
+                  "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
+                )}
+              </p>
+            )}
 
             {state?.success && (
               <p className="font-pixel text-lg text-green-700">
@@ -280,11 +294,12 @@ const EditFormInternal = () => {
             )}
 
             <div className="flex gap-2">
-              <Button type="submit" text={t("form.Submit")} />
+              <Button type="submit" text={t("form.Submit")} disabled={closed} />
               <Button
                 type="button"
                 text={t("form.Delete")}
                 onClick={handleDelete}
+                disabled={closed}
               />
             </div>
           </div>
