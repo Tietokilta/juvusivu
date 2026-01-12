@@ -57,6 +57,7 @@ export const PaymentInfo = ({
           </tbody>
         </table>
       </div>
+      <p className="font-pixel mt-4 text-base">{t("payment-info-message")}</p>
     </Window>
   );
 };

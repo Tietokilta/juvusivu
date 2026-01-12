@@ -144,6 +144,7 @@ const fi = {
   "product": "Tuote",
   "price": "Hinta",
   "public": "julkinen",
+  "payment-info-message": "Maksaminen tapahtuu erillisten ohjeiden mukaisesti.",
 };
 
 type EnKey = keyof typeof en;
