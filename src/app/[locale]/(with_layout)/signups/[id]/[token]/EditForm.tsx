@@ -39,10 +39,9 @@ export const EditForm = ({ id, token }: { id: string; token: string }) => {
         onRefetch={() => {
           setShowSuccess(true);
           setRefetchKey((k) => k + 1);
-          // Hide success message after 5 seconds
-          setTimeout(() => setShowSuccess(false), 5000);
         }}
         showSuccess={showSuccess}
+        onFormChange={() => setShowSuccess(false)}
       />
     </EditSignupProvider>
   );
@@ -82,9 +81,11 @@ type SignupState = {
 const EditFormInternal = ({
   onRefetch,
   showSuccess,
+  onFormChange,
 }: {
   onRefetch: () => void;
   showSuccess: boolean;
+  onFormChange: () => void;
 }) => {
   const { localizedEvent, localizedSignup, pending, confirmableUntil } =
     useEditSignupContext();
@@ -210,7 +211,11 @@ const EditFormInternal = ({
         title={`${localizedEvent?.title}: ${t("Ilmoittautuminen")} `}
         className="mx-auto my-7 max-w-3xl"
       >
-        <Form onSubmit={handleSubmit} action={() => undefined}>
+        <Form
+          onSubmit={handleSubmit}
+          onChange={onFormChange}
+          action={() => undefined}
+        >
           <div className="flex flex-col gap-2">
             <QuotaPositionText
               signup={localizedSignup}
