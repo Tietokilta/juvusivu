@@ -15,7 +15,7 @@ export const EventDescription = async ({
   return (
     <Window title={t("description")}>
       {event.description ? (
-        <div className="prose text-accent-dark">
+        <div className="prose text-accent-dark max-w-none">
           <Markdown remarkPlugins={[[remarkI18n, { locale }], remarkGfm]}>
             {event.description}
           </Markdown>

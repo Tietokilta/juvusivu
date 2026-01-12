@@ -66,7 +66,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="bg-accent-light">
       <body
-        className={`${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${redactionFont.variable} antialiased`}
+        className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${redactionFont.variable} antialiased`}
       >
         <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
       </body>
