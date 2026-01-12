@@ -211,7 +211,11 @@ const EditFormInternal = ({
         title={`${localizedEvent?.title}: ${t("Ilmoittautuminen")} `}
         className="mx-auto my-7 max-w-3xl"
       >
-        <Form onSubmit={handleSubmit} onChange={onFormChange} action={() => undefined}>
+        <Form
+          onSubmit={handleSubmit}
+          onChange={onFormChange}
+          action={() => undefined}
+        >
           <div className="flex flex-col gap-2">
             <QuotaPositionText
               signup={localizedSignup}
