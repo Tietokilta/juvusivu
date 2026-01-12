@@ -19,7 +19,7 @@ import { Button } from "@components/basic/Button";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
 import { FormEvent, startTransition, useActionState, useState } from "react";
-import { useI18n, useScopedI18n } from "@locales/client";
+import { useCurrentLocale, useI18n, useScopedI18n } from "@locales/client";
 import { FieldErrorText } from "@components/signup/FieldErrorText";
 import { QuestionInput } from "@components/signup/QuestionInput";
 import { QuotaPositionText } from "@components/signup/QuotaPositionText";
@@ -32,9 +32,15 @@ export const EditForm = ({ id, token }: { id: string; token: string }) => {
   configureApi(ILMOMASIINA_API_BASE_URL);
   const [refetchKey, setRefetchKey] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
+  const locale = useCurrentLocale();
 
   return (
-    <EditSignupProvider id={id} editToken={token} key={refetchKey}>
+    <EditSignupProvider
+      id={id}
+      editToken={token}
+      key={refetchKey}
+      language={locale}
+    >
       <EditFormInternal
         onRefetch={() => {
           setShowSuccess(true);
