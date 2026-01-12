@@ -30,10 +30,20 @@ import { ILMOMASIINA_API_BASE_URL } from "@util/constants";
 export const EditForm = ({ id, token }: { id: string; token: string }) => {
   // Set ilmomasiina API base URL
   configureApi(ILMOMASIINA_API_BASE_URL);
+  const [refetchKey, setRefetchKey] = useState(0);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   return (
-    <EditSignupProvider id={id} editToken={token}>
-      <EditFormInternal />
+    <EditSignupProvider id={id} editToken={token} key={refetchKey}>
+      <EditFormInternal
+        onRefetch={() => {
+          setShowSuccess(true);
+          setRefetchKey((k) => k + 1);
+          // Hide success message after 5 seconds
+          setTimeout(() => setShowSuccess(false), 5000);
+        }}
+        showSuccess={showSuccess}
+      />
     </EditSignupProvider>
   );
 };
@@ -69,7 +79,13 @@ type SignupState = {
   success?: boolean | null;
 };
 
-const EditFormInternal = () => {
+const EditFormInternal = ({
+  onRefetch,
+  showSuccess,
+}: {
+  onRefetch: () => void;
+  showSuccess: boolean;
+}) => {
   const { localizedEvent, localizedSignup, pending, confirmableUntil } =
     useEditSignupContext();
   const router = useRouter();
@@ -120,6 +136,7 @@ const EditFormInternal = () => {
 
     try {
       await saveSignup(updateBody);
+      onRefetch(); // Trigger refetch to get updated signup data
       setSaved(true);
       return { success: true }; // Success - clear errors
     } catch (error) {
@@ -184,10 +201,8 @@ const EditFormInternal = () => {
   }
 
   // Use price information from confirmed signup, or default to quota price
-  const price = localizedSignup.price ?? localizedSignup.quota.price;
-  const products = localizedSignup.products ?? [
-    { name: localizedSignup.quota.title, amount: 1, unitPrice: price },
-  ];
+  const price = localizedSignup.price;
+  const products = localizedSignup.products;
 
   return (
     <div className="mx-0.5">
@@ -281,6 +296,11 @@ const EditFormInternal = () => {
             )}
 
             {state?.success && (
+              <p className="font-pixel text-lg text-green-700">
+                {t("form.Sign up saved")}
+              </p>
+            )}
+            {showSuccess && (
               <p className="font-pixel text-lg text-green-700">
                 {t("form.Sign up saved")}
               </p>

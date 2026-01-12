@@ -141,6 +141,7 @@ const en = {
   "product": "Product",
   "price": "Price",
   "public": "public",
+  "payment-info-message": "Payment is done according to separate instructions.",
 };
 
 type FiKey = keyof typeof fi;
