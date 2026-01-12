@@ -116,6 +116,15 @@ export default buildConfig({
             description: "Remove padding around image on the EventBox",
           },
         },
+        {
+          name: "customEventPage",
+          type: "text",
+          localized: false,
+          admin: {
+            description:
+              "Page path to use instead of the default /events/[slug], for example m0",
+          },
+        },
       ],
     },
     {

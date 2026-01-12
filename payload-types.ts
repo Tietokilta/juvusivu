@@ -158,6 +158,10 @@ export interface Event {
    * Remove padding around image on the EventBox
    */
   removePadding?: boolean | null;
+  /**
+   * Page path to use instead of the default /events/[slug], for example m0
+   */
+  customEventPage?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -392,6 +396,7 @@ export interface EventsSelect<T extends boolean = true> {
   photo?: T;
   category?: T;
   removePadding?: T;
+  customEventPage?: T;
   updatedAt?: T;
   createdAt?: T;
 }
