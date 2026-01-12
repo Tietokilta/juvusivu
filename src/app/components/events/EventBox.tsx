@@ -14,7 +14,9 @@ export const EventBox = async ({
   className?: string;
 }) => {
   const t = await getI18n();
-  const url = event.slug && event.released ? `events/${event.slug}` : undefined;
+  const url =
+    event.customEventPage ??
+    (event.slug && event.released ? `events/${event.slug}` : undefined);
   const date =
     event.date && (event.released || event.showDate)
       ? new Date(event.date)
