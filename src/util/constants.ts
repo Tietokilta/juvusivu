@@ -18,4 +18,7 @@ export const EVENT_CATEGORY_OPTIONS: Array<{
   },
 ];
 
-export const ILMOMASIINA_API_BASE_URL = "https://ilmo.tietokilta.fi/api";
+const { NEXT_PUBLIC_ILMO_URL } = process.env;
+
+export const ILMOMASIINA_API_BASE_URL =
+  NEXT_PUBLIC_ILMO_URL ?? "https://ilmo.tietokilta.fi/api";

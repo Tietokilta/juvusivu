@@ -1,20 +1,77 @@
 "use client";
-import { ProductSchema } from "@tietokilta/ilmomasiina-models";
+import {
+  PaymentMode,
+  SignupPaymentStatus,
+} from "@tietokilta/ilmomasiina-models";
 import { Window } from "@components/Window";
-import { useI18n } from "@locales/client";
+import { useI18n, useScopedI18n } from "@locales/client";
+import { Button } from "@components/basic/Button";
+import {
+  ApiError,
+  useEditSignupContext,
+  useStartPayment,
+} from "@tietokilta/ilmomasiina-client";
+import { useState } from "react";
 
-export const PaymentInfo = ({
-  price,
-  products,
+const Payment = ({
+  status,
+  paymentError,
 }: {
-  price: number | null;
-  products: ProductSchema[] | null;
+  status: SignupPaymentStatus | null | undefined;
+  paymentError?: ApiError;
 }) => {
   const t = useI18n();
+  const t_e = useScopedI18n("errors.ilmo.code");
+  if (paymentError) {
+    return (
+      <p className="text-juvu-red-dark">
+        {t_e(paymentError.code ?? "DefaultPaymentError")}
+      </p>
+    );
+  }
+  switch (status) {
+    case SignupPaymentStatus.PAID:
+      return <p className="text-green-700">{t("payment.status.paid")}</p>;
+    case SignupPaymentStatus.PENDING:
+      return <p>{t("payment.status.pending")}</p>;
+    case SignupPaymentStatus.REFUNDED:
+      return <p>{t("payment.status.refunded")}</p>;
+    default:
+      return null;
+  }
+};
+
+export const PaymentInfo = () => {
+  const { signup, event, paymentError } = useEditSignupContext();
+  const t = useI18n();
+  const t_e = useScopedI18n("errors.ilmo.code");
+  const paymentUrl = useStartPayment();
+  const [processing, setProcessing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  if (!signup) {
+    return null;
+  }
+
+  const price = signup.price;
+  const products = signup.products;
 
   if (!price || price === 0 || !products || products.length === 0) {
     return null;
   }
+
+  const startPayment = async () => {
+    try {
+      setError(null);
+      setProcessing(true);
+      const url = await paymentUrl();
+      window.location.href = url;
+    } catch (e) {
+      setProcessing(false);
+      const error = e as ApiError;
+      setError(t_e(error.code ?? "DefaultPaymentError"));
+    }
+  };
 
   return (
     <Window title={t("payment-info")} className="mx-auto my-7 max-w-3xl">
@@ -57,7 +114,33 @@ export const PaymentInfo = ({
           </tbody>
         </table>
       </div>
-      <p className="font-pixel mt-4 text-base">{t("payment-info-message")}</p>
+      <div className="font-pixel mt-4 mb-2 text-lg">
+        {event?.payments === PaymentMode.DISABLED && (
+          <p>{t("payment-info-message")}</p>
+        )}
+        {event?.payments === PaymentMode.MANUAL && (
+          <>
+            <Payment
+              status={signup.paymentStatus}
+              paymentError={paymentError}
+            />
+            <p>{t("payment-info-message")}</p>
+          </>
+        )}
+        {event?.payments === PaymentMode.ONLINE && (
+          <Payment status={signup.paymentStatus} paymentError={paymentError} />
+        )}
+        {error && <p className="text-juvu-red-dark">{error}</p>}
+      </div>
+      {event?.payments === PaymentMode.ONLINE &&
+        signup?.paymentStatus === SignupPaymentStatus.PENDING && (
+          <Button
+            onClick={startPayment}
+            text={t("pay")}
+            type="button"
+            disabled={processing}
+          />
+        )}
     </Window>
   );
 };

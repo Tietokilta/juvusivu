@@ -35,6 +35,23 @@ const en = {
   "errors.ilmo.code.SignupValidationError": "Signup validation failed.",
   "errors.ilmo.code.EventValidationError": "Event validation failed.",
   "errors.ilmo.code.FST_ERR_VALIDATION": "Validation failed.",
+  "errors.ilmo.code.OnlinePaymentsDisabled":
+    "Online payments are not enabled for this event.",
+  "errors.ilmo.code.SignupAlreadyPaid":
+    "Your signup has already been paid. Try refreshing the page.",
+  "errors.ilmo.code.PaymentNotRequired":
+    "Your signup does not require payment. Try refreshing the page.",
+  "errors.ilmo.code.PaymentInProgress":
+    "A payment is already being created. Try again in a moment.",
+  "errors.ilmo.code.PaymentNotFound":
+    "The payment was not found. Try refreshing the page.",
+  "errors.ilmo.code.PaymentNotComplete":
+    "The payment is not yet complete. Try refreshing the page.",
+  "errors.ilmo.code.PaymentRateLimited":
+    "The payment service is currently experiencing high traffic. Try again in a moment.",
+  "errors.ilmo.code.DefaultPaymentError":
+    "Payment failed. Try refreshing the page or contact the administrators.",
+  "errors.ilmo.code.SignupNotConfirmed": "Signup not confirmed.",
   "errors.ilmo.fieldError.missing": "This field is required.",
   "errors.ilmo.fieldError.wrongType": "Invalid type.",
   "errors.ilmo.fieldError.tooLong": "Value is too long.",
@@ -141,7 +158,13 @@ const en = {
   "product": "Product",
   "price": "Price",
   "public": "public",
+  "pay": "Pay",
   "payment-info-message": "Payment is done according to separate instructions.",
+  "payment.status.pending":
+    "Your signup is pending payment. Once you have paid for the signup, it can no longer be edited or cancelled by yourself.",
+  "payment.status.paid":
+    "Your signup has been paid successfully. Contact the event organizers if you wish to edit or cancel your signup.",
+  "payment.status.refunded": "Your payment has been refunded.",
 };
 
 type FiKey = keyof typeof fi;

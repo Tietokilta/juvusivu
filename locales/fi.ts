@@ -36,6 +36,23 @@ const fi = {
     "Ilmoittautumisen validointi epäonnistui.",
   "errors.ilmo.code.EventValidationError": "Tapahtuman validointi epäonnistui.",
   "errors.ilmo.code.FST_ERR_VALIDATION": "Validointi epäonnistui.",
+  "errors.ilmo.code.OnlinePaymentsDisabled":
+    "Verkkomaksut eivät ole käytössä tässä tapahtumassa.",
+  "errors.ilmo.code.SignupAlreadyPaid":
+    "Ilmoittautumisesi on jo maksettu. Kokeile päivittää sivu.",
+  "errors.ilmo.code.PaymentNotRequired":
+    "Ilmoittautumisesi ei vaadi maksua. Kokeile päivittää sivu.",
+  "errors.ilmo.code.PaymentInProgress":
+    "Maksutapahtuman luonti on jo käynnissä. Kokeile hetken kuluttua uudestaan.",
+  "errors.ilmo.code.PaymentNotFound":
+    "Maksutapahtumaa ei löytynyt. Kokeile päivittää sivu.",
+  "errors.ilmo.code.PaymentNotComplete":
+    "Maksutapahtuma ei ole vielä valmis. Kokeile päivittää sivu.",
+  "errors.ilmo.code.PaymentRateLimited":
+    "Maksupalvelussa on ruuhkaa. Kokeile hetken kuluttua uudestaan.",
+  "errors.ilmo.code.DefaultPaymentError":
+    "Maksutapahtuma epäonnistui. Kokeile päivittää sivu tai ota yhteyttä ylläpitäjiin.",
+  "errors.ilmo.code.SignupNotConfirmed": "Ilmoittautumista ei ole vahvistettu.",
   "errors.ilmo.fieldError.missing": "Tämä kenttä on pakollinen.",
   "errors.ilmo.fieldError.wrongType": "Virheellinen tyyppi.",
   "errors.ilmo.fieldError.tooLong": "Liian pitkä arvo.",
@@ -144,7 +161,13 @@ const fi = {
   "product": "Tuote",
   "price": "Hinta",
   "public": "julkinen",
+  "pay": "Maksa",
   "payment-info-message": "Maksaminen tapahtuu erillisten ohjeiden mukaisesti.",
+  "payment.status.pending":
+    "Ilmoittautumisesi odottaa maksua. Kun olet maksanut ilmoittautumisen, sitä ei voi enää muokata tai perua itse.",
+  "payment.status.paid":
+    "Ilmoittautumisesi on maksettu onnistuneesti. Ota yhteyttä tapahtuman järjestäjiin, jos haluat muokata tai perua ilmoittautumisesi.",
+  "payment.status.refunded": "Maksusi on palautettu.",
 };
 
 type EnKey = keyof typeof en;
