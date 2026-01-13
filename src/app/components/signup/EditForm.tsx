@@ -12,6 +12,7 @@ import { Window } from "@components/Window";
 import {
   ErrorCode,
   QuestionType,
+  SignupPaymentStatus,
   SignupUpdateBody,
   SignupValidationError,
 } from "@tietokilta/ilmomasiina-models";
@@ -108,6 +109,8 @@ const EditFormInternal = ({
       new Date(localizedEvent.registrationEndDate) < new Date()) ||
     !localizedEvent?.registrationStartDate ||
     new Date(localizedEvent.registrationStartDate) > new Date();
+  const frozen =
+    closed || localizedSignup?.paymentStatus === SignupPaymentStatus.PAID;
 
   const SaveAction = async (prevState: SignupState, formData: FormData) => {
     const firstName = formData.get("firstName") as string;
@@ -207,12 +210,9 @@ const EditFormInternal = ({
     );
   }
 
-  // Use price information from confirmed signup, or default to quota price
-  const price = localizedSignup.price;
-  const products = localizedSignup.products;
-
   return (
     <div className="mx-0.5">
+      <PaymentInfo />
       <Window
         title={`${localizedEvent?.title}: ${t("Ilmoittautuminen")} `}
         className="mx-auto my-7 max-w-3xl"
@@ -238,7 +238,7 @@ const EditFormInternal = ({
                     name="firstName"
                     placeholder={t("form.First name")}
                     defaultValue={localizedSignup?.firstName ?? ""}
-                    disabled={confirmed || closed}
+                    disabled={confirmed || frozen}
                   />
                   <FieldErrorText error={errors?.firstName} />
                 </InputRow>
@@ -248,7 +248,7 @@ const EditFormInternal = ({
                     name="lastName"
                     placeholder={t("form.Last name")}
                     defaultValue={localizedSignup?.lastName ?? ""}
-                    disabled={confirmed || closed}
+                    disabled={confirmed || frozen}
                   />
                   <FieldErrorText error={errors?.lastName} />
                 </InputRow>
@@ -256,7 +256,7 @@ const EditFormInternal = ({
                   <Checkbox
                     name="namePublic"
                     defaultChecked={localizedSignup?.namePublic ?? false}
-                    disabled={closed}
+                    disabled={frozen}
                   />
                   {t("form.Show name in the public list of sign ups")}
                 </label>
@@ -269,7 +269,7 @@ const EditFormInternal = ({
                   name="email"
                   placeholder={t("form.Email")}
                   defaultValue={localizedSignup?.email ?? ""}
-                  disabled={confirmed || closed}
+                  disabled={confirmed || frozen}
                 />
                 <FieldErrorText error={errors?.email} />
               </InputRow>
@@ -288,7 +288,7 @@ const EditFormInternal = ({
                       (answer) => answer.questionId === q.id,
                     )?.answer ?? undefined
                   }
-                  disabled={closed}
+                  disabled={frozen}
                 />
                 <FieldErrorText error={errors?.answers?.[q.id]} />
               </InputRow>
@@ -298,7 +298,7 @@ const EditFormInternal = ({
               <p className="font-pixel text-juvu-red-dark text-lg">
                 {t_e("SignupsClosed")}
               </p>
-            ) : (
+            ) : frozen ? null : (
               <p className="font-pixel text-lg">
                 {t(
                   "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
@@ -325,18 +325,17 @@ const EditFormInternal = ({
             )}
 
             <div className="flex gap-2">
-              <Button type="submit" text={t("form.Submit")} disabled={closed} />
+              <Button type="submit" text={t("form.Submit")} disabled={frozen} />
               <Button
                 type="button"
                 text={t("form.Delete")}
                 onClick={handleDelete}
-                disabled={closed}
+                disabled={frozen}
               />
             </div>
           </div>
         </Form>
       </Window>
-      <PaymentInfo price={price} products={products} />
     </div>
   );
 };
