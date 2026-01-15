@@ -8,13 +8,13 @@ export default async function Footer() {
   const sponsors = await payload.find({ collection: "sponsors" });
   const t = await getI18n();
   return (
-    <footer className="bg-accent-light relative flex h-[300px] flex-col items-center justify-center py-24 text-black">
+    <footer className="bg-accent-light relative flex flex-col items-center justify-center py-12 text-black">
       {sponsors.totalDocs > 0 && (
         <>
           <p className="text-center font-mono text-lg font-bold">
             {t("sponsors-title")}
           </p>
-          <div className="mt-6 flex gap-8">
+          <div className="mt-6 flex flex-wrap justify-center gap-8">
             {sponsors.docs.map((sponsor) => (
               <Sponsor key={sponsor.id} sponsor={sponsor} />
             ))}
