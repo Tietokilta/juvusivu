@@ -12,10 +12,7 @@ export const fetchEvent = async (
 ): Promise<ApiResponse<UserEventResponse>> => {
   try {
     const response = await fetch(`${ILMOMASIINA_API_BASE_URL}/events/${slug}`, {
-      next: {
-        tags: ["ilmomasiina-events"],
-        revalidate: 30, // 30 seconds
-      },
+      cache: "no-store",
     });
     if (!response.ok) {
       if (response.status === 404) {
