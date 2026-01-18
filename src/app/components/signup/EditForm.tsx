@@ -28,7 +28,15 @@ import { SignupConfirmTime } from "@components/signup/SignupConfirmTime";
 import { PaymentInfo } from "@components/signup/PaymentInfo";
 import { ILMOMASIINA_API_BASE_URL } from "@util/constants";
 
-export const EditForm = ({ id, token }: { id: string; token: string }) => {
+export const EditForm = ({
+  id,
+  token,
+  paid,
+}: {
+  id: string;
+  token: string;
+  paid?: boolean;
+}) => {
   // Set ilmomasiina API base URL
   configureApi(ILMOMASIINA_API_BASE_URL);
   const [refetchKey, setRefetchKey] = useState(0);
@@ -41,6 +49,7 @@ export const EditForm = ({ id, token }: { id: string; token: string }) => {
       editToken={token}
       key={refetchKey}
       language={locale}
+      paid={paid}
     >
       <EditFormInternal
         onRefetch={() => {

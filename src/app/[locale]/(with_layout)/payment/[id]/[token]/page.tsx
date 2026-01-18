@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 
 export default async function Page({ params }: PageProps) {
   const { id, token } = await params;
-  return <EditForm id={id} token={token} />;
+  return <EditForm id={id} token={token} paid />;
 }
