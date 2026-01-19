@@ -2,6 +2,7 @@
 import {
   PaymentMode,
   SignupPaymentStatus,
+  SignupStatus,
 } from "@tietokilta/ilmomasiina-models";
 import { Window } from "@components/Window";
 import { useI18n, useScopedI18n } from "@locales/client";
@@ -49,7 +50,7 @@ export const PaymentInfo = () => {
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (!signup) {
+  if (!signup || signup.status == SignupStatus.IN_QUEUE) {
     return null;
   }
 
