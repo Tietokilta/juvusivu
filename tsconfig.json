@@ -24,7 +24,8 @@
       "@util/*": ["./src/util/*"],
       "@fonts/*": ["./public/fonts/*"],
       "@payload-config": ["./payload.config.ts"],
-      "@locales/*": ["./locales/*"]
+      "@locales/*": ["./locales/*"],
+      "@i18n/*": ["./src/i18n/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

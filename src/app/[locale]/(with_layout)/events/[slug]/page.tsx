@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { fetchEvent } from "@lib/api/external/ilmomasiina";
 import { Window } from "@components/Window";
-import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import { Metadata } from "next";
 import SignUpList from "@components/events/SignUpList";
 import QuotaWindow from "@components/events/QuotaWindow";
