@@ -59,6 +59,8 @@ const fi = {
   "errors.ilmo.fieldError.invalidEmail": "Virheellinen sähköpostiosoite.",
   "errors.ilmo.fieldError.notANumber": "Arvon tulee olla numero.",
   "errors.ilmo.fieldError.notAnOption": "Virheellinen valinta.",
+  "errors.ilmo.fieldError.duplicateOption":
+    "Kentän vastaus sisältää monta samaa valintaa.",
   "ilmomasiina.form.You are in queue at position": "Olet jonossa sijalla",
   "ilmomasiina.form.You are in the open quota at position":
     "Olet avoimessa kiintiössä sijalla",
@@ -99,6 +101,8 @@ const fi = {
   "ilmomasiina.form.This action cannot be undone.":
     "Tätä toimintoa ei voi perua.",
   "ilmomasiina.form.Cancel": "Peruuta",
+  "ilmomasiina.form.uneditablePaidQuestion":
+    "Tätä vastausta ei voi muuttaa, koska ilmoittautuminen on jo maksettu.",
   "ilmomasiina.headers.Alkaa": "Alkaa",
   "ilmomasiina.headers.Ilmoittautumisaika": "Ilmoittautumisaika",
   "ilmomasiina.headers.Kategoria": "Kategoria",
@@ -164,9 +168,9 @@ const fi = {
   "pay": "Maksa",
   "payment-info-message": "Maksaminen tapahtuu erillisten ohjeiden mukaisesti.",
   "payment.status.pending":
-    "Ilmoittautumisesi odottaa maksua. Kun olet maksanut ilmoittautumisen, sitä ei voi enää muokata tai perua itse.",
+    "Ilmoittautumisesi odottaa maksua. Kun olet maksanut ilmoittautumisen, maksullisten kysymysten vastauksia ei voi muuttaa tai ilmoittautumista perua itse.",
   "payment.status.paid":
-    "Ilmoittautumisesi on maksettu onnistuneesti. Ota yhteyttä tapahtuman järjestäjiin, jos haluat muokata tai perua ilmoittautumisesi.",
+    "Ilmoittautumisesi on maksettu onnistuneesti. Maksullisten kysymysten vastauksia ei voi enää muuttaa. Ota yhteyttä tapahtuman järjestäjiin, jos haluat muokata niitä tai perua ilmoittautumisesi.",
   "payment.status.refunded": "Maksusi on palautettu.",
 };
 

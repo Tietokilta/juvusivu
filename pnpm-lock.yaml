@@ -31,11 +31,11 @@ importers:
         specifier: ^0.4.4
         version: 0.4.4(tailwindcss@4.1.18)
       '@tietokilta/ilmomasiina-client':
-        specifier: 3.0.0-alpha.4
-        version: 3.0.0-alpha.4(react@19.2.1)
+        specifier: 3.0.0-alpha.6
+        version: 3.0.0-alpha.6(react@19.2.1)
       '@tietokilta/ilmomasiina-models':
-        specifier: 3.0.0-alpha.4
-        version: 3.0.0-alpha.4
+        specifier: 3.0.0-alpha.6
+        version: 3.0.0-alpha.6
       graphql:
         specifier: ^16.12.0
         version: 16.12.0
@@ -1197,16 +1197,16 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
 
-  '@tietokilta/ilmomasiina-client@3.0.0-alpha.4':
-    resolution: {integrity: sha512-DGiHgin1ffLhnGl8i47c0VcMhDPademjKqF+2Rw9BqSCbgzi8lyEqRUQCJDUUB6vJGkv6mNNBix7uyo/bVT0gg==}
+  '@tietokilta/ilmomasiina-client@3.0.0-alpha.6':
+    resolution: {integrity: sha512-VH0kuFjvRMEVsdwG4LaCUQI8idM+KF6qENM4zsTMXLHLTqMjo4+pJrhqJOe7sJ7Tb/5gOzipLdkpG3xiD1XcJw==}
     peerDependencies:
       react: ^17 || ^18 || ^19
     peerDependenciesMeta:
       react:
         optional: true
 
-  '@tietokilta/ilmomasiina-models@3.0.0-alpha.4':
-    resolution: {integrity: sha512-11ZGYyxVldO5exST8TFtWoTL5B99M+ADKXwXBT2ZMJdqKAI0X2rT2cBsgm46T/gLqZNrAaHIlRzY2WSkwu+emQ==}
+  '@tietokilta/ilmomasiina-models@3.0.0-alpha.6':
+    resolution: {integrity: sha512-7h4WEGo6svg3IREJ0xKxH1Hhm9fLRGtyra0Kx0RjQrgziR34B5bCf9J2DKFC10A2+PM9jtgVi1tFQTIDXdHfGw==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -5052,14 +5052,14 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.18
 
-  '@tietokilta/ilmomasiina-client@3.0.0-alpha.4(react@19.2.1)':
+  '@tietokilta/ilmomasiina-client@3.0.0-alpha.6(react@19.2.1)':
     dependencies:
-      '@tietokilta/ilmomasiina-models': 3.0.0-alpha.4
+      '@tietokilta/ilmomasiina-models': 3.0.0-alpha.6
       lodash-es: 4.17.22
     optionalDependencies:
       react: 19.2.1
 
-  '@tietokilta/ilmomasiina-models@3.0.0-alpha.4':
+  '@tietokilta/ilmomasiina-models@3.0.0-alpha.6':
     dependencies:
       typebox: 1.0.75
 
