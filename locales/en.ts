@@ -58,6 +58,8 @@ const en = {
   "errors.ilmo.fieldError.invalidEmail": "Invalid email address.",
   "errors.ilmo.fieldError.notANumber": "Value must be a number.",
   "errors.ilmo.fieldError.notAnOption": "Invalid option.",
+  "errors.ilmo.fieldError.duplicateOption":
+    "The answer to this question contains duplicate selections.",
   "ilmomasiina.form.You are in queue at position":
     "You are in queue at position",
   "ilmomasiina.form.You are in the open quota at position":
@@ -99,6 +101,8 @@ const en = {
   "ilmomasiina.form.Your signup cannot be changed anymore as the signup for the event has closed":
     "Your signup cannot be changed anymore as the signup for the event has closed.",
   "ilmomasiina.form.Cancel": "Cancel",
+  "ilmomasiina.form.uneditablePaidQuestion":
+    "This answer cannot be changed as the signup has already been paid.",
   "ilmomasiina.headers.Alkaa": "Starts",
   "ilmomasiina.headers.Ilmoittautumisaika": "Sign up time",
   "ilmomasiina.headers.Kategoria": "Category",
@@ -161,9 +165,9 @@ const en = {
   "pay": "Pay",
   "payment-info-message": "Payment is done according to separate instructions.",
   "payment.status.pending":
-    "Your signup is pending payment. Once you have paid for the signup, it can no longer be edited or cancelled by yourself.",
+    "Your signup is pending payment. Once you have paid for the signup, you can no longer edit answers to paid questions or cancel your signup.",
   "payment.status.paid":
-    "Your signup has been paid successfully. Contact the event organizers if you wish to edit or cancel your signup.",
+    "Your signup has been paid successfully. Answers to paid questions can no longer be changed. Contact the event organizers if you wish to edit those or cancel your signup.",
   "payment.status.refunded": "Your payment has been refunded.",
 };
 

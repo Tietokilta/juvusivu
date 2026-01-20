@@ -12,10 +12,10 @@ import { Window } from "@components/Window";
 import {
   ErrorCode,
   QuestionType,
-  SignupPaymentStatus,
   SignupUpdateBody,
   SignupValidationError,
 } from "@tietokilta/ilmomasiina-models";
+import { questionHasPrices } from "@tietokilta/ilmomasiina-client/dist/utils/paymentUtils";
 import { Button } from "@components/basic/Button";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
@@ -103,8 +103,15 @@ const EditFormInternal = ({
   showSuccess: boolean;
   onFormChange: () => void;
 }) => {
-  const { localizedEvent, localizedSignup, pending, confirmableUntil } =
-    useEditSignupContext();
+  const {
+    localizedEvent,
+    localizedSignup,
+    pending,
+    confirmableUntil,
+    canEdit,
+    canEditNameAndEmail,
+    canEditPaidQuestions,
+  } = useEditSignupContext();
   const router = useRouter();
   const saveSignup = useUpdateSignup();
   const deleteSignup = useDeleteSignup();
@@ -118,26 +125,33 @@ const EditFormInternal = ({
       new Date(localizedEvent.registrationEndDate) < new Date()) ||
     !localizedEvent?.registrationStartDate ||
     new Date(localizedEvent.registrationStartDate) > new Date();
-  const frozen =
-    closed || localizedSignup?.paymentStatus === SignupPaymentStatus.PAID;
 
   const SaveAction = async (prevState: SignupState, formData: FormData) => {
-    const firstName = formData.get("firstName") as string;
-    const lastName = formData.get("lastName") as string;
-    const email = formData.get("email") as string;
+    const firstName = (formData.get("firstName") as string) ?? undefined;
+    const lastName = (formData.get("lastName") as string) ?? undefined;
+    const email = (formData.get("email") as string) ?? undefined;
     const namePublic = formData.get("namePublic") === "on";
 
     // Process answers from questions
     const answers =
       localizedEvent?.questions.map((q) => {
-        if (q.type === QuestionType.CHECKBOX) {
+        if (!canEditPaidQuestions && questionHasPrices(q)) {
+          // Keep existing answer if paid question is not editable
+          return {
+            questionId: q.id,
+            answer:
+              localizedSignup?.answers.find(
+                (answer) => answer.questionId === q.id,
+              )?.answer ?? "",
+          };
+        } else if (q.type === QuestionType.CHECKBOX) {
           const values = formData.getAll(`question_${q.id}`) as string[];
           return {
             questionId: q.id,
             answer: values,
           };
         } else {
-          const value = formData.get(`question_${q.id}`) as string;
+          const value = formData.get(`question_${q.id}`) as string | null;
           return {
             questionId: q.id,
             answer: value || "",
@@ -247,7 +261,7 @@ const EditFormInternal = ({
                     name="firstName"
                     placeholder={t("form.First name")}
                     defaultValue={localizedSignup?.firstName ?? ""}
-                    disabled={confirmed || frozen}
+                    disabled={!canEditNameAndEmail}
                   />
                   <FieldErrorText error={errors?.firstName} />
                 </InputRow>
@@ -257,7 +271,7 @@ const EditFormInternal = ({
                     name="lastName"
                     placeholder={t("form.Last name")}
                     defaultValue={localizedSignup?.lastName ?? ""}
-                    disabled={confirmed || frozen}
+                    disabled={!canEditNameAndEmail}
                   />
                   <FieldErrorText error={errors?.lastName} />
                 </InputRow>
@@ -265,7 +279,7 @@ const EditFormInternal = ({
                   <Checkbox
                     name="namePublic"
                     defaultChecked={localizedSignup?.namePublic ?? false}
-                    disabled={frozen}
+                    disabled={!canEdit}
                   />
                   {t("form.Show name in the public list of sign ups")}
                 </label>
@@ -278,7 +292,7 @@ const EditFormInternal = ({
                   name="email"
                   placeholder={t("form.Email")}
                   defaultValue={localizedSignup?.email ?? ""}
-                  disabled={confirmed || frozen}
+                  disabled={!canEditNameAndEmail}
                 />
                 <FieldErrorText error={errors?.email} />
               </InputRow>
@@ -297,7 +311,6 @@ const EditFormInternal = ({
                       (answer) => answer.questionId === q.id,
                     )?.answer ?? undefined
                   }
-                  disabled={frozen}
                 />
                 <FieldErrorText error={errors?.answers?.[q.id]} />
               </InputRow>
@@ -307,7 +320,7 @@ const EditFormInternal = ({
               <p className="font-pixel text-juvu-red-dark text-lg">
                 {t_e("SignupsClosed")}
               </p>
-            ) : frozen ? null : (
+            ) : !canEdit ? null : (
               <p className="font-pixel text-lg">
                 {t(
                   "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
@@ -334,12 +347,16 @@ const EditFormInternal = ({
             )}
 
             <div className="flex gap-2">
-              <Button type="submit" text={t("form.Submit")} disabled={frozen} />
+              <Button
+                type="submit"
+                text={t("form.Submit")}
+                disabled={!canEdit}
+              />
               <Button
                 type="button"
                 text={t("form.Delete")}
                 onClick={handleDelete}
-                disabled={frozen}
+                disabled={!canEdit}
               />
             </div>
           </div>

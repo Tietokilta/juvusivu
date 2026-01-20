@@ -1,15 +1,21 @@
 import { Input, Checkbox, Radio, Textarea } from "@components/basic/input";
+import { useEditSignupContext } from "@tietokilta/ilmomasiina-client";
 import { Question, QuestionType } from "@tietokilta/ilmomasiina-models";
+import { questionHasPrices } from "@tietokilta/ilmomasiina-client/dist/utils/paymentUtils";
+import { useScopedI18n } from "@locales/client";
 
 export const QuestionInput = ({
   question,
   defaultValue,
-  disabled,
 }: {
   question: Question;
   defaultValue?: string | string[];
-  disabled?: boolean;
 }) => {
+  const { canEditPaidQuestions, canEdit } = useEditSignupContext();
+  const t = useScopedI18n("ilmomasiina.form");
+  const disabled =
+    !canEdit || (!canEditPaidQuestions && questionHasPrices(question));
+
   switch (question.type) {
     case QuestionType.TEXT:
       return (
@@ -48,6 +54,9 @@ export const QuestionInput = ({
               </div>
             );
           })}
+          {canEdit && disabled && (
+            <p className="font-pixel mt-2">{t("uneditablePaidQuestion")}</p>
+          )}
         </>
       );
     case QuestionType.SELECT:
@@ -70,6 +79,9 @@ export const QuestionInput = ({
               </div>
             );
           })}
+          {canEdit && disabled && (
+            <p className="font-pixel mt-2">{t("uneditablePaidQuestion")}</p>
+          )}
         </>
       );
     case QuestionType.NUMBER:
