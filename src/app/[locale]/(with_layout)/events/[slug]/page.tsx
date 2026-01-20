@@ -7,6 +7,7 @@ import QuotaWindow from "@components/events/QuotaWindow";
 import EventSummary from "@components/events/EventSummary";
 import { SignUpCountdown } from "@components/signup/SignUpCountdown";
 import { EventDescription } from "@components/events/EventDescription";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   robots: {
@@ -22,8 +23,8 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const t = await getScopedI18n("ilmomasiina");
-  const locale = await getCurrentLocale();
+  const t = await getTranslations("ilmomasiina");
+  const locale = await getLocale();
 
   const eventResponse = await fetchEvent(slug, locale);
   if (eventResponse.error) {

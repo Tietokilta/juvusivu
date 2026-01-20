@@ -1,10 +1,10 @@
-import { getI18n } from "@locales/server";
 import Header from "@components/Header";
 import { Window } from "@components/Window";
 import WarningIcon from "@components/icons/Warning";
+import { getTranslations } from "next-intl/server";
 
 export default async function NotFound() {
-  const t = await getI18n();
+  const t = await getTranslations();
 
   return (
     <>

@@ -1,9 +1,9 @@
 "use client";
-import { useScopedI18n } from "@locales/client";
 import {
   SignupForEditResponse,
   SignupStatus,
 } from "@tietokilta/ilmomasiina-models";
+import { useTranslations } from "next-intl";
 
 export const QuotaPositionText = ({
   signup,
@@ -12,7 +12,7 @@ export const QuotaPositionText = ({
   signup: SignupForEditResponse["signup"];
   event: SignupForEditResponse["event"];
 }) => {
-  const t = useScopedI18n("ilmomasiina.form");
+  const t = useTranslations("ilmomasiina.form");
   return (
     <p className="font-pixel text-lg">
       {signup.status === SignupStatus.IN_QUEUE

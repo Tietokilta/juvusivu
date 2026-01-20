@@ -1,18 +1,18 @@
 import { ProgressBar } from "@components/basic/ProgressBar";
 import { Window } from "@components/Window";
-import { getScopedI18n } from "@locales/server";
 import { getSignupsByQuota } from "@tietokilta/ilmomasiina-client/dist/utils/signupUtils";
 import {
   SignupStatus,
   UserEventResponse,
 } from "@tietokilta/ilmomasiina-models";
+import { getTranslations } from "next-intl/server";
 
 export default async function QuotaWindow({
   event,
 }: {
   event: UserEventResponse;
 }) {
-  const t = await getScopedI18n("ilmomasiina");
+  const t = await getTranslations("ilmomasiina");
 
   return (
     <Window title={t("quotas")} className="font-pixel">
@@ -38,7 +38,9 @@ export default async function QuotaWindow({
             );
           case SignupStatus.IN_QUEUE:
             if (quota.signupCount > 0) {
-              return <p>{`${t("Jonossa")}: ${quota.signupCount}`}</p>;
+              return (
+                <p key={"queue"}>{`${t("Jonossa")}: ${quota.signupCount}`}</p>
+              );
             }
         }
       })}

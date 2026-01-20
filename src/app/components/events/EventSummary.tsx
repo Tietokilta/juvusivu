@@ -1,15 +1,15 @@
 import { Window } from "@components/Window";
-import { getCurrentLocale, getScopedI18n } from "@locales/server";
 import { UserEventResponse } from "@tietokilta/ilmomasiina-models";
 import { dateFormatter } from "@util/index";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function EventSummary({
   event,
 }: {
   event: UserEventResponse;
 }) {
-  const t = await getScopedI18n("ilmomasiina");
-  const locale = await getCurrentLocale();
+  const t = await getTranslations("ilmomasiina");
+  const locale = await getLocale();
 
   return (
     <Window title={event.title}>

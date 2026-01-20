@@ -4,7 +4,7 @@ import { Button } from "./basic/Button";
 import CloseIcon from "./icons/Close";
 import MaximizeIcon from "./icons/Maximize";
 import MinimizeIcon from "./icons/Minimize";
-import { useI18n } from "@locales/client";
+import { useTranslations } from "next-intl";
 
 export const Window: React.FC<{
   children: React.ReactNode;
@@ -14,7 +14,7 @@ export const Window: React.FC<{
   className?: string;
   hidePadding?: boolean;
 }> = ({ children, link, title, windowPath, className, hidePadding }) => {
-  const t = useI18n();
+  const t = useTranslations();
   const [minimised, setMinimised] = useState(false);
   const [showWindow, setShowWindow] = useState(true);
 

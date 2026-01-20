@@ -5,7 +5,7 @@ import { BouncyLogo } from "@components/BouncyLogo";
 import CountDown from "@components/CountDown";
 import { Window } from "@components/Window";
 import { fetchEvent } from "@lib/api/external/ilmomasiina";
-import { getCurrentLocale, getI18n } from "@locales/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { SignUpCountdown } from "@components/signup/SignUpCountdown";
 import SignUpList from "@components/events/SignUpList";
@@ -16,8 +16,8 @@ import QuotaWindow from "@components/events/QuotaWindow";
 
 export default async function M0content({ slug }: { slug?: string }) {
   const payload = await getPayload({ config: configPromise });
-  const locale = await getCurrentLocale();
-  const t = await getI18n();
+  const locale = await getLocale();
+  const t = await getTranslations();
 
   const config = await payload.findGlobal({
     slug: "m0config",

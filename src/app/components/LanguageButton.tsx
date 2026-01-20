@@ -1,9 +1,10 @@
 "use client";
 
-import { useChangeLocale, useCurrentLocale } from "@locales/client";
+import { useChangeLocale } from "@i18n/routing";
+import { useLocale } from "next-intl";
 
 export const LanguageButton = () => {
-  const locale = useCurrentLocale();
+  const locale = useLocale();
   const changeLocale = useChangeLocale();
   return (
     <button

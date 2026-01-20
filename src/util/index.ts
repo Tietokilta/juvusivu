@@ -1,4 +1,4 @@
-import { useScopedI18n } from "@locales/client";
+import { useTranslations } from "next-intl";
 import { useCallback } from "react";
 
 export const isCloudStorageEnabled = (): boolean => {
@@ -23,7 +23,7 @@ export const dateFormatter = (date: string, locale: "en" | "fi"): string => {
 
 // From ilmomasiina duration formatting
 export function useDurationFormatter() {
-  const t = useScopedI18n("duration");
+  const t = useTranslations("duration");
   return useCallback(
     (ms: number) => {
       const sec = ms / 1000;
