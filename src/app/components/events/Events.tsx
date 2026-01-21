@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { EventBox } from "./EventBox";
-import { Locale } from "@locales/server";
+import { Locale } from "next-intl";
 
 export default async function Events({
   locale,

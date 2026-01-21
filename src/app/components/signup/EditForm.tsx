@@ -20,13 +20,13 @@ import { Button } from "@components/basic/Button";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
 import { FormEvent, startTransition, useActionState, useState } from "react";
-import { useCurrentLocale, useI18n, useScopedI18n } from "@locales/client";
 import { FieldErrorText } from "@components/signup/FieldErrorText";
 import { QuestionInput } from "@components/signup/QuestionInput";
 import { QuotaPositionText } from "@components/signup/QuotaPositionText";
 import { SignupConfirmTime } from "@components/signup/SignupConfirmTime";
 import { PaymentInfo } from "@components/signup/PaymentInfo";
 import { ILMOMASIINA_API_BASE_URL } from "@util/constants";
+import { useLocale, useTranslations } from "next-intl";
 
 export const EditForm = ({
   id,
@@ -41,7 +41,7 @@ export const EditForm = ({
   configureApi(ILMOMASIINA_API_BASE_URL);
   const [refetchKey, setRefetchKey] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
-  const locale = useCurrentLocale();
+  const locale = useLocale();
 
   return (
     <EditSignupProvider
@@ -74,7 +74,7 @@ const InputRow = ({
   mandatory?: boolean;
   publicField?: boolean;
 }) => {
-  const t = useI18n();
+  const t = useTranslations();
   return (
     <div className="mb-2">
       <p className="font-pixel text-lg">
@@ -115,9 +115,9 @@ const EditFormInternal = ({
   const router = useRouter();
   const saveSignup = useUpdateSignup();
   const deleteSignup = useDeleteSignup();
-  const t = useScopedI18n("ilmomasiina");
-  const t_e = useScopedI18n("errors.ilmo.code");
-  const t_general = useI18n();
+  const t = useTranslations("ilmomasiina");
+  const t_e = useTranslations("errors.ilmo.code");
+  const t_general = useTranslations();
   const [saved, setSaved] = useState<boolean>(false);
   const confirmed = localizedSignup?.confirmed || saved;
   const closed =
@@ -246,10 +246,7 @@ const EditFormInternal = ({
           action={() => undefined}
         >
           <div className="flex flex-col gap-2">
-            <QuotaPositionText
-              signup={localizedSignup}
-              event={localizedEvent}
-            />
+            <QuotaPositionText signup={localizedSignup} />
             {!confirmed && (
               <SignupConfirmTime confirmableUntil={confirmableUntil} />
             )}
@@ -281,7 +278,7 @@ const EditFormInternal = ({
                     defaultChecked={localizedSignup?.namePublic ?? false}
                     disabled={!canEdit}
                   />
-                  {t("form.Show name in the public list of sign ups")}
+                  {t("form.namePublic")}
                 </label>
               </>
             )}
@@ -321,11 +318,7 @@ const EditFormInternal = ({
                 {t_e("SignupsClosed")}
               </p>
             ) : !canEdit ? null : (
-              <p className="font-pixel text-lg">
-                {t(
-                  "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
-                )}
-              </p>
+              <p className="font-pixel text-lg">{t("form.editInstructions")}</p>
             )}
 
             {state?.success && (

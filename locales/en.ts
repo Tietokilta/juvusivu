@@ -1,6 +1,8 @@
-import fi, { assertType } from "./fi";
+import { i18nResources } from "@tietokilta/ilmomasiina-client/dist/locales/index";
 
-const en = {
+const ilmo = i18nResources.en.public;
+
+export const en = {
   "sponsors-title": "Supporting the Jubilee-year",
   "navbar-title": "Tietokilta 40 years",
   "open-button": "Open",
@@ -8,155 +10,11 @@ const en = {
   "loading": "Loading...",
   "ready": "Ready",
   "cancel": "Cancel",
-  "errors.ilmomasiina-event-not-found":
-    "Event not found. Please check the URL.",
-  "errors.ilmomasiina-fetch-fail":
-    "Failed to fetch events from Ilmomasiina. Please try again later.",
-  "errors.ilmomasiina-ilmo-missing-quota-id":
-    "Invalid request. Please try again.",
-  "errors.ilmomasiina-signup-not-found":
-    "Sign up not found. Please check the URL.",
-  "errors.ilmomasiina-unknown-error":
-    "An unknown error occurred. Please try again later.",
-  "errors.ilmomasiina-validation-failed":
-    "Validation failed. Please check the form.",
-  "errors.ilmo.code.BadSession": "Session has expired. Please log in again.",
-  "errors.ilmo.code.EditConflict": "Edit conflict. Please try again.",
-  "errors.ilmo.code.WouldMoveSignupsToQueue":
-    "Signups would be moved to the queue.",
-  "errors.ilmo.code.WrongOldPassword": "Incorrect old password.",
-  "errors.ilmo.code.SignupsClosed": "Signups are closed.",
-  "errors.ilmo.code.NoSuchQuota": "Quota not found.",
-  "errors.ilmo.code.NoSuchSignup": "Signup not found.",
-  "errors.ilmo.code.BadEditToken": "Invalid edit token.",
-  "errors.ilmo.code.CannotDeleteSelf": "You cannot delete yourself.",
-  "errors.ilmo.code.InitialSetupNeeded": "Initial setup needed.",
-  "errors.ilmo.code.InitialSetupAlreadyDone": "Initial setup already done.",
-  "errors.ilmo.code.SignupValidationError": "Signup validation failed.",
-  "errors.ilmo.code.EventValidationError": "Event validation failed.",
-  "errors.ilmo.code.FST_ERR_VALIDATION": "Validation failed.",
-  "errors.ilmo.code.OnlinePaymentsDisabled":
-    "Online payments are not enabled for this event.",
-  "errors.ilmo.code.SignupAlreadyPaid":
-    "Your signup has already been paid. Try refreshing the page.",
-  "errors.ilmo.code.PaymentNotRequired":
-    "Your signup does not require payment. Try refreshing the page.",
-  "errors.ilmo.code.PaymentInProgress":
-    "A payment is already being created. Try again in a moment.",
-  "errors.ilmo.code.PaymentNotFound":
-    "The payment was not found. Try refreshing the page.",
-  "errors.ilmo.code.PaymentNotComplete":
-    "The payment is not yet complete. Try refreshing the page.",
-  "errors.ilmo.code.PaymentRateLimited":
-    "The payment service is currently experiencing high traffic. Try again in a moment.",
-  "errors.ilmo.code.DefaultPaymentError":
-    "Payment failed. Try refreshing the page or contact the administrators.",
-  "errors.ilmo.code.SignupNotConfirmed": "Signup not confirmed.",
-  "errors.ilmo.fieldError.missing": "This field is required.",
-  "errors.ilmo.fieldError.wrongType": "Invalid type.",
-  "errors.ilmo.fieldError.tooLong": "Value is too long.",
-  "errors.ilmo.fieldError.invalidEmail": "Invalid email address.",
-  "errors.ilmo.fieldError.notANumber": "Value must be a number.",
-  "errors.ilmo.fieldError.notAnOption": "Invalid option.",
-  "errors.ilmo.fieldError.duplicateOption":
-    "The answer to this question contains duplicate selections.",
-  "ilmomasiina.form.You are in queue at position":
-    "You are in queue at position",
-  "ilmomasiina.form.You are in the open quota at position":
-    "You are in the open quota at position",
-  "ilmomasiina.form.You are in the quota": "You are in the quota",
-  "ilmomasiina.form.at position": "at position",
-  "ilmomasiina.form.fieldError.missing": "This field is required.",
-  "ilmomasiina.form.fieldError.wrongType":
-    "The answer to this field is of the wrong type. Try refreshing the page.",
-  "ilmomasiina.form.fieldError.tooLong":
-    "Please enter a shorter value for this field.",
-  "ilmomasiina.form.fieldError.invalidEmail":
-    "Please enter a valid email address.",
-  "ilmomasiina.form.fieldError.notANumber": "Please enter a valid number.",
-  "ilmomasiina.form.fieldError.notAnOption":
-    "The answer to this question isn't in the allowed options. Try refreshing the page.",
-  "ilmomasiina.form.optional": "optional",
-  "ilmomasiina.form.Shown in the public list of sign ups":
-    "Shown in the public list of sign ups",
-  "ilmomasiina.form.Note: Sign up integration is in beta, if you encounter any issues you can sign up directly on the event page: {eventUrl}":
-    "Note: Sign up integration is in beta, if you encounter any issues you can sign up directly on the event page: {eventUrl}",
-  "ilmomasiina.form.First name": "First name",
-  "ilmomasiina.form.Last name": "Last name",
-  "ilmomasiina.form.Email": "Email",
-  "ilmomasiina.form.Show name in the public list of sign ups":
-    "Show name in the public list of sign ups",
-  "ilmomasiina.form.Submit": "Submit",
-  "ilmomasiina.form.Update": "Update",
-  "ilmomasiina.form.Delete": "Delete",
-  "ilmomasiina.form.Edit sign up": "Edit sign up",
-  "ilmomasiina.form.Delete sign up": "Delete sign up",
-  "ilmomasiina.form.Sign up saved": "Sign up saved!",
-  "ilmomasiina.form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message":
-    "You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message.",
-  "ilmomasiina.form.Are you sure you want to delete your sign up to {eventTitle}? If you delete your sign up, you will lose your place in the queue.":
-    "Are you sure you want to delete your sign up to {eventTitle}? If you delete your sign up, you will lose your place in the queue.",
-  "ilmomasiina.form.This action cannot be undone.":
-    "This action cannot be undone.",
-  "ilmomasiina.form.Your signup cannot be changed anymore as the signup for the event has closed":
-    "Your signup cannot be changed anymore as the signup for the event has closed.",
-  "ilmomasiina.form.Cancel": "Cancel",
-  "ilmomasiina.form.uneditablePaidQuestion":
-    "This answer cannot be changed as the signup has already been paid.",
-  "ilmomasiina.headers.Alkaa": "Starts",
-  "ilmomasiina.headers.Ilmoittautumisaika": "Sign up time",
-  "ilmomasiina.headers.Kategoria": "Category",
-  "ilmomasiina.headers.Kiintiö": "Quota",
-  "ilmomasiina.headers.Loppuu": "Ends",
-  "ilmomasiina.headers.Nimi": "Name",
-  "ilmomasiina.headers.Paikka": "Location",
-  "ilmomasiina.headers.Hinta": "Price",
-  "ilmomasiina.headers.Sija": "Place",
-  "ilmomasiina.Ilmoittautuminen": "Sign up",
-  "ilmomasiina.Ilmoittautuneet": "Signed up",
-  "ilmomasiina.Ilmoittautuneita": "Signed up",
-  "ilmomasiina.Ei ilmoittautumista": "No Signup",
-  "ilmomasiina.Piilotettu": "Hidden",
-  "ilmomasiina.Vahvistamaton": "Unconfirmed",
-  "ilmomasiina.Avoin kiintiö": "Open quota",
-  "ilmomasiina.Jonossa": "In queue",
-  "ilmomasiina.path.events": "events",
-  "ilmomasiina.path.all-events": "all-events",
-  "ilmomasiina.all-events.Kaikki tapahtumat": "All events",
-  "ilmomasiina.status.Ei ilmoittautuneita vielä": "No sign ups yet.",
-  "ilmomasiina.status.Ilmoittautuminen alkaa": "Sign up starts on {startDate}",
-  "ilmomasiina.status.Ilmo alkaa": "Sign up starts {startDate}",
-  "ilmomasiina.status.Ilmoittautuminen auki":
-    "Open for sign ups until {endDate}",
-  "ilmomasiina.status.Ilmo auki": "Sign up until {endDate}",
-  "ilmomasiina.status.Ilmoittautuminen on päättynyt": "Sign up has ended",
-  "ilmomasiina.status.Ilmoittautumistiedot eivät ole julkisia":
-    "Sign ups are not public",
-  "ilmomasiina.status.Jonossa": "{queueCount} in the queue",
-  "ilmomasiina.quotas": "Quotas",
-  "ilmomasiina.description": "Event description",
-  "ilmomasiina.signup": "Sign up",
-  "ilmomasiina.signup-for": "Sign up for",
-  "ilmomasiina.delete-confirm": "Are you sure you want to delete your signup?",
-  "ilmomasiina.loading-signup": "Loading signup",
-  "ilmomasiina.delete-fail": "Failed to delete signup. Please try again later.",
-  "ilmomasiina.confirm-time-left": "Your signup is still valid for",
-  "ilmomasiina.confirm-save-or-lose":
-    "Save the form to make sure it doesn't expire.",
-  "ilmo.status.open": "Open",
-  "ilmo.status.closed": "Closed",
-  "ilmo.status.opens-at": "Opens at",
-  "ilmo.status.open-until": "Open until",
-  "ilmo.status.closed-at": "Closed at",
   "page-not-found": "Page not found",
   "tried-to-access": "You tried to access:",
   "error": "Error",
   "jubilee": "Jubilee",
   "jubilee-events-title": "Jubilee events",
-  "duration.secs": "seconds",
-  "duration.mins": "minutes",
-  "duration.hours": "hours",
-  "duration.days": "days",
   "total-price": "Total",
   "payment-info": "Payment information",
   "product": "Product",
@@ -164,14 +22,148 @@ const en = {
   "public": "public",
   "pay": "Pay",
   "payment-info-message": "Payment is done according to separate instructions.",
-  "payment.status.pending":
-    "Your signup is pending payment. Once you have paid for the signup, you can no longer edit answers to paid questions or cancel your signup.",
-  "payment.status.paid":
-    "Your signup has been paid successfully. Answers to paid questions can no longer be changed. Contact the event organizers if you wish to edit those or cancel your signup.",
-  "payment.status.refunded": "Your payment has been refunded.",
+  "errors": {
+    "ilmomasiina-event-not-found": "Event not found. Please check the URL.",
+    "ilmomasiina-fetch-fail":
+      "Failed to fetch events from Ilmomasiina. Please try again later.",
+    "ilmomasiina-ilmo-missing-quota-id": "Invalid request. Please try again.",
+    "ilmomasiina-signup-not-found": "Sign up not found. Please check the URL.",
+    "ilmomasiina-unknown-error":
+      "An unknown error occurred. Please try again later.",
+    "ilmomasiina-validation-failed":
+      "Validation failed. Please check the form.",
+    "ilmo": {
+      code: {
+        BadSession: "Session has expired. Please log in again.",
+        EditConflict: "Edit conflict. Please try again.",
+        WouldMoveSignupsToQueue: "Signups would be moved to the queue.",
+        WrongOldPassword: "Incorrect old password.",
+        SignupsClosed: "Signups are closed.",
+        NoSuchQuota: "Quota not found.",
+        NoSuchSignup: "Signup not found.",
+        BadEditToken: "Invalid edit token.",
+        CannotDeleteSelf: "You cannot delete yourself.",
+        InitialSetupNeeded: "Initial setup needed.",
+        InitialSetupAlreadyDone: "Initial setup already done.",
+        SignupValidationError: "Signup validation failed.",
+        EventValidationError: "Event validation failed.",
+        FST_ERR_VALIDATION: "Validation failed.",
+        SignupNotConfirmed: "Signup not confirmed.",
+        OnlinePaymentsDisabled:
+          ilmo["editSignup.paymentError.OnlinePaymentsDisabled.description"],
+        SignupAlreadyPaid:
+          ilmo["editSignup.paymentError.SignupAlreadyPaid.description"],
+        PaymentNotRequired:
+          ilmo["editSignup.paymentError.PaymentNotRequired.description"],
+        PaymentInProgress:
+          ilmo["editSignup.paymentError.PaymentInProgress.description"],
+        PaymentNotFound:
+          ilmo["editSignup.paymentError.PaymentNotFound.description"],
+        PaymentNotComplete:
+          ilmo["editSignup.paymentError.PaymentNotComplete.description"],
+        PaymentRateLimited:
+          ilmo["editSignup.paymentError.PaymentRateLimited.description"],
+        DefaultPaymentError:
+          ilmo["editSignup.paymentError.default.description"],
+      },
+      fieldError: {
+        missing: ilmo["editSignup.fieldError.missing"],
+        wrongType: ilmo["editSignup.fieldError.wrongType"],
+        tooLong: ilmo["editSignup.fieldError.tooLong"],
+        invalidEmail: ilmo["editSignup.fieldError.invalidEmail"],
+        notANumber: ilmo["editSignup.fieldError.notANumber"],
+        notAnOption: ilmo["editSignup.fieldError.notAnOption"],
+        duplicateOption: ilmo["editSignup.fieldError.duplicateOption"],
+      },
+    },
+  },
+  "ilmomasiina": {
+    "Ilmoittautuminen": "Sign up",
+    "Ilmoittautuneet": "Signed up",
+    "Ilmoittautuneita": "Signed up",
+    "Ei ilmoittautumista": "No Signup",
+    "Piilotettu": "Hidden",
+    "Vahvistamaton": "Unconfirmed",
+    "Avoin kiintiö": "Open quota",
+    "Jonossa": "In queue",
+    "quotas": "Quotas",
+    "description": "Event description",
+    "signup": "Sign up",
+    "signup-for": "Sign up for",
+    "delete-confirm": "Are you sure you want to delete your signup?",
+    "loading-signup": "Loading signup",
+    "delete-fail": "Failed to delete signup. Please try again later.",
+    "confirm-time-left": "Your signup is still valid for",
+    "confirm-save-or-lose": "Save the form to make sure it doesn't expire.",
+    "form": {
+      "optional": "optional",
+      "Shown in the public list of sign ups":
+        "Shown in the public list of sign ups",
+      "First name": ilmo["editSignup.fields.firstName"],
+      "Last name": ilmo["editSignup.fields.lastName"],
+      "Email": ilmo["editSignup.fields.email"],
+      "namePublic": ilmo["editSignup.namePublic"],
+      "Submit": "Submit",
+      "Update": "Update",
+      "Delete": "Delete",
+      "Edit sign up": "Edit sign up",
+      "Delete sign up": "Delete sign up",
+      "Sign up saved": "Sign up saved!",
+      "editInstructions": `${ilmo["editSignup.editInstructions"]} ${ilmo["editSignup.editInstructions.email"]}`,
+      "Cancel": "Cancel",
+      "uneditablePaidQuestion": ilmo["editSignup.uneditablePaidQuestion"],
+    },
+    "headers": {
+      Alkaa: ilmo["singleEvent.info.startDate"],
+      Kategoria: ilmo["singleEvent.info.category"],
+      Loppuu: ilmo["singleEvent.info.endDate"],
+      Paikka: ilmo["singleEvent.info.location"],
+      Hinta: ilmo["singleEvent.info.price"],
+      Sija: ilmo["singleEvent.signups.position"],
+      Nimi: ilmo["singleEvent.signups.name"],
+      Kiintiö: ilmo["singleEvent.signups.quota"],
+      Ilmoittautumisaika: ilmo["singleEvent.signups.signupTime"],
+    },
+    "path": {
+      "events": "events",
+      "all-events": "all-events",
+    },
+    "all-events": {
+      "Kaikki tapahtumat": "All events",
+    },
+    "status": {
+      "Ei ilmoittautuneita vielä": "No sign ups yet.",
+      "Ilmoittautumistiedot eivät ole julkisia": "Sign ups are not public",
+      "Jonossa": "{queueCount} in the queue",
+    },
+    "position": {
+      quota: "You are in the quota {quota} in position {position}.",
+      queue: "You are in the queue in position {position}.",
+      openQuota: "You are in the open quota in position {position}.",
+    },
+  },
+  "ilmo": {
+    status: {
+      "open": "Open",
+      "closed": "Closed",
+      "opens-at": "Opens at",
+      "open-until": "Open until",
+      "closed-at": "Closed at",
+    },
+  },
+  "duration": {
+    secs: "seconds",
+    mins: "minutes",
+    hours: "hours",
+    days: "days",
+  },
+  "payment": {
+    status: {
+      pending: ilmo["editSignup.payment.status.pending"],
+      paid: ilmo["editSignup.payment.status.paid"],
+      refunded: ilmo["editSignup.payment.status.refunded"],
+    },
+  },
 };
-
-type FiKey = keyof typeof fi;
-assertType<Record<FiKey, string>>(en);
 
 export default en;

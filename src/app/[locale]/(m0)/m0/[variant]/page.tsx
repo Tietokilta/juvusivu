@@ -1,5 +1,5 @@
 import M0content from "@components/m0/m0";
-import { getCurrentLocale } from "@locales/server";
+import { getLocale } from "next-intl/server";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { notFound } from "next/navigation";
@@ -11,7 +11,7 @@ export default async function Page({
 }) {
   const { variant } = await params;
   const payload = await getPayload({ config: configPromise });
-  const locale = await getCurrentLocale();
+  const locale = await getLocale();
 
   const config = await payload.findGlobal({
     slug: "m0config",

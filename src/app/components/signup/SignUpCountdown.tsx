@@ -3,7 +3,7 @@ import { UserEventResponse } from "@tietokilta/ilmomasiina-models";
 import Countdown from "react-countdown";
 import { SignUp } from "./SignUp";
 import { dateFormatter } from "@util/index";
-import { useCurrentLocale, useScopedI18n } from "@locales/client";
+import { useLocale, useTranslations } from "next-intl";
 
 export const SignUpCountdown = ({ event }: { event: UserEventResponse }) => {
   const openingTime = new Date(event.registrationStartDate || Date.now());
@@ -70,8 +70,8 @@ const SignupStatusText = ({
   isOpen: boolean;
   isClosed: boolean;
 }) => {
-  const locale = useCurrentLocale();
-  const t = useScopedI18n("ilmo.status");
+  const locale = useLocale();
+  const t = useTranslations("ilmo.status");
   if (isOpen) {
     // Open
     if (!event.registrationEndDate) {

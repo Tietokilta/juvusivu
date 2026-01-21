@@ -5,7 +5,6 @@ import {
   SignupStatus,
 } from "@tietokilta/ilmomasiina-models";
 import { Window } from "@components/Window";
-import { useI18n, useScopedI18n } from "@locales/client";
 import { Button } from "@components/basic/Button";
 import {
   ApiError,
@@ -13,6 +12,7 @@ import {
   useStartPayment,
 } from "@tietokilta/ilmomasiina-client";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const Payment = ({
   status,
@@ -21,8 +21,8 @@ const Payment = ({
   status: SignupPaymentStatus | null | undefined;
   paymentError?: ApiError;
 }) => {
-  const t = useI18n();
-  const t_e = useScopedI18n("errors.ilmo.code");
+  const t = useTranslations();
+  const t_e = useTranslations("errors.ilmo.code");
   if (paymentError) {
     return (
       <p className="text-juvu-red-dark">
@@ -44,8 +44,8 @@ const Payment = ({
 
 export const PaymentInfo = () => {
   const { signup, event, paymentError } = useEditSignupContext();
-  const t = useI18n();
-  const t_e = useScopedI18n("errors.ilmo.code");
+  const t = useTranslations();
+  const t_e = useTranslations("errors.ilmo.code");
   const paymentUrl = useStartPayment();
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);

@@ -1,9 +1,9 @@
 import Events from "@components/events/Events";
-import { getCurrentLocale, getI18n } from "@locales/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 export default async function InfoscreenPage() {
-  const locale = await getCurrentLocale();
-  const t = await getI18n();
+  const locale = await getLocale();
+  const t = await getTranslations();
 
   return (
     <div className="h-full min-h-screen w-full p-8">

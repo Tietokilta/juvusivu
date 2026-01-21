@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
-import { getCurrentLocale } from "@locales/server";
+import { getLocale } from "next-intl/server";
 import Header from "@components/Header";
 import { Window } from "@components/Window";
 import { notFound, redirect } from "next/navigation";
@@ -15,7 +15,7 @@ type Props = NextPage<{ path: string[] }>;
 export default async function Page(props: Props) {
   const params = await props.params;
   const payload = await getPayload({ config: configPromise });
-  const locale = await getCurrentLocale();
+  const locale = await getLocale();
   const slug = Array.isArray(params?.path)
     ? params!.path.join("/")
     : (params?.path ?? "");

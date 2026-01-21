@@ -1,5 +1,4 @@
 "use client";
-import { useScopedI18n } from "@locales/client";
 import { Button } from "@components/basic/Button";
 import {
   ApiError,
@@ -10,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { Quota } from "@tietokilta/ilmomasiina-models";
 import React, { useState } from "react";
 import { ILMOMASIINA_API_BASE_URL } from "@util/constants";
+import { useTranslations } from "next-intl";
 
 export const SignUp = ({
   quota,
@@ -18,8 +18,8 @@ export const SignUp = ({
   quota: Quota;
   disabled: boolean;
 }) => {
-  const t = useScopedI18n("ilmomasiina");
-  const t_e = useScopedI18n("errors.ilmo.code");
+  const t = useTranslations("ilmomasiina");
+  const t_e = useTranslations("errors.ilmo.code");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<ApiError | null>(null);
   const router = useRouter();

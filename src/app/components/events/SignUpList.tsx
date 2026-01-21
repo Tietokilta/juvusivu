@@ -1,4 +1,3 @@
-import { getScopedI18n } from "@locales/server";
 import {
   UserEventResponse,
   SignupStatus,
@@ -10,6 +9,7 @@ import {
   QuotaSignups,
   SignupWithQuota,
 } from "@tietokilta/ilmomasiina-client/dist/utils/signupUtils";
+import { getTranslations } from "next-intl/server";
 
 function getFormattedAnswer(
   question: Question,
@@ -37,7 +37,7 @@ async function SignUpRow({
   publicQuestions: Question[];
   isGeneratedQuota: boolean;
 }) {
-  const t = await getScopedI18n("ilmomasiina");
+  const t = await getTranslations("ilmomasiina");
   return (
     <tr className="odd:bg-row-odd even:bg-row-even">
       <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
@@ -85,7 +85,7 @@ async function SignUpTable({
   publicQuestions: Question[];
   signupsPublic?: boolean;
 }) {
-  const t = await getScopedI18n("ilmomasiina");
+  const t = await getTranslations("ilmomasiina");
 
   if (!signupsPublic) {
     return <p>{t("status.Ilmoittautumistiedot eivät ole julkisia")}</p>;
@@ -156,7 +156,7 @@ async function SignUpList({ event }: { event: UserEventResponse }) {
   if (!event.registrationStartDate || !event.registrationEndDate) {
     return null;
   }
-  const t = await getScopedI18n("ilmomasiina");
+  const t = await getTranslations("ilmomasiina");
 
   const signupsByQuota = getSignupsByQuota(event);
 

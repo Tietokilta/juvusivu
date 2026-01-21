@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Roboto_Mono } from "next/font/google";
 import "./globals.css";
-import { I18nProviderClient } from "@locales/client";
+import { Locale, NextIntlClientProvider } from "next-intl";
 import localFont from "next/font/local";
+import { routing } from "@i18n/routing";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -48,11 +49,8 @@ export const metadata: Metadata = {
   icons,
 };
 
-const locales = ["en", "fi"] as const;
-type Locale = (typeof locales)[number];
-
 export function generateStaticParams() {
-  return locales.map((l) => ({ locale: l }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -60,15 +58,18 @@ export default async function LocaleLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+  const validLocale = locale as Locale;
   return (
-    <html lang={locale} className="bg-accent-light">
+    <html lang={validLocale} className="bg-accent-light">
       <body
         className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${redactionFont.variable} antialiased`}
       >
-        <I18nProviderClient locale={locale}>{children}</I18nProviderClient>
+        <NextIntlClientProvider locale={validLocale}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

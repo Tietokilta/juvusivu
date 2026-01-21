@@ -9,7 +9,7 @@ import {
 import Events from "../events/Events";
 import React, { JSX } from "react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
-import { getCurrentLocale } from "@locales/server";
+import { getLocale } from "next-intl/server";
 import { EventGridBlock, EventGridBlockType } from "./Blocks";
 
 type NodeTypes = DefaultNodeTypes | SerializedBlockNode<EventGridBlockType>;
@@ -26,7 +26,7 @@ const headingClasses: Record<string, string> = {
 export const LexicalSerializer: React.FC<{
   data: SerializedEditorState;
 }> = async ({ data }) => {
-  const locale = await getCurrentLocale();
+  const locale = await getLocale();
   const jsxConverters: JSXConvertersFunction<NodeTypes> = ({
     defaultConverters,
   }) => ({

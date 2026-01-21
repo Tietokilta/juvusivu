@@ -1,6 +1,6 @@
 "use client";
-import { useScopedI18n } from "@locales/client";
 import { useDurationFormatter } from "@util/index";
+import { useTranslations } from "next-intl";
 
 export const SignupConfirmTime = ({
   confirmableUntil,
@@ -8,7 +8,7 @@ export const SignupConfirmTime = ({
   confirmableUntil?: number;
 }) => {
   const duration = useDurationFormatter();
-  const t = useScopedI18n("ilmomasiina");
+  const t = useTranslations("ilmomasiina");
   if (confirmableUntil) {
     return (
       <p className="font-pixel text-lg">

@@ -1,9 +1,9 @@
 "use client";
-import { useScopedI18n } from "@locales/client";
 import { SignupFieldError } from "@tietokilta/ilmomasiina-models";
+import { useTranslations } from "next-intl";
 
 export const FieldErrorText = ({ error }: { error?: SignupFieldError }) => {
-  const t = useScopedI18n("errors.ilmo.fieldError");
+  const t = useTranslations("errors.ilmo.fieldError");
   if (!error) {
     return null;
   }

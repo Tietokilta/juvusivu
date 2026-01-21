@@ -1,12 +1,12 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
-import { getCurrentLocale } from "@locales/server";
 import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import MainHeader from "@components/MainHeader";
+import { getLocale } from "next-intl/server";
 
 export default async function Home() {
   const payload = await getPayload({ config: configPromise });
-  const locale = await getCurrentLocale();
+  const locale = await getLocale();
   const content = await payload.findGlobal({
     slug: "mainPage",
     locale,

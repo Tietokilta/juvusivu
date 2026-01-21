@@ -3,7 +3,7 @@ import { Event, Media } from "../../../../payload-types";
 import { Window } from "@components/Window";
 import { ProgressBar } from "@components/basic/ProgressBar";
 import { EikuButton } from "@components/EikuButton";
-import { getI18n } from "@locales/server";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 
 export const EventBox = async ({
@@ -13,7 +13,7 @@ export const EventBox = async ({
   event: Event;
   className?: string;
 }) => {
-  const t = await getI18n();
+  const t = await getTranslations();
   const url =
     event.customEventPage ??
     (event.slug && event.released ? `events/${event.slug}` : undefined);

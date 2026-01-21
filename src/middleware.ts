@@ -1,12 +1,9 @@
-import { createI18nMiddleware } from "next-international/middleware";
+import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
 
-const I18nMiddleware = createI18nMiddleware({
-  locales: ["fi", "en"],
-  defaultLocale: "fi",
-  urlMappingStrategy: "rewriteDefault",
-  resolveLocaleFromRequest: () => "fi", // default to Finnish
-});
+const I18nMiddleware = createMiddleware(routing);
+
 export function middleware(req: NextRequest) {
   // Redirect API calls for signups to ilmomasiina
   if (req.nextUrl.pathname.startsWith("/api/signups")) {

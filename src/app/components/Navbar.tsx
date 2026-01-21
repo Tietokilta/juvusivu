@@ -1,4 +1,4 @@
-import { getCurrentLocale, getI18n } from "@locales/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
@@ -9,8 +9,8 @@ export default async function Navbar({
 }: {
   variant?: "m0" | "default";
 }) {
-  const t = await getI18n();
-  const locale = await getCurrentLocale();
+  const t = await getTranslations();
+  const locale = await getLocale();
   const payload = await getPayload({ config: configPromise });
   const links = await payload.find({
     collection: "links",
