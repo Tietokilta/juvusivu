@@ -9,6 +9,9 @@ export const routing = defineRouting({
   defaultLocale: "fi",
 
   localePrefix: "as-needed",
+  localeCookie: {
+    maxAge: 60 * 60 * 24 * 365, // 1 year
+  },
 });
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =
