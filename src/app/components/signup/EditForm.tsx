@@ -281,7 +281,7 @@ const EditFormInternal = ({
                     defaultChecked={localizedSignup?.namePublic ?? false}
                     disabled={!canEdit}
                   />
-                  {t("form.Show name in the public list of sign ups")}
+                  {t("form.namePublic")}
                 </label>
               </>
             )}
@@ -321,11 +321,7 @@ const EditFormInternal = ({
                 {t_e("SignupsClosed")}
               </p>
             ) : !canEdit ? null : (
-              <p className="font-pixel text-lg">
-                {t(
-                  "form.You can edit your sign up or delete it later from this page, which will be sent to your email in the confirmation message",
-                )}
-              </p>
+              <p className="font-pixel text-lg">{t("form.editInstructions")}</p>
             )}
 
             {state?.success && (

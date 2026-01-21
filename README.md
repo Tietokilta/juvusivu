@@ -50,6 +50,10 @@ From Payload you can toggle if the actual M0 page is shown, or only countdown to
 
 To handle different slots of signups (e.g. invite-only and general), you can assign one ilmomasiina event to default m0, and additional events to custom pages `/m0/<label>` (`/<label>` also redirects there is there is no other page with that url).
 
+## Localization
+
+This project uses `next-intl` for localization. Some strings for ilmo part are directly imported from `ilmomasiina-client`.
+
 ## Database migrations
 
 When running the dev version, database schema updates automatically. However, when you update something that affects the schema, you have to create database migrations for production.

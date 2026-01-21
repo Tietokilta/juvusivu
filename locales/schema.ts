@@ -1,5 +1,5 @@
-import en from "./en.json";
-import fi from "./fi.json";
+import { en } from "./en";
+import { fi } from "./fi";
 
 en satisfies typeof fi;
 fi satisfies typeof en;

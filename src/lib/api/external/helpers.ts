@@ -1,4 +1,4 @@
-import type fi from "@locales/fi.json";
+import type { fi } from "@locales/fi";
 
 export type ErrorType = keyof typeof fi.errors;
 
