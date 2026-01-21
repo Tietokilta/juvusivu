@@ -1,4 +1,4 @@
-import { i18nResources } from "@tietokilta/ilmomasiina-client";
+import { i18nResources } from "@tietokilta/ilmomasiina-client/dist/locales/index";
 
 const ilmo = i18nResources.fi.public;
 
@@ -98,11 +98,6 @@ export const fi = {
     "confirm-time-left": "Ilmoittautumisesi on voimassa vielä",
     "confirm-save-or-lose": "Tallenna lomake, jotta se ei vanhene.",
     "form": {
-      "You are in queue at position": "Olet jonossa sijalla",
-      "You are in the open quota at position":
-        "Olet avoimessa kiintiössä sijalla",
-      "You are in the quota": "Olet kiintiössä",
-      "at position": "sijalla",
       "optional": "valinnainen",
       "Shown in the public list of sign ups":
         "Näytetään julkisessa osallistujalistassa",
@@ -118,6 +113,7 @@ export const fi = {
       "Sign up saved": "Ilmoittautuminen tallennettu!",
       "editInstructions": `${ilmo["editSignup.editInstructions"]} ${ilmo["editSignup.editInstructions.email"]}`,
       "Cancel": "Peruuta",
+      "uneditablePaidQuestion": ilmo["editSignup.uneditablePaidQuestion"],
     },
     "headers": {
       Alkaa: ilmo["singleEvent.info.startDate"],
@@ -139,14 +135,14 @@ export const fi = {
     },
     "status": {
       "Ei ilmoittautuneita vielä": "Ei ilmoittautuneita vielä.",
-      "Ilmoittautuminen alkaa": "Ilmoittautuminen alkaa {startDate}",
-      "Ilmo alkaa": "Ilmo alkaa {startDate}",
-      "Ilmoittautuminen auki": "Ilmoittautuminen auki {endDate} asti",
-      "Ilmo auki": "Ilmo auki {endDate} asti",
-      "Ilmoittautuminen on päättynyt": "Ilmoittautuminen on päättynyt",
       "Ilmoittautumistiedot eivät ole julkisia":
         "Ilmoittautumistiedot eivät ole julkisia.",
       "Jonossa": "Jonossa {queueCount}",
+    },
+    "position": {
+      quota: "Olet kiintiössä {quota} sijalla {position}.",
+      queue: "Olet jonossa sijalla {position}.",
+      openQuota: "Olet avoimessa kiintiössä sijalla {position}.",
     },
   },
   "ilmo": {
@@ -172,3 +168,5 @@ export const fi = {
     },
   },
 };
+
+export default fi;

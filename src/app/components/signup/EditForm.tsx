@@ -246,10 +246,7 @@ const EditFormInternal = ({
           action={() => undefined}
         >
           <div className="flex flex-col gap-2">
-            <QuotaPositionText
-              signup={localizedSignup}
-              event={localizedEvent}
-            />
+            <QuotaPositionText signup={localizedSignup} />
             {!confirmed && (
               <SignupConfirmTime confirmableUntil={confirmableUntil} />
             )}

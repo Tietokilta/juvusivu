@@ -1,4 +1,4 @@
-import { i18nResources } from "@tietokilta/ilmomasiina-client";
+import { i18nResources } from "@tietokilta/ilmomasiina-client/dist/locales/index";
 
 const ilmo = i18nResources.en.public;
 
@@ -96,11 +96,6 @@ export const en = {
     "confirm-time-left": "Your signup is still valid for",
     "confirm-save-or-lose": "Save the form to make sure it doesn't expire.",
     "form": {
-      "You are in queue at position": "You are in queue at position",
-      "You are in the open quota at position":
-        "You are in the open quota at position",
-      "You are in the quota": "You are in the quota",
-      "at position": "at position",
       "optional": "optional",
       "Shown in the public list of sign ups":
         "Shown in the public list of sign ups",
@@ -116,6 +111,7 @@ export const en = {
       "Sign up saved": "Sign up saved!",
       "editInstructions": `${ilmo["editSignup.editInstructions"]} ${ilmo["editSignup.editInstructions.email"]}`,
       "Cancel": "Cancel",
+      "uneditablePaidQuestion": ilmo["editSignup.uneditablePaidQuestion"],
     },
     "headers": {
       Alkaa: ilmo["singleEvent.info.startDate"],
@@ -137,13 +133,13 @@ export const en = {
     },
     "status": {
       "Ei ilmoittautuneita vielä": "No sign ups yet.",
-      "Ilmoittautuminen alkaa": "Sign up starts on {startDate}",
-      "Ilmo alkaa": "Sign up starts {startDate}",
-      "Ilmoittautuminen auki": "Open for sign ups until {endDate}",
-      "Ilmo auki": "Sign up until {endDate}",
-      "Ilmoittautuminen on päättynyt": "Sign up has ended",
       "Ilmoittautumistiedot eivät ole julkisia": "Sign ups are not public",
       "Jonossa": "{queueCount} in the queue",
+    },
+    "position": {
+      quota: "You are in the quota {quota} in position {position}.",
+      queue: "You are in the queue in position {position}.",
+      openQuota: "You are in the open quota in position {position}.",
     },
   },
   "ilmo": {
@@ -169,3 +165,5 @@ export const en = {
     },
   },
 };
+
+export default en;

@@ -58,15 +58,16 @@ export default async function LocaleLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
+  const validLocale = locale as Locale;
   return (
-    <html lang={locale} className="bg-accent-light">
+    <html lang={validLocale} className="bg-accent-light">
       <body
         className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${redactionFont.variable} antialiased`}
       >
-        <NextIntlClientProvider locale={locale}>
+        <NextIntlClientProvider locale={validLocale}>
           {children}
         </NextIntlClientProvider>
       </body>

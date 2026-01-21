@@ -3,3 +3,8 @@ import { fi } from "./fi";
 
 en satisfies typeof fi;
 fi satisfies typeof en;
+
+export const locales = {
+  fi,
+  en,
+};

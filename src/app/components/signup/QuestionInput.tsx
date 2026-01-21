@@ -2,7 +2,7 @@ import { Input, Checkbox, Radio, Textarea } from "@components/basic/input";
 import { useEditSignupContext } from "@tietokilta/ilmomasiina-client";
 import { Question, QuestionType } from "@tietokilta/ilmomasiina-models";
 import { questionHasPrices } from "@tietokilta/ilmomasiina-client/dist/utils/paymentUtils";
-import { useScopedI18n } from "@locales/client";
+import { useTranslations } from "next-intl";
 
 export const QuestionInput = ({
   question,
@@ -12,7 +12,7 @@ export const QuestionInput = ({
   defaultValue?: string | string[];
 }) => {
   const { canEditPaidQuestions, canEdit } = useEditSignupContext();
-  const t = useScopedI18n("ilmomasiina.form");
+  const t = useTranslations("ilmomasiina.form");
   const disabled =
     !canEdit || (!canEditPaidQuestions && questionHasPrices(question));
 
