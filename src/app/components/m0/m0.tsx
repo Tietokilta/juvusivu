@@ -55,7 +55,7 @@ export default async function M0content({ slug }: { slug?: string }) {
     "Tietokilta (TiK) system \n\
 (C)Copyright Tietokilta ry 1986-2026 \n\
 \n\
-T:\TIETOKILTA>format MUISTI: /s \n\
+T:\\TIETOKILTA>format MUISTI: /s \n\
 \n\
 WARNING, ALL DATA ON NON-REMOVABLE DISK \n\
 DRIVE MUISTI: WILL BE LOST! \n\
