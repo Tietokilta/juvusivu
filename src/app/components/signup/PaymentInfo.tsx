@@ -50,7 +50,7 @@ export const PaymentInfo = () => {
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (!signup || signup.status == SignupStatus.IN_QUEUE) {
+  if (!signup || signup.status === SignupStatus.IN_QUEUE) {
     return null;
   }
 

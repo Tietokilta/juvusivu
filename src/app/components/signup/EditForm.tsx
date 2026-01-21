@@ -209,7 +209,7 @@ const EditFormInternal = ({
         await deleteSignup();
         router.push(`/events/${localizedEvent?.slug}`);
       } catch (error) {
-        console.log("Error deleting signup:", error);
+        console.error("Error deleting signup:", error);
         alert(t("delete-fail"));
       }
     }

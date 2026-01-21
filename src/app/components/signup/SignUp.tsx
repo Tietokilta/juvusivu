@@ -35,7 +35,7 @@ export const SignUp = ({
       if (error instanceof ApiError) {
         setError(error);
       }
-      console.log("Error signing up:", error);
+      console.error("Error signing up:", error);
       setLoading(false);
     }
   };
