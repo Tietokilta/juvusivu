@@ -2,7 +2,7 @@ import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
 import { MainPage } from "./src/lib/api/mainPage";
-import { EventGridBlock } from "@components/lexical/Blocks";
+import { CommitteeGridBlock, EventGridBlock } from "@components/lexical/Blocks";
 import { Media } from "@lib/api/Media";
 import { azureStorage } from "@payloadcms/storage-azure";
 import { isCloudStorageEnabled } from "@util/index";
@@ -30,7 +30,7 @@ export default buildConfig({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
       BlocksFeature({
-        blocks: [EventGridBlock],
+        blocks: [EventGridBlock, CommitteeGridBlock],
       }),
     ],
   }),
@@ -124,6 +124,32 @@ export default buildConfig({
             description:
               "Page path to use instead of the default /events/[slug], for example m0",
           },
+        },
+      ],
+    },
+    {
+      slug: "committee-members",
+      fields: [
+        {
+          name: "name",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "role",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "photo",
+          type: "relationship",
+          relationTo: "media",
+          localized: false,
         },
       ],
     },

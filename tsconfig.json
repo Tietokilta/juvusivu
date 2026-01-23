@@ -23,6 +23,7 @@
       "@lib/*": ["./src/lib/*"],
       "@util/*": ["./src/util/*"],
       "@fonts/*": ["./public/fonts/*"],
+      "@public/*": ["./public/*"],
       "@payload-config": ["./payload.config.ts"],
       "@locales/*": ["./locales/*"],
       "@i18n/*": ["./src/i18n/*"]

@@ -11,6 +11,7 @@ import React, { JSX } from "react";
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { getLocale } from "next-intl/server";
 import { EventGridBlock, EventGridBlockType } from "./Blocks";
+import CommitteeGrid from "@components/committee/CommitteeGrid";
 
 type NodeTypes = DefaultNodeTypes | SerializedBlockNode<EventGridBlockType>;
 
@@ -46,6 +47,7 @@ export const LexicalSerializer: React.FC<{
       }: {
         node: SerializedBlockNode<EventGridBlockType>;
       }) => <Events locale={locale} category={node.fields.category} />,
+      committeeGrid: () => <CommitteeGrid />,
     },
   });
 

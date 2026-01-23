@@ -21,6 +21,7 @@ export const en = {
   "price": "Price",
   "public": "public",
   "pay": "Pay",
+  "m0-tmk": "Muistinnollaus Committee 101000",
   "payment-info-message": "Payment is done according to separate instructions.",
   "errors": {
     "ilmomasiina-event-not-found": "Event not found. Please check the URL.",
