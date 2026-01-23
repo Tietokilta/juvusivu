@@ -22,7 +22,7 @@ export const CommitteeGridBlock: Block = {
   slug: "committeeGrid",
   fields: [
     {
-      name: "Description",
+      name: "description",
       type: "text",
       localized: true,
       required: false,
