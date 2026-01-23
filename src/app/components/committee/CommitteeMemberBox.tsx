@@ -1,5 +1,4 @@
 import { CommitteeMember, Media } from "../../../../payload-types";
-import PlaceHolder from "@public/placeholder_2025.jpg";
 import { Window } from "@components/Window";
 import Image from "next/image";
 
@@ -21,7 +20,7 @@ export const CommitteeMemberBox = ({
           {title}
         </h2>
         <Image
-          src={photo?.url || PlaceHolder}
+          src={photo?.url || "/placeholder_2025.jpg"}
           alt={name}
           className="w-full object-cover"
           width={300}
