@@ -9,6 +9,7 @@ import { isCloudStorageEnabled } from "@util/index";
 import { migrations } from "./src/migrations";
 import { EVENT_CATEGORY_OPTIONS } from "@util/constants";
 import { m0config } from "@lib/api/m0";
+import sharp from "sharp";
 
 const {
   DB_USER,
@@ -26,6 +27,7 @@ const forceMigrations = process.env.FORCE_MIGRATIONS === "true";
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
+  sharp,
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
