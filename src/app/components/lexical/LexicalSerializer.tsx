@@ -53,6 +53,11 @@ export const LexicalSerializer: React.FC<{
       return <Tag className={className}>{children}</Tag>;
     },
 
+    paragraph: ({ node, nodesToJSX }) => {
+      const children = nodesToJSX({ nodes: node.children });
+      return <p className="my-3">{children}</p>;
+    },
+
     blocks: {
       eventGrid: ({
         node,
