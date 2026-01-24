@@ -10,6 +10,7 @@ import { migrations } from "./src/migrations";
 import { EVENT_CATEGORY_OPTIONS } from "@util/constants";
 import { m0config } from "@lib/api/m0";
 import sharp from "sharp";
+import { Infoscreen } from "@lib/api/Infoscreen";
 
 const {
   DB_USER,
@@ -245,7 +246,7 @@ export default buildConfig({
     Media,
   ],
 
-  globals: [MainPage, m0config],
+  globals: [MainPage, m0config, Infoscreen],
 
   admin: {
     autoLogin:

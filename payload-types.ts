@@ -100,10 +100,12 @@ export interface Config {
   globals: {
     mainPage: MainPage;
     m0config: M0Config;
+    infoscreen: Infoscreen;
   };
   globalsSelect: {
     mainPage: MainPageSelect<false> | MainPageSelect<true>;
     m0config: M0ConfigSelect<false> | M0ConfigSelect<true>;
+    infoscreen: InfoscreenSelect<false> | InfoscreenSelect<true>;
   };
   locale: 'en' | 'fi';
   user: User & {
@@ -675,6 +677,30 @@ export interface M0Config {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infoscreen".
+ */
+export interface Infoscreen {
+  id: number;
+  body: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "mainPage_select".
  */
 export interface MainPageSelect<T extends boolean = true> {
@@ -702,6 +728,16 @@ export interface M0ConfigSelect<T extends boolean = true> {
         label?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "infoscreen_select".
+ */
+export interface InfoscreenSelect<T extends boolean = true> {
+  body?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
