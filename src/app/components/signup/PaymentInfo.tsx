@@ -2,7 +2,6 @@
 import {
   PaymentMode,
   SignupPaymentStatus,
-  SignupStatus,
 } from "@tietokilta/ilmomasiina-models";
 import { Window } from "@components/Window";
 import { Button } from "@components/basic/Button";
@@ -23,6 +22,7 @@ const Payment = ({
 }) => {
   const t = useTranslations();
   const t_e = useTranslations("errors.ilmo.code");
+  const { isInQuota } = useEditSignupContext();
   if (paymentError) {
     return (
       <p className="text-juvu-red-dark">
@@ -34,7 +34,11 @@ const Payment = ({
     case SignupPaymentStatus.PAID:
       return <p className="text-green-700">{t("payment.status.paid")}</p>;
     case SignupPaymentStatus.PENDING:
-      return <p>{t("payment.status.pending")}</p>;
+      if (isInQuota) {
+        return <p>{t("payment.status.pending")}</p>;
+      } else {
+        return <p>{t("payment.status.inQueue")}</p>;
+      }
     case SignupPaymentStatus.REFUNDED:
       return <p>{t("payment.status.refunded")}</p>;
     default:
@@ -43,14 +47,15 @@ const Payment = ({
 };
 
 export const PaymentInfo = () => {
-  const { signup, event, paymentError } = useEditSignupContext();
+  const { signup, event, paymentError, canPayOnline, isInQuota } =
+    useEditSignupContext();
   const t = useTranslations();
   const t_e = useTranslations("errors.ilmo.code");
   const paymentUrl = useStartPayment();
   const [processing, setProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (!signup || signup.status === SignupStatus.IN_QUEUE) {
+  if (!signup) {
     return null;
   }
 
@@ -133,15 +138,14 @@ export const PaymentInfo = () => {
         )}
         {error && <p className="text-juvu-red-dark">{error}</p>}
       </div>
-      {event?.payments === PaymentMode.ONLINE &&
-        signup?.paymentStatus === SignupPaymentStatus.PENDING && (
-          <Button
-            onClick={startPayment}
-            text={t("pay")}
-            type="button"
-            disabled={processing}
-          />
-        )}
+      {canPayOnline && (
+        <Button
+          onClick={startPayment}
+          text={t("pay")}
+          type="button"
+          disabled={processing || !isInQuota}
+        />
+      )}
     </Window>
   );
 };

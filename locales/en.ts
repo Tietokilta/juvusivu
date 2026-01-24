@@ -65,6 +65,8 @@ export const en = {
           ilmo["editSignup.paymentError.PaymentRateLimited.description"],
         DefaultPaymentError:
           ilmo["editSignup.paymentError.default.description"],
+        SignupInQueue:
+          ilmo["editSignup.paymentError.SignupInQueue.description"],
       },
       fieldError: {
         missing: ilmo["editSignup.fieldError.missing"],
@@ -162,6 +164,7 @@ export const en = {
       pending: ilmo["editSignup.payment.status.pending"],
       paid: ilmo["editSignup.payment.status.paid"],
       refunded: ilmo["editSignup.payment.status.refunded"],
+      inQueue: ilmo["editSignup.payment.status.inQueue"],
     },
   },
 };
