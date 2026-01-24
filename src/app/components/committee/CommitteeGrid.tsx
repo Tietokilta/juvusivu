@@ -7,12 +7,13 @@ export default async function CommitteeGrid() {
   const committeeMembers = await payload.find({
     collection: "committee-members",
     sort: "id",
+    pagination: false,
   });
   return (
     <div>
       <div className="my-8 flex shrink-0 flex-wrap justify-center gap-8">
         {committeeMembers.docs.map((cm) => (
-          <CommitteeMemberBox key={cm.id} member={cm} className="flex-1" />
+          <CommitteeMemberBox key={cm.id} member={cm} />
         ))}
       </div>
     </div>
