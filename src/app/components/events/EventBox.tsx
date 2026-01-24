@@ -38,7 +38,7 @@ export const EventBox = async ({
     : 3;
 
   return (
-    <div className={`event-box max-w-[400px] min-w-[250px] ${className ?? ""}`}>
+    <div className={`event-box max-w-[320px] min-w-[250px] ${className ?? ""}`}>
       <Window
         link={url}
         title={date ? `${date.getDate()}.${date.getMonth() + 1}.` : undefined}
