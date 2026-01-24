@@ -7,6 +7,7 @@ export default async function CommitteeGrid() {
   const committeeMembers = await payload.find({
     collection: "committee-members",
     sort: "id",
+    pagination: false,
   });
   return (
     <div>
