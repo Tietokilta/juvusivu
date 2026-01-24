@@ -41,6 +41,18 @@ export const LexicalSerializer: React.FC<{
       return <HeadingTag className={className}>{children}</HeadingTag>;
     },
 
+    list: ({ node, nodesToJSX }) => {
+      const Tag = node.tag === "ol" ? "ol" : "ul";
+      const className =
+        node.listType === "number"
+          ? "list-decimal ml-6"
+          : node.listType === "check"
+            ? undefined
+            : "list-disc ml-6";
+      const children = nodesToJSX({ nodes: node.children });
+      return <Tag className={className}>{children}</Tag>;
+    },
+
     blocks: {
       eventGrid: ({
         node,
