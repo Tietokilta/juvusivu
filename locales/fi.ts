@@ -21,7 +21,6 @@ export const fi = {
   "price": "Hinta",
   "public": "julkinen",
   "pay": "Maksa",
-  "m0-tmk": "Muistinnollaustoimikunta 101000",
   "payment-info-message": "Maksaminen tapahtuu erillisten ohjeiden mukaisesti.",
   "errors": {
     "ilmomasiina-event-not-found": "Tapahtumaa ei löytynyt, tarkista osoite.",

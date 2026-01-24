@@ -220,7 +220,13 @@ export interface Media {
 export interface CommitteeMember {
   id: number;
   name: string;
+  /**
+   * Title in the committee, e.g. 'Muistinnolaaja'
+   */
   title: string;
+  /**
+   * Area of responsibility, e.g. 'Sponsors'
+   */
   role: string;
   photo?: (number | null) | Media;
   updatedAt: string;

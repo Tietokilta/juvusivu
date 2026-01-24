@@ -141,11 +141,18 @@ export default buildConfig({
           name: "title",
           type: "text",
           required: true,
+          admin: {
+            description: "Title in the committee, e.g. 'Muistinnolaaja'",
+          },
         },
         {
           name: "role",
           type: "text",
           required: true,
+          localized: true,
+          admin: {
+            description: "Area of responsibility, e.g. 'Sponsors'",
+          },
         },
         {
           name: "photo",

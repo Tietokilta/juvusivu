@@ -1,7 +1,6 @@
 import { getPayload } from "payload";
 import configPromise from "@payload-config";
 import { CommitteeMemberBox } from "@components/committee/CommitteeMemberBox";
-import { getTranslations } from "next-intl/server";
 
 export default async function CommitteeGrid() {
   const payload = await getPayload({ config: configPromise });
@@ -9,10 +8,8 @@ export default async function CommitteeGrid() {
     collection: "committee-members",
     sort: "id",
   });
-  const t = await getTranslations();
   return (
     <div>
-      <h3>{t("m0-tmk")}</h3>
       <div className="my-8 flex shrink-0 flex-wrap justify-center gap-8">
         {committeeMembers.docs.map((cm) => (
           <CommitteeMemberBox key={cm.id} member={cm} className="flex-1" />
