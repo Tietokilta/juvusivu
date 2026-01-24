@@ -16,7 +16,7 @@ export const CommitteeMemberBox = ({
   return (
     <div className={`event-box max-w-[240px] min-w-[240px] ${className ?? ""}`}>
       <Window title={name} windowPath={`C:\\..\\Teams\\${role}\\`} hidePadding>
-        <h2 className="font-pixel line-clamp-1 w-full pt-2 pl-1 text-center text-2xl hyphens-none">
+        <h2 className="font-pixel line-clamp-1 w-full pt-2 pl-1 text-center text-lg hyphens-none">
           {title}
         </h2>
         <Image
