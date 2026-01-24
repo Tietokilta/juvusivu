@@ -16,6 +16,7 @@ export default async function Events({
     ...(category && { where: { category: { equals: category } } }),
     locale,
     sort: "date", // Orders by date descending (newest first)
+    pagination: false
   });
 
   return (
