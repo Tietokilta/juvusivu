@@ -1,16 +1,19 @@
-import Events from "@components/events/Events";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
+import { getLocale } from "next-intl/server";
+import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 
 export default async function InfoscreenPage() {
+  const payload = await getPayload({ config: configPromise });
   const locale = await getLocale();
-  const t = await getTranslations();
+  const content = await payload.findGlobal({
+    slug: "infoscreen",
+    locale,
+  });
 
   return (
     <div className="h-full min-h-screen w-full p-8">
-      <h1 className="w-full pt-4 text-center font-mono text-4xl">
-        {t("jubilee-events-title")}
-      </h1>
-      <Events locale={locale} />
+      <LexicalSerializer data={content.body} />
     </div>
   );
 }
