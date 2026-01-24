@@ -4,6 +4,7 @@
 :root {
   --background: var(--color-juvu-white);
   --foreground: var(--color-juvu-blue);
+  hyphens: manual;
 }
 
 @theme {

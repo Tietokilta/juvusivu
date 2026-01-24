@@ -2,13 +2,14 @@ import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig } from "payload";
 import { MainPage } from "./src/lib/api/mainPage";
-import { EventGridBlock } from "@components/lexical/Blocks";
+import { CommitteeGridBlock, EventGridBlock } from "@components/lexical/Blocks";
 import { Media } from "@lib/api/Media";
 import { azureStorage } from "@payloadcms/storage-azure";
 import { isCloudStorageEnabled } from "@util/index";
 import { migrations } from "./src/migrations";
 import { EVENT_CATEGORY_OPTIONS } from "@util/constants";
 import { m0config } from "@lib/api/m0";
+import sharp from "sharp";
 
 const {
   DB_USER,
@@ -26,11 +27,12 @@ const forceMigrations = process.env.FORCE_MIGRATIONS === "true";
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
+  sharp,
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
       BlocksFeature({
-        blocks: [EventGridBlock],
+        blocks: [EventGridBlock, CommitteeGridBlock],
       }),
     ],
   }),
@@ -124,6 +126,39 @@ export default buildConfig({
             description:
               "Page path to use instead of the default /events/[slug], for example m0",
           },
+        },
+      ],
+    },
+    {
+      slug: "committee-members",
+      fields: [
+        {
+          name: "name",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "title",
+          type: "text",
+          required: true,
+          admin: {
+            description: "Title in the committee, e.g. 'Muistinnolaaja'",
+          },
+        },
+        {
+          name: "role",
+          type: "text",
+          required: true,
+          localized: true,
+          admin: {
+            description: "Area of responsibility, e.g. 'Sponsors'",
+          },
+        },
+        {
+          name: "photo",
+          type: "relationship",
+          relationTo: "media",
+          localized: false,
         },
       ],
     },

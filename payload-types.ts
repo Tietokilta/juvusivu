@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     events: Event;
+    'committee-members': CommitteeMember;
     sponsors: Sponsor;
     pages: Page;
     links: Link;
@@ -81,6 +82,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     events: EventsSelect<false> | EventsSelect<true>;
+    'committee-members': CommitteeMembersSelect<false> | CommitteeMembersSelect<true>;
     sponsors: SponsorsSelect<false> | SponsorsSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     links: LinksSelect<false> | LinksSelect<true>;
@@ -213,6 +215,25 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "committee-members".
+ */
+export interface CommitteeMember {
+  id: number;
+  name: string;
+  /**
+   * Title in the committee, e.g. 'Muistinnolaaja'
+   */
+  title: string;
+  /**
+   * Area of responsibility, e.g. 'Sponsors'
+   */
+  role: string;
+  photo?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sponsors".
  */
 export interface Sponsor {
@@ -320,6 +341,10 @@ export interface PayloadLockedDocument {
         value: number | Event;
       } | null)
     | ({
+        relationTo: 'committee-members';
+        value: number | CommitteeMember;
+      } | null)
+    | ({
         relationTo: 'sponsors';
         value: number | Sponsor;
       } | null)
@@ -397,6 +422,18 @@ export interface EventsSelect<T extends boolean = true> {
   category?: T;
   removePadding?: T;
   customEventPage?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "committee-members_select".
+ */
+export interface CommitteeMembersSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  role?: T;
+  photo?: T;
   updatedAt?: T;
   createdAt?: T;
 }

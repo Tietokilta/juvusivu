@@ -17,3 +17,8 @@ export const EventGridBlock: Block = {
     },
   ],
 };
+
+export const CommitteeGridBlock: Block = {
+  slug: "committeeGrid",
+  fields: [],
+};

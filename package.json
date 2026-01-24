@@ -37,6 +37,7 @@
     "react-dvd-screensaver": "^0.1.1",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
+    "sharp": "^0.34.5",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0"
   },
