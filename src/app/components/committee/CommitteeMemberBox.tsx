@@ -14,17 +14,19 @@ export const CommitteeMemberBox = ({
   const title = member.title || "";
   const photo = member.photo as Media | undefined;
   return (
-    <div className={`event-box max-w-[300px] min-w-[250px] ${className ?? ""}`}>
+    <div className={`flex order${className ?? ""}`}>
       <Window title={name} windowPath={`C:\\..\\Teams\\${role}\\`} hidePadding>
-        <h2 className="font-pixel line-clamp-1 w-full pt-2 pl-1 text-center text-2xl hyphens-none">
+        <h2 className="font-pixel line-clamp-1 w-full p-2 text-center text-xl hyphens-none">
           {title}
         </h2>
         <Image
           src={photo?.url || "/placeholder_2025.jpg"}
           alt={name}
-          className="w-full object-cover"
-          width={300}
-          height={400}
+          className={`h-60 max-h-[240px] max-w-[240px] min-w-[240px] border-b-2 border-gray-900 object-center ${
+            photo?.url ? "object-cover" : "bg-gray-100 object-contain"
+          }`}
+          width={1000}
+          height={1000}
         />
       </Window>
     </div>
