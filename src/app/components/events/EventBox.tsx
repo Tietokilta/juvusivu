@@ -44,6 +44,7 @@ export const EventBox = async ({
         title={date ? `${date.getDate()}.${date.getMonth() + 1}.` : undefined}
         windowPath={`C:\\..\\${t("jubilee")}\\${event.title}`}
         hidePadding={event.removePadding ?? undefined}
+        highlight={event.highlight ?? false}
       >
         <div
           className={`font-pixel ${event.removePadding ? "" : "p-4"} text-lg`}
