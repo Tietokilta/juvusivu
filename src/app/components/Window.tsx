@@ -13,10 +13,24 @@ export const Window: React.FC<{
   windowPath?: string;
   className?: string;
   hidePadding?: boolean;
-}> = ({ children, link, title, windowPath, className, hidePadding }) => {
+  highlight?: boolean;
+}> = ({
+  children,
+  link,
+  title,
+  windowPath,
+  className,
+  hidePadding,
+  highlight,
+}) => {
   const t = useTranslations();
   const [minimised, setMinimised] = useState(false);
   const [showWindow, setShowWindow] = useState(true);
+  const bg = highlight ? "bg-juvu-gold" : "bg-juvu-lightblue";
+  const bgBorder = highlight ? "border-juvu-gold" : "border-juvu-lightblue";
+  const bgHover = highlight
+    ? "hover:bg-juvu-gold-dark"
+    : "hover:bg-juvu-lightblue-dark";
 
   if (!showWindow) {
     return null;
@@ -25,12 +39,12 @@ export const Window: React.FC<{
     <div
       className={`border-accent-dark ${className ?? ""} border-2 shadow-lg shadow-gray-500`}
     >
-      <div className={`border-juvu-lightblue bg-juvu-lightblue border-6`}>
+      <div className={`${bgBorder} ${bg} border-6`}>
         <div className="flex justify-between">
           <span className="font-pixel line-clamp-1 pl-1 text-xl">{title}</span>
-          <div className="bg-juvu-lightblue flex items-center justify-end gap-1 pb-2">
+          <div className={`${bg} flex items-center justify-end gap-1 pb-2`}>
             <div
-              className="border-juvu-blue hover:bg-juvu-lightblue-dark flex h-5 w-5 items-center justify-center border-2"
+              className={`border-juvu-blue ${bgHover} flex h-5 w-5 items-center justify-center border-2`}
               onClick={() => {
                 setMinimised(true);
               }}
@@ -38,7 +52,7 @@ export const Window: React.FC<{
               <MinimizeIcon size={12} />
             </div>
             <div
-              className="border-juvu-blue hover:bg-juvu-lightblue-dark flex h-5 w-5 items-center justify-center border-2"
+              className={`border-juvu-blue ${bgHover} flex h-5 w-5 items-center justify-center border-2`}
               onClick={() => {
                 setMinimised(false);
               }}
@@ -63,7 +77,7 @@ export const Window: React.FC<{
           </div>
         )}
 
-        <div className={"bg-juvu-lightblue flex flex-col justify-between"}>
+        <div className={`${bg} flex flex-col justify-between`}>
           {!minimised && (
             <div
               className={`border-accent-dark bg-juvu-white border-2 ${hidePadding ? "" : "p-4"} break-words hyphens-auto`}
@@ -72,7 +86,7 @@ export const Window: React.FC<{
             </div>
           )}
           {link && (
-            <div className="bg-juvu-lightblue flex justify-center p-2">
+            <div className={`${bg} flex justify-center p-2`}>
               <Button type="link" text={t("read-more")} href={link} />
             </div>
           )}

@@ -166,6 +166,10 @@ export interface Event {
    * Page path to use instead of the default /events/[slug], for example m0
    */
   customEventPage?: string | null;
+  /**
+   * Hightlight event (e.g. golden Window border)
+   */
+  highlight?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -424,6 +428,7 @@ export interface EventsSelect<T extends boolean = true> {
   category?: T;
   removePadding?: T;
   customEventPage?: T;
+  highlight?: T;
   updatedAt?: T;
   createdAt?: T;
 }

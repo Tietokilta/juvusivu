@@ -128,6 +128,14 @@ export default buildConfig({
               "Page path to use instead of the default /events/[slug], for example m0",
           },
         },
+        {
+          name: "highlight",
+          type: "checkbox",
+          localized: false,
+          admin: {
+            description: "Hightlight event (e.g. golden Window border)",
+          },
+        },
       ],
     },
     {
