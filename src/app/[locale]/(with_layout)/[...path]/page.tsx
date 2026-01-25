@@ -44,7 +44,7 @@ export default async function Page(props: Props) {
         text={page.title.replaceAll("&shy;", "\u00AD")}
         animated
         size="medium"
-        className="py-10 break-words hyphens-auto backdrop-blur-2xl"
+        className="py-10 wrap-break-word hyphens-auto backdrop-blur-2xl"
       />
       <main className="container mx-auto max-w-[90dvh] px-8 py-4 sm:max-w-4xl">
         {page.body &&
