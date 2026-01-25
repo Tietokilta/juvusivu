@@ -49,7 +49,7 @@ export const Redaction = ({
         : "text-[clamp(3rem,13vw,6rem)]";
   return (
     <h1
-      className={`${sizeClass} ${redaction35.className} m-8 max-w-full text-center break-words hyphens-auto`}
+      className={`${sizeClass} ${redaction35.className} m-8 max-w-full text-center wrap-break-word hyphens-auto`}
     >
       {animated ? (
         text.split("").map((char, index) => {

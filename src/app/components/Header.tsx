@@ -13,7 +13,7 @@ export default function Header({
 }) {
   return (
     <div
-      className={`${className} bg-accent-light text-header relative flex items-end justify-center`}
+      className={`${className} bg-juvu-blue-dark text-accent-light relative flex items-end justify-center`}
     >
       <Redaction text={text} size={size ?? "large"} animated={animated} />
     </div>
