@@ -1,29 +1,13 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { defineConfig, globalIgnores } from "eslint/config";
 import eslint from "@eslint/js";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: eslint.configs.recommended,
-});
-
-const eslintConfig = [
+const eslintConfig = defineConfig([
+  eslint.configs.recommended,
+  ...nextVitals,
+  ...nextTs,
   {
-    ignores: [
-      "node_modules/**",
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-      "src/migrations/**",
-    ],
-  },
-  ...compat.config({
-    extends: ["eslint:recommended", "next/core-web-vitals", "next/typescript"],
     rules: {
       // Prevent unused imports
       "@typescript-eslint/no-unused-vars": [
@@ -39,7 +23,16 @@ const eslintConfig = [
       // Enforce strict equality
       "eqeqeq": ["error", "always"],
     },
-  }),
-];
+  },
+  // Override default ignores of eslint-config-next.
+  globalIgnores([
+    "node_modules/**",
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "src/migrations/**",
+  ]),
+]);
 
 export default eslintConfig;
