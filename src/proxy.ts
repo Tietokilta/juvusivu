@@ -2,7 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   // Detect locale from cookie, but not from Accept-Language header
   const I18nMiddleware = createMiddleware({
     ...routing,

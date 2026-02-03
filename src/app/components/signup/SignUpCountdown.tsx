@@ -6,7 +6,7 @@ import { dateFormatter } from "@util/index";
 import { useLocale, useTranslations } from "next-intl";
 
 export const SignUpCountdown = ({ event }: { event: UserEventResponse }) => {
-  const openingTime = new Date(event.registrationStartDate || Date.now());
+  const openingTime = new Date(event.registrationStartDate || 0);
   return (
     <Countdown
       date={openingTime}
