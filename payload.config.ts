@@ -98,6 +98,11 @@ export default buildConfig({
           name: "date",
           type: "date",
           localized: false,
+          admin: {
+            date: {
+              pickerAppearance: "dayAndTime",
+            },
+          },
         },
         {
           name: "photo",
