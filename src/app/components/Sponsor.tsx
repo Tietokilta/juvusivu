@@ -11,7 +11,13 @@ export default function Sponsor({ sponsor }: { sponsor: SponsorType }) {
       className="flex items-center justify-center"
     >
       {logo?.url ? (
-        <Image src={logo.url} alt={sponsor.name} width={128} height={128} />
+        <Image
+          src={logo.url}
+          alt={sponsor.name}
+          width={128}
+          height={128}
+          className="m-2 max-h-32 max-w-36 object-contain"
+        />
       ) : (
         <div className="text-accent-dark bg-juvu-white flex h-16 w-32 items-center justify-center rounded shadow">
           {sponsor.name}

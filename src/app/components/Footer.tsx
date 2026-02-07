@@ -14,7 +14,7 @@ export default async function Footer() {
           <p className="text-center font-mono text-lg font-bold">
             {t("sponsors-title")}
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-8">
+          <div className="mt-6 flex flex-wrap justify-center gap-6">
             {sponsors.docs.map((sponsor) => (
               <Sponsor key={sponsor.id} sponsor={sponsor} />
             ))}
