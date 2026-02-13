@@ -106,7 +106,7 @@ Proceed with Format (Y/N)? y";
               </Window>
               {config.showQuotaInfo && <QuotaWindow event={event} />}
             </div>
-            <div className="md:col-span-2 md:row-start-4 md:px-10">
+            <div className="overflow-x-auto md:col-span-2 md:row-start-4 md:px-10">
               <Window title={t("ilmomasiina.Ilmoittautuneet")}>
                 <SignUpList event={event} />
               </Window>
