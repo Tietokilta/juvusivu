@@ -3,8 +3,10 @@ import { i18nResources } from "@tietokilta/ilmomasiina-client/dist/locales/index
 const ilmo = i18nResources.en.public;
 
 export const en = {
-  "sponsors-title": "Supporting the Jubilee-year",
-  "navbar-title": "Tietokilta 40 years",
+  "sponsors-title": "In cooperation with",
+  "navbar-title": "Muistinnollaus 101001",
+  "main-event": "Main event",
+  "sillis": "Sillis",
   "open-button": "Open",
   "read-more": "Read more",
   "loading": "Loading...",
@@ -13,7 +15,7 @@ export const en = {
   "page-not-found": "Page not found",
   "tried-to-access": "You tried to access:",
   "error": "Error",
-  "jubilee": "Jubilee",
+  "jubilee": "Annual Gala",
   "jubilee-events-title": "Jubilee events",
   "total-price": "Total",
   "payment-info": "Payment information",

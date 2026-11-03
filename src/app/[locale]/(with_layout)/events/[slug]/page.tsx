@@ -45,7 +45,7 @@ export default async function Page({
       </div>
       {hasSignup && (
         <div className="md:col-start-3 md:row-start-2">
-          <Window title={t("Ilmoittautuminen")} className="font-pixel mb-5">
+          <Window title={t("Ilmoittautuminen")} className="mb-5 font-mono">
             <SignUpCountdown event={event} />
           </Window>
           <QuotaWindow event={event} />

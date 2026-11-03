@@ -6,13 +6,13 @@ import CountDown from "@components/CountDown";
 import { Window } from "@components/Window";
 import { fetchEvent } from "@lib/api/external/ilmomasiina";
 import { getLocale, getTranslations } from "next-intl/server";
-import Image from "next/image";
 import { SignUpCountdown } from "@components/signup/SignUpCountdown";
 import SignUpList from "@components/events/SignUpList";
 import { LexicalSerializer } from "@components/lexical/LexicalSerializer";
 import Header from "@components/Header";
 import { EventDescription } from "@components/events/EventDescription";
 import QuotaWindow from "@components/events/QuotaWindow";
+import { MAIN_EVENT_DATE } from "@util/constants";
 
 export default async function M0content({ slug }: { slug?: string }) {
   const payload = await getPayload({ config: configPromise });
@@ -24,17 +24,15 @@ export default async function M0content({ slug }: { slug?: string }) {
     locale,
   });
 
-  const defaultDate = "2026-02-13T14:00:00";
-
   if (config.hideContents) {
     return (
       <>
-        <Header text="Muistinnollaus 101000" />
+        <Header text="Muistinnollaus 101001" />
         <main className="container mx-auto max-w-5xl px-4 py-8">
           <Window className="mx-auto max-w-[500px]">
-            <div className="bg-juvu-white font-pixel">
+            <div className="bg-cream-light font-mono">
               <CountDown
-                date={config.eventDate ?? defaultDate}
+                date={config.eventDate ?? MAIN_EVENT_DATE}
                 locale={locale}
               />
             </div>
@@ -53,7 +51,7 @@ export default async function M0content({ slug }: { slug?: string }) {
 
   const text =
     "Tietokilta (TiK) system \n\
-(C)Copyright Tietokilta ry 1986-2026 \n\
+(C)Copyright Tietokilta ry 1986-2027 \n\
 \n\
 T:\\TIETOKILTA>format MUISTI: /s \n\
 \n\
@@ -62,19 +60,18 @@ DRIVE MUISTI: WILL BE LOST! \n\
 Proceed with Format (Y/N)? y";
   return (
     <>
-      <div className="bg-juvu-blue-dark relative flex flex-col items-center justify-center gap-8 px-4 pt-2 pb-20 md:h-[95dvh] md:max-h-[900px] md:min-h-[650px]">
-        <p className="text-juvu-lightblue-dark self-start pl-2 font-mono text-sm whitespace-pre-line">
+      <div className="bg-vine text-ink relative flex flex-col items-center justify-center gap-8 px-4 pt-2 pb-20 md:h-[95dvh] md:max-h-[900px] md:min-h-[650px]">
+        <p className="self-start pl-2 font-mono text-sm whitespace-pre-line">
           {text}
         </p>
-        <Image
-          src="/m0_logo.svg"
-          alt="Muistinnollaus 101000"
-          width={1303}
-          height={330}
-          className="flex-1 md:min-h-[200px] md:px-4"
-        />
-        <div className="font-pixel text-juvu-lightblue border-juvu-lightblue mx-auto max-w-125 border-2 border-dashed">
-          <CountDown date={config.eventDate ?? defaultDate} locale={locale} />
+        <h1 className="flex flex-1 items-center text-center font-mono text-[clamp(2rem,8vw,5rem)] font-bold">
+          Muistinnollaus 101001
+        </h1>
+        <div className="bg-cream-light border-ink mx-auto max-w-125 border-2 border-dashed font-mono">
+          <CountDown
+            date={config.eventDate ?? MAIN_EVENT_DATE}
+            locale={locale}
+          />
         </div>
       </div>
       <main className="container mx-auto grid max-w-5xl gap-5 px-4 py-8">
