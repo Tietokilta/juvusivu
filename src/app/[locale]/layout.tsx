@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Roboto_Mono } from "next/font/google";
+import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { Locale, NextIntlClientProvider } from "next-intl";
-import localFont from "next/font/local";
 import { routing } from "@i18n/routing";
 
 const inter = Inter({
@@ -10,20 +9,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const robotoMono = Roboto_Mono({
-  variable: "--font-roboto-mono",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
-  weight: "400",
-});
-
-const pixelFont = localFont({
-  src: "../../../public/fonts/w95fa/w95fa.woff2",
-  variable: "--font-pixel",
-});
-
-const redactionFont = localFont({
-  src: "../../../public/fonts/redaction/Redaction_35-Bold.woff2",
-  variable: "--font-redaction",
+  weight: ["400", "700"],
 });
 
 const icons = {
@@ -44,8 +33,8 @@ const icons = {
 };
 
 export const metadata: Metadata = {
-  title: "Tietokilta 40",
-  description: "Tietokilta 40",
+  title: "Muistinnollaus 101001",
+  description: "Tietokillan 41. vuosijuhla",
   icons,
 };
 
@@ -63,9 +52,9 @@ export default async function LocaleLayout({
   const { locale } = await params;
   const validLocale = locale as Locale;
   return (
-    <html lang={validLocale} className="bg-accent-light">
+    <html lang={validLocale} className="bg-background">
       <body
-        className={`${inter.className} ${inter.variable} ${robotoMono.variable} ${pixelFont.variable} ${redactionFont.variable} antialiased`}
+        className={`${inter.className} ${inter.variable} ${spaceMono.variable} antialiased`}
       >
         <NextIntlClientProvider locale={validLocale}>
           {children}

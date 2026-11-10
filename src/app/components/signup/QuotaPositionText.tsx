@@ -12,7 +12,7 @@ export const QuotaPositionText = ({
 }) => {
   const t = useTranslations("ilmomasiina.position");
   return (
-    <p className="font-pixel text-lg">
+    <p className="font-mono text-lg">
       {signup.status === SignupStatus.IN_QUEUE
         ? `${t("queue", { position: signup.position ?? "?" })}`
         : signup.status === SignupStatus.IN_OPEN_QUOTA

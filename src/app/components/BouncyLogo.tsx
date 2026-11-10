@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const DvdScreensaver = dynamic(
@@ -13,12 +12,11 @@ export const BouncyLogo = () => {
   return (
     <div className="h-48">
       <DvdScreensaver speed={1}>
-        <Image
-          src={"/m0_logo_darker.svg"}
-          alt="Muistinnollaus 101000"
-          width={200}
-          height={50}
-        />
+        <span className="text-leaf-dark inline-block text-center font-mono leading-tight font-bold">
+          Muistinnollaus
+          <br />
+          101001
+        </span>
       </DvdScreensaver>
     </div>
   );

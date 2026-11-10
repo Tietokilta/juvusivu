@@ -55,7 +55,7 @@ export const QuestionInput = ({
             );
           })}
           {canEdit && disabled && (
-            <p className="font-pixel mt-2">{t("uneditablePaidQuestion")}</p>
+            <p className="mt-2 font-mono">{t("uneditablePaidQuestion")}</p>
           )}
         </>
       );
@@ -80,7 +80,7 @@ export const QuestionInput = ({
             );
           })}
           {canEdit && disabled && (
-            <p className="font-pixel mt-2">{t("uneditablePaidQuestion")}</p>
+            <p className="mt-2 font-mono">{t("uneditablePaidQuestion")}</p>
           )}
         </>
       );

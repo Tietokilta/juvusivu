@@ -2,41 +2,37 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: var(--color-juvu-white);
-  --foreground: var(--color-juvu-blue);
+  --background: var(--color-cream);
+  --foreground: var(--color-ink);
   hyphens: manual;
 }
 
 @theme {
-  --color-juvu-blue: #091f43;
-  --color-juvu-lightblue: #c4cfe1;
-  --color-juvu-white: #fcf7f1;
-  --color-juvu-gold: #d4ae63;
-  --color-juvu-red: #ff675e;
-  --color-juvu-blue-dark: #000010;
-  --color-juvu-lightblue-dark: #919cae;
-  --color-juvu-white-dark: #c9c4be;
-  --color-juvu-gold-dark: #a17b30;
-  --color-juvu-red-dark: #cc342b;
-  --color-juvu-blue-light: #3c5276;
-  --color-juvu-lightblue-light: #f7ffff;
-  --color-juvu-white-light: #ffffff;
-  --color-juvu-gold-light: #ffe196;
-  --color-juvu-red-light: #ff9a91;
-  --color-accent-dark: var(--color-juvu-blue);
-  --color-accent-light: var(--color-juvu-lightblue);
-  --color-row-odd: #e6ebf5;
-  --color-row-even: #f3f6fa;
-  --color-header: var(--color-juvu-blue);
-  --font-pixel: var(--font-pixel);
-  --font-redaction: var(--font-redaction);
+  --color-vine: #51a242;
+  --color-sky-pale: #dfecfa;
+  --color-leaf: #4f9a22;
+  --color-leaf-dark: #2e6b1d;
+  --color-leaf-light: #9ccf4a;
+  --color-brick: #d9915a;
+  --color-brick-dark: #b4643a;
+  --color-concrete: #383842;
+  --color-cream: #f3ece0;
+  --color-cream-dark: #e3d8c5;
+  --color-cream-light: #fbf8f2;
+  --color-ink: #1c1d22;
+  --color-error: #b42318;
+  --color-accent-dark: var(--color-ink);
+  --color-accent-light: var(--color-sky-pale);
+  --color-row-odd: #ece4d4;
+  --color-row-even: var(--color-cream-light);
+  --color-header: var(--color-ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-roboto-mono);
+  --font-mono: var(--font-space-mono);
 }
 
 body {
@@ -53,8 +49,8 @@ input[type="checkbox"] {
   padding-block: calc(var(--spacing) * 1);
   margin-block: calc(var(--spacing) * 0.5);
   margin-inline-end: calc(var(--spacing) * 2);
-  border: 2px solid var(--color-juvu-blue);
-  background-color: var(--color-juvu-white);
+  border: 2px solid var(--color-ink);
+  background-color: var(--color-cream-light);
   --shadow: var(--shadow-md);
   display: inline-grid;
   place-content: center;
@@ -71,20 +67,20 @@ input[type="checkbox"]::before {
   block-size: 0.7rem;
   transform: scale(0);
   transition: transform 0.12s ease-in-out;
-  background: var(--color-juvu-white);
+  background: var(--color-cream-light);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
 }
 
 input[type="checkbox"]:checked {
-  background-color: var(--color-juvu-blue-light);
-  border-color: var(--color-juvu-blue);
+  background-color: var(--color-leaf);
+  border-color: var(--color-ink);
 }
 input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 
 input[type="checkbox"]:focus-visible {
-  outline: 2px solid var(--color-juvu-gold);
+  outline: 2px solid var(--color-brick);
   outline-offset: 2px;
 }
 
@@ -95,8 +91,8 @@ input[type="checkbox"]:disabled {
 }
 
 input[type="checkbox"]:indeterminate {
-  background-color: var(--color-juvu-white);
-  border-color: var(--color-juvu-blue);
+  background-color: var(--color-cream-light);
+  border-color: var(--color-ink);
 }
 input[type="checkbox"]:indeterminate::before {
   transform: scale(1);
@@ -112,9 +108,9 @@ input[type="radio"] {
   padding-block: calc(var(--spacing) * 1);
   margin-block: calc(var(--spacing) * 0.5);
   margin-inline-end: calc(var(--spacing) * 2);
-  border: 2px solid var(--color-juvu-blue);
+  border: 2px solid var(--color-ink);
   border-radius: 100%;
-  background-color: var(--color-juvu-white);
+  background-color: var(--color-cream-light);
   --shadow: var(--shadow-md);
   display: inline-grid;
   place-content: center;
@@ -131,20 +127,20 @@ input[type="radio"]::before {
   block-size: 0.7rem;
   transform: scale(0);
   transition: transform 0.12s ease-in-out;
-  background: var(--color-juvu-blue-light);
+  background: var(--color-leaf);
   border-radius: 50%;
 }
 
 input[type="radio"]:checked {
-  background-color: var(--color-juvu-white);
-  border-color: var(--color-juvu-blue);
+  background-color: var(--color-cream-light);
+  border-color: var(--color-ink);
 }
 input[type="radio"]:checked::before {
   transform: scale(1);
 }
 
 input[type="radio"]:focus-visible {
-  outline: 2px solid var(--color-juvu-gold);
+  outline: 2px solid var(--color-brick);
   outline-offset: 2px;
 }
 

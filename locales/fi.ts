@@ -3,8 +3,10 @@ import { i18nResources } from "@tietokilta/ilmomasiina-client/dist/locales/index
 const ilmo = i18nResources.fi.public;
 
 export const fi = {
-  "sponsors-title": "Mukana Juhlavuodessa",
-  "navbar-title": "Tietokilta 40 vuotta",
+  "sponsors-title": "Yhteistyössä",
+  "navbar-title": "Muistinnollaus 101001",
+  "main-event": "Pääjuhla",
+  "sillis": "Sillis",
   "open-button": "Avaa",
   "read-more": "Lue lisää",
   "loading": "Ladataan...",
@@ -13,7 +15,7 @@ export const fi = {
   "page-not-found": "Sivua ei löytynyt",
   "tried-to-access": "Yritit hakea sivua:",
   "error": "Virhe",
-  "jubilee": "Juhlavuosi",
+  "jubilee": "Vuosijuhla",
   "jubilee-events-title": "Juhlavuoden tapahtumia",
   "total-price": "Yhteensä",
   "payment-info": "Maksutiedot",

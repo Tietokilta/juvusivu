@@ -77,11 +77,9 @@ const InputRow = ({
   const t = useTranslations();
   return (
     <div className="mb-2">
-      <p className="font-pixel text-lg">
-        {label} {mandatory && <span className="text-juvu-red-dark">*</span>}{" "}
-        {publicField && (
-          <span className="text-juvu-blue-light">({t("public")})</span>
-        )}
+      <p className="font-mono text-lg">
+        {label} {mandatory && <span className="text-error">*</span>}{" "}
+        {publicField && <span className="text-leaf-dark">({t("public")})</span>}
       </p>
       {children}
     </div>
@@ -218,7 +216,7 @@ const EditFormInternal = ({
   if (pending) {
     return (
       <Window title={t("loading-signup")} className="mx-auto my-7 max-w-3xl">
-        <p className="font-pixel text-lg">{t_general("loading")}</p>
+        <p className="font-mono text-lg">{t_general("loading")}</p>
       </Window>
     );
   }
@@ -226,7 +224,7 @@ const EditFormInternal = ({
   if (!localizedSignup || !localizedEvent) {
     return (
       <Window title={t_e("NoSuchSignup")} className="mx-auto my-7 max-w-3xl">
-        <p className="font-pixel text-lg">
+        <p className="font-mono text-lg">
           {t_general("errors.ilmomasiina-signup-not-found")}
         </p>
       </Window>
@@ -314,25 +312,25 @@ const EditFormInternal = ({
             ))}
 
             {closed ? (
-              <p className="font-pixel text-juvu-red-dark text-lg">
+              <p className="text-error font-mono text-lg">
                 {t_e("SignupsClosed")}
               </p>
             ) : !canEdit ? null : (
-              <p className="font-pixel text-lg">{t("form.editInstructions")}</p>
+              <p className="font-mono text-lg">{t("form.editInstructions")}</p>
             )}
 
             {state?.success && (
-              <p className="font-pixel text-lg text-green-700">
+              <p className="font-mono text-lg text-green-700">
                 {t("form.Sign up saved")}
               </p>
             )}
             {showSuccess && (
-              <p className="font-pixel text-lg text-green-700">
+              <p className="font-mono text-lg text-green-700">
                 {t("form.Sign up saved")}
               </p>
             )}
             {generalError && (
-              <p className="font-pixel text-juvu-red-dark text-lg">
+              <p className="text-error font-mono text-lg">
                 {generalError.code
                   ? t_e(generalError.code)
                   : generalError.message}

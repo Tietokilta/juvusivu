@@ -40,10 +40,10 @@ async function SignUpRow({
   const t = await getTranslations("ilmomasiina");
   return (
     <tr className="odd:bg-row-odd even:bg-row-even">
-      <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
+      <td className="border-b border-gray-900 px-2 py-1 font-mono text-base">
         <span>{signup.position}.</span>
       </td>
-      <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
+      <td className="border-b border-gray-900 px-2 py-1 font-mono text-base">
         {signup.namePublic ? (
           <span>
             {signup.firstName} {signup.lastName}
@@ -57,17 +57,17 @@ async function SignUpRow({
       {publicQuestions.map((question) => (
         <td
           key={question.id}
-          className="font-pixel border-b border-gray-900 px-2 py-1 text-base"
+          className="border-b border-gray-900 px-2 py-1 font-mono text-base"
         >
           {getFormattedAnswer(question, signup.answers)}
         </td>
       ))}
       {isGeneratedQuota ? (
-        <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
+        <td className="border-b border-gray-900 px-2 py-1 font-mono text-base">
           {signup.quota.title}
         </td>
       ) : null}
-      <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
+      <td className="border-b border-gray-900 px-2 py-1 font-mono text-base">
         {new Date(signup.createdAt).toLocaleString("fi-FI", {
           timeZone: "Europe/Helsinki",
         })}
@@ -105,26 +105,26 @@ async function SignUpTable({
       <table className="w-full table-auto border-separate border-spacing-0">
         <thead>
           <tr className="bg-row-even">
-            <th className="font-pixel rounded-tl-md border-b border-gray-900 p-2 text-lg">
+            <th className="rounded-tl-md border-b border-gray-900 p-2 font-mono text-lg">
               {t("headers.Sija")}
             </th>
-            <th className="font-pixel border-b border-gray-900 p-2 text-lg">
+            <th className="border-b border-gray-900 p-2 font-mono text-lg">
               {t("headers.Nimi")}
             </th>
             {publicQuestions.map((question) => (
               <th
                 key={question.id}
-                className="font-pixel border-b border-gray-900 p-2 text-lg"
+                className="border-b border-gray-900 p-2 font-mono text-lg"
               >
                 {question.question}
               </th>
             ))}
             {isGeneratedQuota ? (
-              <th className="font-pixel border-b border-gray-900 p-2 text-lg">
+              <th className="border-b border-gray-900 p-2 font-mono text-lg">
                 {t("headers.Kiintiö")}
               </th>
             ) : null}
-            <th className="font-pixel rounded-tr-md border-b border-gray-900 p-2 text-lg">
+            <th className="rounded-tr-md border-b border-gray-900 p-2 font-mono text-lg">
               {t("headers.Ilmoittautumisaika")}
             </th>
           </tr>
@@ -167,7 +167,7 @@ async function SignUpList({ event }: { event: UserEventResponse }) {
       <ul className="space-y-4">
         {signupsByQuota.map((quota) => (
           <li key={quota.id ?? quota.type} className="space-y-2">
-            <h4 className="font-pixel text-lg">
+            <h4 className="font-mono text-lg">
               {quota.type === SignupStatus.IN_OPEN_QUOTA
                 ? t("Avoin kiintiö")
                 : quota.type === SignupStatus.IN_QUEUE

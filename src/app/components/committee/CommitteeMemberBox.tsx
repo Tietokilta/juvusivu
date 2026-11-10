@@ -21,7 +21,7 @@ export const CommitteeMemberBox = ({
           windowPath={`C:\\..\\Teams\\${role}\\`}
           hidePadding
         >
-          <h2 className="font-pixel line-clamp-1 w-full p-2 text-center text-xl hyphens-none">
+          <h2 className="line-clamp-1 w-full p-2 text-center font-mono text-xl hyphens-none">
             {title}
           </h2>
           <Image

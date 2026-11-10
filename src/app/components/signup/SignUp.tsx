@@ -48,7 +48,7 @@ export const SignUp = ({
         type="button"
         onClick={signUpAction}
       />
-      {error?.code && <p className="text-juvu-red-dark">{t_e(error.code)}</p>}
+      {error?.code && <p className="text-error">{t_e(error.code)}</p>}
     </div>
   );
 };

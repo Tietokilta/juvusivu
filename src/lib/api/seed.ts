@@ -42,7 +42,7 @@ export const seed = async (payload: Payload, override: boolean = false) => {
     await payload.updateGlobal({
       slug: "mainPage",
       data: {
-        title: "Tietokilta 40",
+        title: "Muistinnollaus 101001",
         body: {
           root: {
             type: "root",

@@ -19,7 +19,7 @@ export default function Sponsor({ sponsor }: { sponsor: SponsorType }) {
           className="m-2 max-h-32 max-w-36 object-contain"
         />
       ) : (
-        <div className="text-accent-dark bg-juvu-white flex h-16 w-32 items-center justify-center rounded shadow">
+        <div className="text-accent-dark bg-cream-light flex h-16 w-32 items-center justify-center rounded shadow">
           {sponsor.name}
         </div>
       )}

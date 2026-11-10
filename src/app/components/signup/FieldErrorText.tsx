@@ -7,5 +7,5 @@ export const FieldErrorText = ({ error }: { error?: SignupFieldError }) => {
   if (!error) {
     return null;
   }
-  return <div className="text-juvu-red-dark">{t(error)}</div>;
+  return <div className="text-error">{t(error)}</div>;
 };

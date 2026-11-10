@@ -26,11 +26,9 @@ export const Window: React.FC<{
   const t = useTranslations();
   const [minimised, setMinimised] = useState(false);
   const [showWindow, setShowWindow] = useState(true);
-  const bg = highlight ? "bg-juvu-gold" : "bg-juvu-lightblue";
-  const bgBorder = highlight ? "border-juvu-gold" : "border-juvu-lightblue";
-  const bgHover = highlight
-    ? "hover:bg-juvu-gold-dark"
-    : "hover:bg-juvu-lightblue-dark";
+  const bg = highlight ? "bg-brick" : "bg-leaf-light";
+  const bgBorder = highlight ? "border-brick" : "border-leaf-light";
+  const bgHover = highlight ? "hover:bg-brick-dark" : "hover:bg-leaf";
 
   if (!showWindow) {
     return null;
@@ -41,10 +39,10 @@ export const Window: React.FC<{
     >
       <div className={`${bgBorder} ${bg} border-6`}>
         <div className="flex justify-between">
-          <span className="font-pixel line-clamp-1 pl-1 text-xl">{title}</span>
+          <span className="line-clamp-1 pl-1 font-mono text-xl">{title}</span>
           <div className={`${bg} flex items-center justify-end gap-1 pb-2`}>
             <div
-              className={`border-juvu-blue ${bgHover} flex h-5 w-5 items-center justify-center border-2`}
+              className={`border-ink ${bgHover} flex h-5 w-5 items-center justify-center border-2`}
               onClick={() => {
                 setMinimised(true);
               }}
@@ -52,7 +50,7 @@ export const Window: React.FC<{
               <MinimizeIcon size={12} />
             </div>
             <div
-              className={`border-juvu-blue ${bgHover} flex h-5 w-5 items-center justify-center border-2`}
+              className={`border-ink ${bgHover} flex h-5 w-5 items-center justify-center border-2`}
               onClick={() => {
                 setMinimised(false);
               }}
@@ -60,7 +58,7 @@ export const Window: React.FC<{
               <MaximizeIcon size={12} />
             </div>
             <div
-              className="border-juvu-blue bg-juvu-red hover:bg-juvu-red-dark select-pointer flex h-5 w-5 items-center justify-center border-2"
+              className="border-ink bg-brick-dark hover:bg-error select-pointer flex h-5 w-5 items-center justify-center border-2"
               onClick={() => {
                 setShowWindow(false);
               }}
@@ -70,8 +68,8 @@ export const Window: React.FC<{
           </div>
         </div>
         {windowPath && (
-          <div className="border-accent-dark bg-juvu-white mb-2 truncate border-2 p-1">
-            <h2 className="text-accent-dark font-pixel mx-2 text-lg">
+          <div className="border-accent-dark bg-cream-light mb-2 truncate border-2 p-1">
+            <h2 className="text-accent-dark mx-2 font-mono text-lg">
               {windowPath}
             </h2>
           </div>
@@ -80,7 +78,7 @@ export const Window: React.FC<{
         <div className={`${bg} flex flex-col justify-between`}>
           {!minimised && (
             <div
-              className={`border-accent-dark bg-juvu-white border-2 ${hidePadding ? "" : "p-4"} break-words hyphens-auto`}
+              className={`border-accent-dark bg-cream-light border-2 ${hidePadding ? "" : "p-4"} break-words hyphens-auto`}
             >
               {children}
             </div>

@@ -27,7 +27,7 @@ export const SignupConfirmTime = ({
 
   if (confirmableUntil) {
     return (
-      <p className="font-pixel text-lg">
+      <p className="font-mono text-lg">
         {t("confirm-time-left")} {duration(timeLeft)}.{" "}
         {t("confirm-save-or-lose")}
       </p>

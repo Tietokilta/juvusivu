@@ -47,7 +47,7 @@ export const EventBox = async ({
         highlight={event.highlight ?? false}
       >
         <div
-          className={`font-pixel ${event.removePadding ? "" : "p-4"} text-lg`}
+          className={`font-mono ${event.removePadding ? "" : "p-4"} text-lg`}
         >
           {event.released && !event.loading ? (
             photo?.url ? (

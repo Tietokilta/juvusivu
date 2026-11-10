@@ -42,7 +42,6 @@ export default async function Page(props: Props) {
     <>
       <Header
         text={page.title.replaceAll("&shy;", "\u00AD")}
-        animated
         size="medium"
         className="py-10 wrap-break-word hyphens-auto backdrop-blur-2xl"
       />

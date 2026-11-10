@@ -15,7 +15,7 @@ export default async function QuotaWindow({
   const t = await getTranslations("ilmomasiina");
 
   return (
-    <Window title={t("quotas")} className="font-pixel">
+    <Window title={t("quotas")} className="font-mono">
       {getSignupsByQuota(event).map((quota) => {
         switch (quota.type) {
           case SignupStatus.IN_QUOTA:

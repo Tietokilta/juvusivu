@@ -25,7 +25,7 @@ const Payment = ({
   const { isInQuota } = useEditSignupContext();
   if (paymentError) {
     return (
-      <p className="text-juvu-red-dark">
+      <p className="text-error">
         {t_e(paymentError.code ?? "DefaultPaymentError")}
       </p>
     );
@@ -85,10 +85,10 @@ export const PaymentInfo = () => {
         <table className="w-full table-auto border-separate border-spacing-0">
           <thead>
             <tr className="bg-row-even">
-              <th className="font-pixel rounded-tl-md border-b border-gray-900 p-2 text-left text-lg">
+              <th className="rounded-tl-md border-b border-gray-900 p-2 text-left font-mono text-lg">
                 {t("product")}
               </th>
-              <th className="font-pixel rounded-tl-md border-b border-gray-900 p-2 text-left text-lg">
+              <th className="rounded-tl-md border-b border-gray-900 p-2 text-left font-mono text-lg">
                 {t("price")}
               </th>
             </tr>
@@ -99,28 +99,28 @@ export const PaymentInfo = () => {
                 className="odd:bg-row-odd even:bg-row-even"
                 key={product.name}
               >
-                <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
+                <td className="border-b border-gray-900 px-2 py-1 font-mono text-base">
                   <span>
                     {product.amount}x {product.name}
                   </span>
                 </td>
-                <td className="font-pixel border-b border-gray-900 px-2 py-1 text-base">
+                <td className="border-b border-gray-900 px-2 py-1 font-mono text-base">
                   <span>{(product.amount * product.unitPrice) / 100} €</span>
                 </td>
               </tr>
             ))}
             <tr className="bg-row-odd font-bold">
-              <td className="font-pixel border-t border-gray-900 px-2 py-1 text-base">
+              <td className="border-t border-gray-900 px-2 py-1 font-mono text-base">
                 {t("total-price")}
               </td>
-              <td className="font-pixel border-t border-gray-900 px-2 py-1 text-base">
+              <td className="border-t border-gray-900 px-2 py-1 font-mono text-base">
                 {price / 100} €
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div className="font-pixel mt-4 mb-2 text-lg">
+      <div className="mt-4 mb-2 font-mono text-lg">
         {event?.payments === PaymentMode.DISABLED && (
           <p>{t("payment-info-message")}</p>
         )}
@@ -136,7 +136,7 @@ export const PaymentInfo = () => {
         {event?.payments === PaymentMode.ONLINE && (
           <Payment status={signup.paymentStatus} paymentError={paymentError} />
         )}
-        {error && <p className="text-juvu-red-dark">{error}</p>}
+        {error && <p className="text-error">{error}</p>}
       </div>
       {canPayOnline && (
         <Button
